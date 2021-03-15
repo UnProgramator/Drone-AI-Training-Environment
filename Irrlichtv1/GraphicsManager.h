@@ -1,0 +1,21 @@
+#pragma once
+
+#include <irrlicht.h>
+#include <string>
+
+extern irr::IrrlichtDevice*					device;
+extern irr::scene::ISceneManager*			scrMgr;
+extern irr::video::IVideoDriver*			vidMgr;
+extern irr::gui::  IGUIEnvironment*			guiMgr;
+extern irr::scene::ISceneCollisionManager*	colMan;
+extern irr::scene::ICameraSceneNode*		camera;
+
+extern void initGraphicsLibrary(irr::video::E_DRIVER_TYPE);
+extern void setCamera(const irr::core::vector3df& initialPosition = irr::core::vector3df(0.f, 0.f, 0.f));
+extern void clearScene();
+
+extern irr::scene::IMeshSceneNode* getStaticMesh(const std::string& path, irr::s32 id = -1) throw();
+extern irr::scene::IMeshSceneNode* getCube(float scale = 10.f, irr::s32 id = -1) throw();
+
+extern void addToCollision(irr::scene::IMeshSceneNode* object);
+extern void addToCollision(irr::scene::IAnimatedMeshSceneNode* object);
