@@ -14,7 +14,7 @@ namespace alex_example {
 }
 
 int main() {
-	return alex_example::fst_example::main();
+	return alex_example::snd_example::main();
 }
 
 

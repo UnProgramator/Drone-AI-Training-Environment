@@ -6,6 +6,7 @@
 #include "GraphicsManager.h"
 #include "StaticObject.h"
 #include "DynamicObject.h"
+#include "IOcontroller.h"
 
 
 namespace alex_example {
@@ -151,17 +152,21 @@ namespace alex_example {
 			return 0;
 		}
 	}
-	namespace scd_example{
+	namespace snd_example{
 		int main() {
 
 			initGraphicsLibrary(irr::video::EDT_OPENGL);
 			setCamera();
 
 			StaticObject *o1, *o2;
-			//DynamicObject *d1, *d2;
+			DynamicObject *d1, *d2;
 
-			o1 = new StaticObject(getStaticMesh("media/faerie.md2"), irr::core::vector3df(0.f, 0.f, 50.f));
-			o2 = new StaticObject(getStaticMesh("media/gun.md2"), irr::core::vector3df(0.f, 0.f, 50.f));
+			o1 = new StaticObject(getStaticMesh("media/faerie.md2", "media/Faerie5.bmp"), irr::core::vector3df(0.f, 0.f, 50.f));
+			o2 = new StaticObject(getStaticMesh("media/gun.md2", "media/gun.jpg"), irr::core::vector3df(0.f, 0.f, 50.f));
+			d1 = new DynamicObject(getCube(), irr::core::vector3df());
+			d1 = new DynamicObject(getCube(), irr::core::vector3df(-10.f, 10.f, 5.f));
+
+			addNewKeyFunction(irr::KEY_ESCAPE, []() {exit(0); });
 
 			while (device->run()) {
 				vidMgr->beginScene(true, true, irr::video::SColor(255, 100, 101, 140));
@@ -169,6 +174,8 @@ namespace alex_example {
 				scrMgr->drawAll();
 
 				vidMgr->endScene();
+
+				d1->addInputVector(d1->getForwardVector() * 0.2f * (rand()%3-1));
 			}
 
 			return 0;

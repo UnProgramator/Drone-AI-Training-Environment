@@ -20,17 +20,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ControllerInterface.h" />
+    <ClInclude Include="Drone.h" />
     <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="GraphicsManager.h" />
     <ClInclude Include="IObjectController.h" />
+    <ClInclude Include="IOcontroller.h" />
+    <ClInclude Include="SensorInterface.h" />
     <ClInclude Include="StaticObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Drone.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
     <ClCompile Include="fstExample.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
     <ClCompile Include="IObjectController.cpp" />
+    <ClCompile Include="IOController.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SensorInterface.cpp" />
     <ClCompile Include="StaticObject.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

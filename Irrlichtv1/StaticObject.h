@@ -16,7 +16,8 @@ public:
 
 public:
 	StaticObject() = delete;
-	StaticObject(irr::scene::ISceneNode* meshNode, const irr::core::vector3df& position, bool bHasCollision = true, std::string name="");
+	StaticObject(irr::scene::ISceneNode* meshNode, const irr::core::vector3df& position = irr::core::vector3df(0.f, 0.f, 0.f), const irr::core::vector3df& rotation = irr::core::vector3df(0.f, 0.f, 0.f), bool bHasCollision = true, std::string name="");
+	StaticObject(const std::string & meshPath, const std::string& texturePath, const irr::core::vector3df& position = irr::core::vector3df(0.f, 0.f, 0.f), const irr::core::vector3df& rotation = irr::core::vector3df(0.f, 0.f, 0.f), bool bHasCollision = true, std::string name="");
 	virtual ~StaticObject();
 
 	bool colideWith(StaticObject* other);

@@ -1,4 +1,7 @@
 #include "StaticObject.h"
+#include "GraphicsManager.h"
+#include <iostream>
+
 
 StaticObject::~StaticObject()
 {
@@ -11,13 +14,21 @@ StaticObject::~StaticObject()
 
 bool StaticObject::colideWith(StaticObject* other)
 {
+	if (!this->bHasCollision || !other->bHasCollision)
+		return false;
 	return this->meshNode->getTransformedBoundingBox().intersectsWithBox(other->meshNode->getTransformedBoundingBox());
 }
 
-StaticObject::StaticObject(irr::scene::ISceneNode* meshNode, const irr::core::vector3df& position, bool bHasCollision, std::string name): name(name)
+StaticObject::StaticObject(irr::scene::ISceneNode* meshNode, const irr::core::vector3df& position, const irr::core::vector3df& rotation, bool bHasCollision, std::string name): name(name)
 {
 	this->meshNode = meshNode;
 	this->meshNode->setPosition(position);
-	if (bHasCollision && !meshNode->getTriangleSelector())
-		throw std::exception("No triangle selector found for mesh marked for colision");
+	this->meshNode->setRotation(rotation);
+}
+
+StaticObject::StaticObject(const std::string & meshPath, const std::string& texturePath, const irr::core::vector3df& position, const irr::core::vector3df& rotation, bool bHasCollision, std::string name)
+{
+	this->meshNode = getStaticMesh(meshPath, texturePath, nullptr, -1, bHasCollision);
+	this->meshNode->setPosition(position);
+	this->meshNode->setRotation(rotation);
 }
