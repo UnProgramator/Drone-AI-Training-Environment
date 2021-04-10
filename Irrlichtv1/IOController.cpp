@@ -9,10 +9,8 @@ static std::map<irr::EKEY_CODE, map_fun_type> map_apel;
 bool MyEventReceiver::OnEvent(const irr::SEvent& event)
 {
     // Remember whether each key is down or up
-    if (event.EventType == irr::EET_KEY_INPUT_EVENT) {
-        if (event.KeyInput.PressedDown && map_apel.count(event.KeyInput.Key) > 0)
-            map_apel[event.KeyInput.Key]();
-    }
+    if (event.EventType == irr::EET_KEY_INPUT_EVENT)
+        KeyIsDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
 
     return false;
 }
@@ -28,9 +26,16 @@ void setMap(const std::map<irr::EKEY_CODE, map_fun_type> &map)
     map_apel = map;
 }
 
+void tick_io()
+{
+    for (auto payr : map_apel) {
+        if (evrec.IsKeyDown(payr.first))
+            payr.second();
+    }
+}
+
 map_fun_type addNewKeyFunction(irr::EKEY_CODE key, map_fun_type fun) 
 {
-    std::cout << "added " << key << std::endl;
     map_fun_type retVal = nullptr;
     if (map_apel.count(key) > 0)
         retVal = map_apel[key];

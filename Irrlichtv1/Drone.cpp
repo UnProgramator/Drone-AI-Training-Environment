@@ -2,9 +2,12 @@
 
 #include <irrlicht.h>
 #include <iostream>
-
+#include <list>
+#include <memory>
 #include "DynamicObject.h"
 #include "GraphicsManager.h"
+
+using namespace std;
 
 #ifdef drone_debug_on
 #error
@@ -21,9 +24,16 @@
 
 Drone::Drone(const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation)
 {
+    std::cout << "drone created";
     irr::scene::IMeshSceneNode* node = getCube();
     mesh= new DynamicObject(node, initalPosition, initalRotation, initalOrientation, true);
 }
+
+Drone::Drone(const std::string& path, const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation)
+{
+    irr::scene::IMeshSceneNode* node = getStaticMesh(path + "", path + ".png", 0);
+    mesh = new DynamicObject(node, initalPosition, initalRotation, initalOrientation, true);
+} 
 
 bool Drone::verifyCollision(class StaticObject* otherObject)
 {
@@ -43,7 +53,7 @@ void Drone::moveForwards(float ratio)
 
     debug_call_cond(ratio<=0, "negative forward movement detected");
 
-    mesh->addInputVector(mesh->getForwardVector() * maxFrowardSpeed * ratio);
+    forward_ratio = ratio;
 }
 
 void Drone::rotateRight(float ratio)
@@ -57,7 +67,7 @@ void Drone::rotateRight(float ratio)
         ratio = -1.f;
     }
 
-    mesh->rotate(irr::core::vector3df(0.f, 0.f, 1.f) * maxRightRotationSpeed * ratio);
+    rotation_ratio = ratio;
 }
 
 void Drone::moveUp(float ratio)
@@ -71,7 +81,46 @@ void Drone::moveUp(float ratio)
         ratio = -1.f;
     }
 
-    mesh->addInputVector(mesh->getForwardVector() * maxUpSpeed * ratio);
+    up_ratio = ratio;
+}
+
+void Drone::add_sensor(DistanceSensor* sensor)
+{
+    this->sensor_list.push_back(sensor);
+}
+
+std::list<float> Drone::getDistanceSensorValues()
+{
+    std::list<float> distance_list;
+    float distance=0;
+    for (auto* sensor : sensor_list) {
+        sensor->getDetectedValue(&distance, sizeof(distance));
+        distance_list.push_back(distance);
+    }
+    return distance_list;
+}
+
+irr::scene::ISceneNode* Drone::getParent()
+{
+    return mesh->getParent();
+}
+
+void Drone::tick()
+{
+    if (forward_ratio != 0 || up_ratio != 0) {
+
+        irr::core::vector3df vec = mesh->getForwardVector();
+        if (forward_ratio != 0)
+            vec *= forward_ratio * maxFrowardSpeed;
+        if (up_ratio != 0)
+            vec.Z = up_ratio * maxUpSpeed;
+        mesh->addInputVector(vec);
+        forward_ratio = up_ratio = 0;
+    }
+    if (rotation_ratio != 0) {
+        mesh->rotate(irr::core::vector3df(0.f, 1.f, 0.f) * rotation_ratio * maxRightRotationSpeed);
+        rotation_ratio = 0;
+    }
 }
 
 

@@ -11,10 +11,13 @@ namespace alex_example {
 	namespace snd_example {
 		extern int main();
 	}
+	namespace trd_example {
+		extern int main();
+	}
 }
 
 int main() {
-	return alex_example::snd_example::main();
+	return alex_example::trd_example::main();
 }
 
 

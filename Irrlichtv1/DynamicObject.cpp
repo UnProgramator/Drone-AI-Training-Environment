@@ -1,4 +1,5 @@
 #include "DynamicObject.h"
+#include <iostream>
 
 DynamicObject::DynamicObject(irr::scene::ISceneNode* meshNode, const irr::core::vector3df & position, const irr::core::vector3df& rotation, const irr::core::vector3df& forwardVector, bool bHasCollision, const std::string name):
 	StaticObject(meshNode, position, rotation, bHasCollision, name), forwardVector{ forwardVector/forwardVector.getLength() }
@@ -41,7 +42,8 @@ const irr::core::vector3df& DynamicObject::getRotation() const
 void DynamicObject::setRotation(const irr::core::vector3df & newRotation)
 {
 	this->meshNode->setRotation(newRotation);
-	this->forwardVector.rotationToDirection(newRotation);
+	this->forwardVector = this->forwardVector.rotationToDirection(newRotation);
+	//std::cout << "(" << this->forwardVector.X << "," << this->forwardVector.Y << "," << this->forwardVector.Z << ")\n";
 //#pragma warning()
 //#pragma message("\t\t\t\tWARNING:   DynamicObject::setRotation need to be finished")
 }
@@ -53,4 +55,8 @@ void DynamicObject::rotate(const irr::core::vector3df & angles)
 	rot += angles;
 
 	this->meshNode->setRotation(rot);
+	this->forwardVector.rotateXYBy(-angles.Z);
+	this->forwardVector.rotateXZBy(-angles.Y);
+	this->forwardVector.rotateYZBy(-angles.X);
+	//std::cout << "(" << this->forwardVector.X << "," << this->forwardVector.Y << "," << this->forwardVector.Z << ")\n";
 }

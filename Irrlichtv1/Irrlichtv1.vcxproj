@@ -25,6 +25,7 @@
     <ClInclude Include="GraphicsManager.h" />
     <ClInclude Include="IObjectController.h" />
     <ClInclude Include="IOcontroller.h" />
+    <ClInclude Include="KeyboardController.h" />
     <ClInclude Include="SensorInterface.h" />
     <ClInclude Include="StaticObject.h" />
   </ItemGroup>
@@ -35,6 +36,7 @@
     <ClCompile Include="GraphicsManager.cpp" />
     <ClCompile Include="IObjectController.cpp" />
     <ClCompile Include="IOController.cpp" />
+    <ClCompile Include="KeyboardController.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SensorInterface.cpp" />
     <ClCompile Include="StaticObject.cpp" />

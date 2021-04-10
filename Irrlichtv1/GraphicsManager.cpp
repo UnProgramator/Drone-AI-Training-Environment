@@ -24,11 +24,11 @@ void initGraphicsLibrary(irr::video::E_DRIVER_TYPE driverType) {
 	colMan  = scrMgr->getSceneCollisionManager();
 }
 
-void setCamera(const irr::core::vector3df& initialPosition) {
+void setCamera(const irr::core::vector3df& initialPosition, irr::scene::ISceneNode* parent) {
 	if (scrMgr == nullptr) {
 		throw std::exception(unitializedMsg);
 	}
-	camera = scrMgr->addCameraSceneNodeFPS();
+	camera = scrMgr->addCameraSceneNodeFPS(parent);
 	if(!camera)
 		throw std::exception(meshNotGeneratedMsg);
 	camera->setPosition(initialPosition);
@@ -68,9 +68,22 @@ irr::scene::IMeshSceneNode* getCube(float scale, irr::s32 id, bool hasCollision)
 	if (scrMgr == nullptr) {
 		throw std::exception(unitializedMsg);
 	}
-	irr::scene::IMeshSceneNode* retVal = scrMgr->addCubeSceneNode(scale, scrMgr->getRootSceneNode(), id);;
+	irr::scene::IMeshSceneNode* retVal = scrMgr->addCubeSceneNode(scale, 0, id);
 	if (!retVal)
 		throw std::exception(meshNotGeneratedMsg);
+	retVal->setMaterialTexture(0, vidMgr->getTexture("media/default.png"));
+	return retVal;
+}
+
+irr::scene::IMeshSceneNode* getSphere(float radius, irr::s32 id, bool hasCollision)
+{
+	if (scrMgr == nullptr) {
+		throw std::exception(unitializedMsg);
+	}
+	irr::scene::IMeshSceneNode* retVal = scrMgr->addSphereSceneNode(radius, 12, 0, id);
+	if (!retVal)
+		throw std::exception(meshNotGeneratedMsg);
+	retVal->setMaterialTexture(0, vidMgr->getTexture("media/default.png"));
 	return retVal;
 }
 
