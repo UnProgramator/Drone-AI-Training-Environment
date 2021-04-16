@@ -87,7 +87,6 @@ namespace alex_example {
 
 				irr::core::vector3df pointOfColision;
 				irr::core::triangle3df colisionTriangle;
-				//irr::scene::ISceneNode* node;
 
 				if (colMan->getSceneNodeAndCollisionPointFromRay(ray, pointOfColision, colisionTriangle))
 					return (pointOfColision - pos).getLength();
@@ -126,12 +125,10 @@ namespace alex_example {
 				c2.addMovement(irr::core::vector3df(0.f, -0.01f, 0.f));
 
 				if (b && c2.colideWith(c1)) {
-					//std::cout << "collision started\n";
 					coli->setText(L"collision started");
 					b = false;
 				}
 				else if (!b && !c2.colideWith(c1)) {
-					//std::cout << "collision finished\n";
 					coli->setText(L"collision finished");
 					b = true;
 				}
@@ -213,7 +210,6 @@ namespace alex_example {
 			addNewKeyFunction(irr::KEY_KEY_D, turnRight);
 
 			Drone* drone = new Drone(irr::core::vector3df(-10.f, 10.f, 5.f), irr::core::vector3df(0.f, 0.f, 0.f), irr::core::vector3df(1.f, 0.f, 0.f));
-			//new DynamicObject(getCube(), irr::core::vector3df(-10.f, 10.f, 5.f));
 			keyCon = new KeyboardController(drone);
 			setCamera(irr::core::vector3df(), drone->getParent());
 

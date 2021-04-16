@@ -51,7 +51,6 @@ PyObject* DistanceSensor::getDetectedValue()
 
 	irr::core::vector3df pointOfColision;
 	irr::core::triangle3df colisionTriangle;
-	//irr::scene::ISceneNode* node;
 
 	if (colMan->getSceneNodeAndCollisionPointFromRay(ray, pointOfColision, colisionTriangle))
 		distance = (pointOfColision - pos1).getLength();
