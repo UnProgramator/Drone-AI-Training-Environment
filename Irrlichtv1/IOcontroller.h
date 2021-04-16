@@ -13,16 +13,12 @@ public:
     
 
     // This is used to check whether a key is being held down
-    bool IsKeyDown(irr::EKEY_CODE keyCode) const
+    inline bool IsKeyDown(irr::EKEY_CODE keyCode) const
     {
         return KeyIsDown[keyCode];
     }
 
-    MyEventReceiver()
-    {
-        for (uint32_t i = 0; i < irr::KEY_KEY_CODES_COUNT; ++i)
-            KeyIsDown[i] = false;
-    }
+    MyEventReceiver();
 
 private:
     // We use this array to store the current state of each key

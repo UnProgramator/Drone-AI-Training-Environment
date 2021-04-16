@@ -15,6 +15,12 @@ bool MyEventReceiver::OnEvent(const irr::SEvent& event)
     return false;
 }
 
+MyEventReceiver::MyEventReceiver()
+{
+    for (uint32_t i = 0; i < irr::KEY_KEY_CODES_COUNT; ++i)
+        KeyIsDown[i] = false;
+}
+
 static class MyEventReceiver evrec;
 
 MyEventReceiver* getEventReceiver() {

@@ -2,6 +2,7 @@
 
 #include <irrlicht.h>
 #include <string>
+#include <Python.h>
 #include "StaticObject.h"
 
 class SensorInterface {
@@ -16,7 +17,7 @@ public:
 	virtual void setPosition(const irr::core::vector3df& positon) = 0;
 	virtual void setOrientation(const irr::core::vector3df& orientation) = 0;
 
-	virtual void getDetectedValue(void* location, size_t locationSize) =0;
+	virtual PyObject* getDetectedValue() =0;
 
 	virtual ~SensorInterface() =default;
 };
@@ -24,7 +25,6 @@ public:
 class DistanceSensor : public SensorInterface {
 private:
 	StaticObject *meshObj, *rangeObj;
-	irr::core::vector3df limitPoint;
 public:
 	using vector3df = irr::core::vector3df;
 	DistanceSensor(const std::string& sensorMeshPath, const vector3df& position, const vector3df& rotation, const vector3df& scale, float range);
@@ -33,5 +33,5 @@ public:
 	virtual void setPosition(const irr::core::vector3df& positon) override;
 	virtual void setOrientation(const irr::core::vector3df& orientation) override;
 
-	virtual void getDetectedValue(void* location, size_t locationSize) override;
+	virtual PyObject* getDetectedValue() override;
 };

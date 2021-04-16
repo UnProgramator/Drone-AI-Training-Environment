@@ -94,7 +94,7 @@ std::list<float> Drone::getDistanceSensorValues()
     std::list<float> distance_list;
     float distance=0;
     for (auto* sensor : sensor_list) {
-        sensor->getDetectedValue(&distance, sizeof(distance));
+        sensor->getDetectedValue();
         distance_list.push_back(distance);
     }
     return distance_list;

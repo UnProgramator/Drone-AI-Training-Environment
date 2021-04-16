@@ -9,12 +9,9 @@ DistanceSensor::DistanceSensor(const std::string& sensorMeshPath, const vector3d
 	irr::scene::IMeshSceneNode* mesh = getStaticMesh(sensorMeshPath + "", sensorMeshPath + ".png", nullptr, -1, false);
 	meshObj = new StaticObject(mesh, position, rotation, false);
 
-	limitPoint = irr::core::vector3df();
-	limitPoint.rotateYZBy(rotation.X);
-	limitPoint.rotateXZBy(rotation.Y);
-	limitPoint *= range;
 
-	rangeObj = new StaticObject(getSphere(), position + limitPoint, irr::core::vector3df(), false);
+	rangeObj = new StaticObject(getSphere(), range * irr::core::vector3df(1.f, 0.f, 0.f), irr::core::vector3df(), false);
+	rangeObj->setParent(mesh);
 	if (showRange)
 		rangeObj->setVisibility(true);
 }
@@ -36,8 +33,11 @@ void DistanceSensor::setOrientation(const irr::core::vector3df& orientation)
 {
 }
 
-void DistanceSensor::getDetectedValue(void* location, size_t locationSize)
+PyObject* DistanceSensor::getDetectedValue()
 {
-	if (locationSize != sizeof(float))
-		throw std::exception("Distance sensor get value: pointer to wrong data size detected");
+	PyObject* retVal = nullptr;
+
+
+
+	return nullptr;
 }
