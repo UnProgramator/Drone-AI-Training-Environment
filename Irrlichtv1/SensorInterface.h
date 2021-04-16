@@ -5,9 +5,10 @@
 #include <Python.h>
 #include "StaticObject.h"
 
-class SensorInterface {
+class SensorInterface { //not realy an interface after all...
 protected:
 	static bool showRange; //by default is false 
+	PyObject* name;
 
 public:
 	static inline void setRangeVisibility(bool isVisible = true) { showRange = isVisible; StaticObject::setVisibilityForAll(isVisible); }
@@ -19,6 +20,8 @@ public:
 
 	virtual PyObject* getDetectedValue() =0;
 
+	SensorInterface(const char* name);
+
 	virtual ~SensorInterface() =default;
 };
 
@@ -27,7 +30,7 @@ private:
 	StaticObject *meshObj, *rangeObj;
 public:
 	using vector3df = irr::core::vector3df;
-	DistanceSensor(const std::string& sensorMeshPath, const vector3df& position, const vector3df& rotation, const vector3df& scale, float range);
+	DistanceSensor(const std::string& sensorMeshPath, const vector3df& position, const vector3df& rotation, const vector3df& scale, float range, const char*name);
 
 	virtual void setParent(irr::scene::ISceneNode* parent) override;
 	virtual void setPosition(const irr::core::vector3df& positon) override;
