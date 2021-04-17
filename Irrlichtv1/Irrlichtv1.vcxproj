@@ -41,9 +41,6 @@
     <ClCompile Include="SensorInterface.cpp" />
     <ClCompile Include="StaticObject.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Readme.md" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
