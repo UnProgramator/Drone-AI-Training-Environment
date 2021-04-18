@@ -18,9 +18,6 @@
     <ClInclude Include="GraphicsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ControllerInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="StaticObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -74,5 +71,10 @@
     <ClCompile Include="KeyboardController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Readme.md">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
