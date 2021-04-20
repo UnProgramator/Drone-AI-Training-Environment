@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AIDroneController.h" />
+    <ClInclude Include="CommunicationInterface.h" />
     <ClInclude Include="Drone.h" />
     <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="GraphicsManager.h" />
@@ -29,6 +31,7 @@
     <ClInclude Include="StaticObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AIDroneController.cpp" />
     <ClCompile Include="Drone.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
     <ClCompile Include="fstExample.cpp" />
@@ -39,9 +42,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SensorInterface.cpp" />
     <ClCompile Include="StaticObject.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Readme.md" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

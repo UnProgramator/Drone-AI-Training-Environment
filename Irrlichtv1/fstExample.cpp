@@ -157,7 +157,7 @@ namespace alex_example {
 			setCamera();
 
 			StaticObject *o1, *o2;
-			DynamicObject *d1, *d2;
+			DynamicObject *d1;
 
 			o1 = new StaticObject(getStaticMesh("media/faerie.md2", "media/Faerie5.bmp"), irr::core::vector3df(0.f, 0.f, 50.f));
 			o2 = new StaticObject(getStaticMesh("media/gun.md2", "media/gun.jpg"), irr::core::vector3df(0.f, 0.f, 50.f));

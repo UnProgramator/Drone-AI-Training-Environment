@@ -4,6 +4,7 @@
 #include <iostream>
 #include <list>
 #include <memory>
+#include <Python.h>
 #include "DynamicObject.h"
 #include "GraphicsManager.h"
 
@@ -98,6 +99,32 @@ std::list<float> Drone::getDistanceSensorValues()
         distance_list.push_back(distance);
     }
     return distance_list;
+}
+
+PyObject* Drone::getSensorReadValues()
+{
+    PyObject* retVal = PyList_New(this->sensor_list.size());
+    PyObject *pair;
+    int crtPosition = 0;
+    int except;
+
+    if (retVal == nullptr)
+        throw std::exception("Python list object could not be created");
+
+    for (auto* sensor : sensor_list) {
+        pair = PyTuple_New(2);
+        except = 0;
+        if (pair == nullptr)
+            throw std::exception("Python list object could not be created");
+        except += PyTuple_SetItem(pair, 0, sensor->getName());
+        except += PyTuple_SetItem(pair, 1, sensor->getDetectedValue());
+        except += PyList_SetItem(retVal, crtPosition, pair);
+        if(except != 0)
+            throw std::exception("Python PyList_SetItem or PyTuple_SetItem returned -1");
+        crtPosition++;
+    }
+
+    return retVal;
 }
 
 irr::scene::ISceneNode* Drone::getParent()

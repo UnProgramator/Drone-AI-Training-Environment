@@ -3,6 +3,7 @@
 #include <irrlicht.h>
 #include <string>
 #include <list>
+#include <Python.h>
 #include "DynamicObject.h"
 #include "SensorInterface.h"
 
@@ -30,6 +31,7 @@ public:
 
 	virtual void add_sensor(DistanceSensor* sensor);
 	virtual class std::list<float> getDistanceSensorValues();
+	virtual PyObject* getSensorReadValues();
 
 	virtual irr::scene::ISceneNode* getParent();
 

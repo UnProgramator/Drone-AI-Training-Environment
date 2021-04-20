@@ -2,23 +2,21 @@
 
 #include <irrlicht.h>
 #include <string>
-#include <Python.h>
 #include "StaticObject.h"
+#include "CommunicationInterface.h"
 
 class SensorInterface { //not realy an interface after all...
 protected:
-	static bool showRange; //by default is false 
-	PyObject* name;
+	std::string name;
 
 public:
-	static inline void setRangeVisibility(bool isVisible = true) { showRange = isVisible; StaticObject::setVisibilityForAll(isVisible); }
-	static inline void toggleRangeVisibility() { showRange = !showRange; StaticObject::setVisibilityForAll(showRange); }
 
-	virtual void setParent(irr::scene::ISceneNode* parent) = 0;
-	virtual void setPosition(const irr::core::vector3df& positon) = 0;
-	virtual void setOrientation(const irr::core::vector3df& orientation) = 0;
+	static void setSensorsRangeVisibility(bool isVisible = true);
+	static void toggleSensorsRangeVisibility();
+	static void addEntityToRangeVisibilityList(StaticObject* obj);
 
-	virtual PyObject* getDetectedValue() =0;
+	virtual void getDetectedValue(CommunicationInterface&) =0;
+	virtual const std::string& getName() const { return name; }
 
 	SensorInterface(const char* name);
 
@@ -30,11 +28,25 @@ private:
 	StaticObject *meshObj, *rangeObj;
 public:
 	using vector3df = irr::core::vector3df;
-	DistanceSensor(const std::string& sensorMeshPath, const vector3df& position, const vector3df& rotation, const vector3df& scale, float range, const char*name);
+	DistanceSensor(const std::string& sensorMeshPath, irr::scene::ISceneNode* parent, const vector3df& position, const vector3df& rotation, const vector3df& scale, float range, const char*name);
 
-	virtual void setParent(irr::scene::ISceneNode* parent) override;
-	virtual void setPosition(const irr::core::vector3df& positon) override;
-	virtual void setOrientation(const irr::core::vector3df& orientation) override;
+	virtual void getDetectedValue(CommunicationInterface& ci) override;
+};
 
-	virtual PyObject* getDetectedValue() override;
+class GPS : public SensorInterface {
+private:
+	StaticObject* parent;
+public:
+	GPS(StaticObject* parent, const char* name);
+
+	virtual void getDetectedValue(CommunicationInterface& ci) override;
+};
+
+class Altimeter : public SensorInterface {
+private:
+	StaticObject* parent;
+public:
+	Altimeter(StaticObject* parent, const char* name);
+
+	virtual void getDetectedValue(CommunicationInterface& ci) override;
 };
