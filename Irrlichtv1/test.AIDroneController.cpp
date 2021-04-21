@@ -1,4 +1,4 @@
-#include "AIDroneController.h"
+#include "test.AIDroneController.h"
 #include <Python.h>
 
 void AIDroneController::tick(float deltaTime)
