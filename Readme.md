@@ -8,7 +8,7 @@ This is an environment writen in C++ and Irrlicht game engine for training a dro
   2. Python [site](https://www.python.org/), I used version **3.9**, but other version may work as well-will be eliminated into a future commit  
 
 ## Install
-A fully version is not available yet, the development is stil in a pre-alpha state
+A fully version is not available yet, the development is stil in a developmentstate
 
 ## License
 To be added, probably GPL v2
