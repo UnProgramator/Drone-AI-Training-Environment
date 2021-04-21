@@ -1,4 +1,4 @@
-# Drone AI Training Environment Simulator
+# Drone AI Training Environment C++ Framework
 This is an environment writen in C++ and Irrlicht game engine for training a drone AI.  
 
 ## Dependencies  
