@@ -13,72 +13,87 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{4d15977e-ade8-4c6a-807d-0d112040adbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\simmulation">
+      <UniqueIdentifier>{a5949d3e-f9da-4b30-ade0-1c37f9fd8db7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\interfaces">
+      <UniqueIdentifier>{2b1cff9a-f4a1-4b3f-8110-805eebc6c0a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{c387b72d-988f-4b20-817a-b5cbd86ad50a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\simmulation">
+      <UniqueIdentifier>{4aefb765-d41f-4d10-aea5-c05862455b7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\testModules">
+      <UniqueIdentifier>{28538e1c-0516-4a4f-854f-553e6323f271}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GraphicsManager.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="DynamicObject.h">
+      <Filter>Header Files\graphics</Filter>
     </ClInclude>
     <ClInclude Include="StaticObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DynamicObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IObjectController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Drone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IOcontroller.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SensorInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyboardController.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\graphics</Filter>
     </ClInclude>
     <ClInclude Include="AIDroneController.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\simmulation</Filter>
+    </ClInclude>
+    <ClInclude Include="Drone.h">
+      <Filter>Header Files\simmulation</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsManager.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardController.h">
+      <Filter>Header Files\simmulation</Filter>
+    </ClInclude>
+    <ClInclude Include="SensorInterface.h">
+      <Filter>Header Files\interfaces</Filter>
     </ClInclude>
     <ClInclude Include="CommunicationInterface.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectControllerInterface.h">
+      <Filter>Header Files\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IOcontroller.h">
+      <Filter>Header Files\graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GraphicsManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fstExample.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StaticObject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
     <ClCompile Include="DynamicObject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="IObjectController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Drone.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IOController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SensorInterface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyboardController.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="StaticObject.cpp">
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
     <ClCompile Include="AIDroneController.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\simmulation</Filter>
+    </ClCompile>
+    <ClCompile Include="Drone.cpp">
+      <Filter>Source Files\simmulation</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardController.cpp">
+      <Filter>Source Files\simmulation</Filter>
+    </ClCompile>
+    <ClCompile Include="test.fstExample.cpp">
+      <Filter>Source Files\testModules</Filter>
+    </ClCompile>
+    <ClCompile Include="test.main.cpp">
+      <Filter>Source Files\testModules</Filter>
+    </ClCompile>
+    <ClCompile Include="IOController.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="SensorInterface.cpp">
+      <Filter>Source Files\simmulation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

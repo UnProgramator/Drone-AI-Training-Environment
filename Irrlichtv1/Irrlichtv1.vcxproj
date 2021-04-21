@@ -24,7 +24,7 @@
     <ClInclude Include="Drone.h" />
     <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="GraphicsManager.h" />
-    <ClInclude Include="IObjectController.h" />
+    <ClInclude Include="ObjectControllerInterface.h" />
     <ClInclude Include="IOcontroller.h" />
     <ClInclude Include="KeyboardController.h" />
     <ClInclude Include="SensorInterface.h" />
@@ -34,12 +34,11 @@
     <ClCompile Include="AIDroneController.cpp" />
     <ClCompile Include="Drone.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
-    <ClCompile Include="fstExample.cpp" />
+    <ClCompile Include="test.fstExample.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
-    <ClCompile Include="IObjectController.cpp" />
     <ClCompile Include="IOController.cpp" />
     <ClCompile Include="KeyboardController.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="test.main.cpp" />
     <ClCompile Include="SensorInterface.cpp" />
     <ClCompile Include="StaticObject.cpp" />
   </ItemGroup>

@@ -1,9 +1,9 @@
 #pragma once
-#include "IObjectController.h"
+#include "ObjectControllerInterface.h"
 #include "Drone.h"
 
 class KeyboardController :
-    public IObjectController
+    public ObjectControllerInterface
 {
 private:
 	Drone* drone;
