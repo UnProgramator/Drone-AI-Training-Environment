@@ -19,11 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AIDroneController.h" />
+    <ClInclude Include="test.AIDroneController.h" />
     <ClInclude Include="CommunicationInterface.h" />
     <ClInclude Include="Drone.h" />
     <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="GraphicsManager.h" />
+    <ClInclude Include="DefaultSensors.h" />
     <ClInclude Include="ObjectControllerInterface.h" />
     <ClInclude Include="IOcontroller.h" />
     <ClInclude Include="KeyboardController.h" />
@@ -31,7 +32,7 @@
     <ClInclude Include="StaticObject.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AIDroneController.cpp" />
+    <ClCompile Include="test.AIDroneController.cpp" />
     <ClCompile Include="Drone.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
     <ClCompile Include="test.fstExample.cpp" />
@@ -39,7 +40,7 @@
     <ClCompile Include="IOController.cpp" />
     <ClCompile Include="KeyboardController.cpp" />
     <ClCompile Include="test.main.cpp" />
-    <ClCompile Include="SensorInterface.cpp" />
+    <ClCompile Include="DefaultSensor.cpp" />
     <ClCompile Include="StaticObject.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -3,7 +3,6 @@
 #include <irrlicht.h>
 #include <string>
 #include <list>
-#include <Python.h>
 #include "DynamicObject.h"
 #include "SensorInterface.h"
 
@@ -30,8 +29,7 @@ public:
 	virtual void moveUp(float ratio = 0.f);
 
 	virtual void add_sensor(DistanceSensor* sensor);
-	virtual class std::list<float> getDistanceSensorValues();
-	virtual PyObject* getSensorReadValues();
+	virtual void getSensorReadValues(CommunicationInterface& transmiter);
 
 	virtual irr::scene::ISceneNode* getParent();
 

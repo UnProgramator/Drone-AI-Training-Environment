@@ -4,18 +4,22 @@
 #include "CommunicationInterface.h"
 #include "vector"
 
-static bool bRangeVisibility = false;
+bool SensorInterface::bRangeVisibility = false;
 
-static std::list<StaticObject*> visibilityObject;
+std::list<StaticObject*> SensorInterface::visibilityObject;
 
 void SensorInterface::setSensorsRangeVisibility(bool isVisible) {
-	bRangeVisibility = isVisible;
-	for (StaticObject* obj : visibilityObject) {
+	SensorInterface::bRangeVisibility = isVisible;
+	for (StaticObject* obj : SensorInterface::visibilityObject) {
 		obj->setVisibility(isVisible);
 	}
 }
 void SensorInterface::toggleSensorsRangeVisibility() {
 	SensorInterface::setSensorsRangeVisibility(!bRangeVisibility);
+}
+
+void SensorInterface::addEntityToRangeVisibilityList(StaticObject* objToAdd) {
+	SensorInterface::visibilityObject.push_back(objToAdd);
 }
 
 SensorInterface::SensorInterface(const char* name) :
@@ -32,7 +36,7 @@ DistanceSensor::DistanceSensor(const std::string& sensorMeshPath, irr::scene::IS
 
 	rangeObj = new StaticObject(getSphere(), range * irr::core::vector3df(1.f, 0.f, 0.f), irr::core::vector3df(), false);
 	rangeObj->setParent(mesh);
-	if (bRangeVisibility)
+	if (SensorInterface::getVisibilityStatus())
 		rangeObj->setVisibility(true);
 }
 

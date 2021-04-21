@@ -4,7 +4,6 @@
 #include <iostream>
 #include <list>
 #include <memory>
-#include <Python.h>
 #include "DynamicObject.h"
 #include "GraphicsManager.h"
 
@@ -90,41 +89,11 @@ void Drone::add_sensor(DistanceSensor* sensor)
     this->sensor_list.push_back(sensor);
 }
 
-std::list<float> Drone::getDistanceSensorValues()
+void Drone::getSensorReadValues(CommunicationInterface& transmiter)
 {
-    std::list<float> distance_list;
-    float distance=0;
     for (auto* sensor : sensor_list) {
-        sensor->getDetectedValue();
-        distance_list.push_back(distance);
+        sensor->getDetectedValue(transmiter);
     }
-    return distance_list;
-}
-
-PyObject* Drone::getSensorReadValues()
-{
-    PyObject* retVal = PyList_New(this->sensor_list.size());
-    PyObject *pair;
-    int crtPosition = 0;
-    int except;
-
-    if (retVal == nullptr)
-        throw std::exception("Python list object could not be created");
-
-    for (auto* sensor : sensor_list) {
-        pair = PyTuple_New(2);
-        except = 0;
-        if (pair == nullptr)
-            throw std::exception("Python list object could not be created");
-        except += PyTuple_SetItem(pair, 0, sensor->getName());
-        except += PyTuple_SetItem(pair, 1, sensor->getDetectedValue());
-        except += PyList_SetItem(retVal, crtPosition, pair);
-        if(except != 0)
-            throw std::exception("Python PyList_SetItem or PyTuple_SetItem returned -1");
-        crtPosition++;
-    }
-
-    return retVal;
 }
 
 irr::scene::ISceneNode* Drone::getParent()
