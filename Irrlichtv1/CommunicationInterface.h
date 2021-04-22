@@ -36,7 +36,9 @@ struct default_FeedbackType {
 };
 
 struct default_ReturnedValueFromStript {
-
+	float forward;
+	float rotation_angle;
+	float up;
 };
 
 typedef CommunicationInterface< default_ReturnedValueFromStript, default_FeedbackType> default_CommunicationInterface;

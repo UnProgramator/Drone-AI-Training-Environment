@@ -105,7 +105,7 @@ void pyCommunication::addElemToTuple(PyObject* & tuple_entry) {
 
 void pyCommunication::parse_double(const char* name, const double value)
 {
-	PyObject* tuple_entry, *tmp;
+	PyObject* tuple_entry;
 	tuple_entry = PyTuple_New(2);
 	CHECK_CREATED(tuple_entry);
 
@@ -133,7 +133,15 @@ void pyCommunication::parse_double_array(const char* name, const std::vector<dou
 
 default_ReturnedValueFromStript pyCommunication::call()
 {
-	return default_ReturnedValueFromStript();
+	default_ReturnedValueFromStript returned_value;
+
+	PyObject* returned_object = PyObject_Call(this->call_func, func_arg, nullptr);
+
+	returned_value.forward = (float) PyFloat_AsDouble(PyDict_GetItemString(returned_object, "forward"));
+	returned_value.up = (float) PyFloat_AsDouble(PyDict_GetItemString(returned_object, "upwards"));
+	returned_value.rotation_angle = (float) PyFloat_AsDouble(PyDict_GetItemString(returned_object, "rotation angle"));
+
+	return returned_value;
 }
 
 void pyCommunication::give_feedback(const default_FeedbackType & newParams)
