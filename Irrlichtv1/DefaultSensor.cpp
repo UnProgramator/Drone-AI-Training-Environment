@@ -41,7 +41,7 @@ DistanceSensor::DistanceSensor(const std::string& sensorMeshPath, irr::scene::IS
 		rangeObj->setVisibility(true);
 }
 
-void DistanceSensor::getDetectedValue(CommunicationInterface& ci)
+void DistanceSensor::getDetectedValue(DataCoolectorInterface& ci)
 {
 	double distance;
 
@@ -66,7 +66,7 @@ GPS::GPS(StaticObject* parent, const char* name) :
 {
 }
 
-void GPS::getDetectedValue(CommunicationInterface& ci)
+void GPS::getDetectedValue(DataCoolectorInterface& ci)
 {
 	std::vector<double> coordinates(2);  
 	
@@ -83,6 +83,6 @@ Altimeter::Altimeter(StaticObject* parent, const char* name):
 {
 }
 
-void Altimeter::getDetectedValue(CommunicationInterface& ci) {
+void Altimeter::getDetectedValue(DataCoolectorInterface& ci) {
 	ci.parse_double(name.c_str(), parent->getAbsolutePosition().Y);
 }

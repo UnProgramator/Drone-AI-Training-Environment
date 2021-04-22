@@ -3,7 +3,7 @@
 #include <Python.h>
 
 class pyCommunication :
-    public CommunicationInterface
+    public default_CommunicationInterface
 {
 private:
 	bool is_running;
@@ -25,7 +25,7 @@ public:
 	virtual void parse_double(const char* name, const double value) override;
 	virtual void parse_double_array(const char* name, const std::vector<double>& value) override;
 
-	virtual void* call() override;
-	virtual void give_results(void* newParams) override;
+	virtual default_ReturnedValueFromStript call() override;
+	virtual void give_feedback(const default_FeedbackType& newParams) override;
 };
 

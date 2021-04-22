@@ -89,8 +89,9 @@ void Drone::add_sensor(DistanceSensor* sensor)
     this->sensor_list.push_back(sensor);
 }
 
-void Drone::getSensorReadValues(CommunicationInterface& transmiter)
+void Drone::getSensorReadValues(default_CommunicationInterface& transmiter)
 {
+    transmiter.init_parser(sensor_list.size());
     for (auto* sensor : sensor_list) {
         sensor->getDetectedValue(transmiter);
     }

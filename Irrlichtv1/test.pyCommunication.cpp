@@ -131,21 +131,20 @@ void pyCommunication::parse_double_array(const char* name, const std::vector<dou
 	addElemToTuple(tuple_entry);
 }
 
-void* pyCommunication::call()
+default_ReturnedValueFromStript pyCommunication::call()
 {
-	return nullptr;
+	return default_ReturnedValueFromStript();
 }
 
-void pyCommunication::give_results(void* newParams)
+void pyCommunication::give_feedback(const default_FeedbackType & newParams)
 {
-	default_newParams* parameters = (default_newParams*) newParams;
 	PyObject* tuple;
 	tuple = PyTuple_New(4);
 	CHECK_CREATED(tuple);
-	PyTuple_SetItem(tuple, 0, PyFloat_FromDouble(parameters->new_pos[0]));
-	PyTuple_SetItem(tuple, 1, PyFloat_FromDouble(parameters->new_pos[1]));
-	PyTuple_SetItem(tuple, 2, PyFloat_FromDouble(parameters->new_pos[2]));
-	PyTuple_SetItem(tuple, 3, PyBool_FromLong(parameters->hasCollide));
+	PyTuple_SetItem(tuple, 0, PyFloat_FromDouble(newParams.new_pos[0]));
+	PyTuple_SetItem(tuple, 1, PyFloat_FromDouble(newParams.new_pos[1]));
+	PyTuple_SetItem(tuple, 2, PyFloat_FromDouble(newParams.new_pos[2]));
+	PyTuple_SetItem(tuple, 3, PyBool_FromLong(newParams.hasCollide));
 
 	PyObject_Call(this->results_fuc, tuple, nullptr);
 

@@ -30,7 +30,7 @@ public:
 	virtual void moveUp(float ratio = 0.f);
 
 	virtual void add_sensor(DistanceSensor* sensor);
-	virtual void getSensorReadValues(CommunicationInterface& transmiter);
+	virtual void getSensorReadValues(default_CommunicationInterface& transmiter);
 
 	virtual irr::scene::ISceneNode* getParent();
 
