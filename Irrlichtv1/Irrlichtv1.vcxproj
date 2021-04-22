@@ -30,6 +30,7 @@
     <ClInclude Include="KeyboardController.h" />
     <ClInclude Include="SensorInterface.h" />
     <ClInclude Include="StaticObject.h" />
+    <ClInclude Include="test.pyCommunication.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.AIDroneController.cpp" />
@@ -42,6 +43,7 @@
     <ClCompile Include="test.main.cpp" />
     <ClCompile Include="DefaultSensor.cpp" />
     <ClCompile Include="StaticObject.cpp" />
+    <ClCompile Include="test.pyCommunication.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

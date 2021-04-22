@@ -7,14 +7,12 @@
 //interface to be implemented and given back to the library in order to comunicate with the ai script
 class CommunicationInterface {
 public:
-	virtual void parse_double(const std::string& name, const double value) =0;
-	virtual void parse_double_array(const std::string& name, const std::vector<double>& value) =0;
+	virtual void parse_double(const char* name, const double value) =0;
+	virtual void parse_double_array(const char* name, const std::vector<double>& value) =0;
 
 	virtual void init_parser(int elementCount) = 0;
 	virtual void* call() =0;
 	virtual void give_results(void* newParams) = 0;
-
-	virtual void parse_generic(std::string& name,const std::type_info& typeInfo, const void*) =0; //to be implemented if needed
 };
 
 //this are the parameters given by the default drone ai controller as the void* to the CommunicationInterface::give_results()

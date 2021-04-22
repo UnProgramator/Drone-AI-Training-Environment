@@ -16,7 +16,7 @@ static const char* triangleNotDroppedMsg  = "Triangle selector couldn't be dropp
 static const char* triangleNotCreatedMsg  = "Triangle selector couldn't be created";
 
 void initGraphicsLibrary(irr::video::E_DRIVER_TYPE driverType) {
-	device = irr::createDevice(driverType, irr::core::dimension2d<irr::u32>(2150, 1240), 16, false, false, false, getEventReceiver());
+	device = irr::createDevice(driverType, irr::core::dimension2d<irr::u32>(720, 720), 16, false, false, false, getEventReceiver());
 
 	vidMgr  = device->getVideoDriver();
 	scrMgr  = device->getSceneManager();

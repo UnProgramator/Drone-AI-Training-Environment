@@ -3,6 +3,7 @@
 #include "StaticObject.h"
 #include "CommunicationInterface.h"
 #include "vector"
+#include "DefaultSensors.h"
 
 bool SensorInterface::bRangeVisibility = false;
 
@@ -57,7 +58,7 @@ void DistanceSensor::getDetectedValue(CommunicationInterface& ci)
 	else
 		distance = INFINITY;
 
-	ci.parse_double(name, distance);
+	ci.parse_double(name.c_str(), distance);
 }
 
 GPS::GPS(StaticObject* parent, const char* name) :
@@ -74,7 +75,7 @@ void GPS::getDetectedValue(CommunicationInterface& ci)
 	coordinates[0] = -coord.Z; //consider N as -Z
 	coordinates[1] = coord.X; //consider E as X
 
-	ci.parse_double_array(name, coordinates);
+	ci.parse_double_array(name.c_str(), coordinates);
 }
 
 Altimeter::Altimeter(StaticObject* parent, const char* name):
@@ -83,5 +84,5 @@ Altimeter::Altimeter(StaticObject* parent, const char* name):
 }
 
 void Altimeter::getDetectedValue(CommunicationInterface& ci) {
-	ci.parse_double(name, parent->getAbsolutePosition().Y);
+	ci.parse_double(name.c_str(), parent->getAbsolutePosition().Y);
 }

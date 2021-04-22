@@ -5,6 +5,7 @@
 #include <list>
 #include "DynamicObject.h"
 #include "SensorInterface.h"
+#include "DefaultSensors.h"
 
 class Drone
 {

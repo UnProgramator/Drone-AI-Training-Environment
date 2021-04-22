@@ -16,6 +16,7 @@ namespace alex_example {
 	}
 }
 
+
 int main() {
 	return alex_example::trd_example::main();
 }
