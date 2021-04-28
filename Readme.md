@@ -12,6 +12,8 @@ A fully version is not available yet, the development is stil in development
 
 ## License
 To be added, probably GPL v2  
+
+## Dependencies
 This product use Irrlicht engine for 3D Rendering.  
  - [irrlicht.sourceforge.net](http://irrlicht.sourceforge.net/)  
  - [Irrlicht license](http://irrlicht.sourceforge.net/?page_id=294), [file](https://github.com/UnProgramator/Drone-AI-Training-Framework/blob/master/IRRLICHT_LICENSE)  
