@@ -11,4 +11,5 @@ This is an environment writen in C++ and Irrlicht game engine for training a dro
 A fully version is not available yet, the development is stil in development  
 
 ## License
-To be added, probably GPL v2
+To be added, probably GPL v2  
+This product use Irrlicht engine for 3D Rendering. [Irrlicht license](http://irrlicht.sourceforge.net/?page_id=294), [file]()
