@@ -6,9 +6,9 @@ This is an environment writen in C++ and Irrlicht game engine for training a dro
 [code](https://sourceforge.net/p/irrlicht/code/HEAD/tree/),  
 [docs](http://irrlicht.sourceforge.net/docu/index.html])  
   2. [nlohman/json](https://github.com/nlohmann/json)  
-  3. &#x00B2 Python [site](https://www.python.org/), I used version **3.9**, but other version may work as well-will be eliminated into a future commit  
+  3. <sup>1</sup> Python [site](https://www.python.org/), I used version **3.9**, but other version may work as well-will be eliminated into a future commit  
   
-&#x00B2 for examples only
+<sup>1</sup>for examples only
 
 ## Install
 A fully version is not available yet, the development is stil in development  
