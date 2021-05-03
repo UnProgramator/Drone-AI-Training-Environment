@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PhysicsComponentInterface.h" />
+    <ClInclude Include="DefaultPysiscsManager.h" />
     <ClInclude Include="test.AIDroneController.h" />
     <ClInclude Include="CommunicationInterface.h" />
     <ClInclude Include="Drone.h" />
@@ -33,6 +35,7 @@
     <ClInclude Include="test.pyCommunication.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DefaultPysiscsManager.cpp" />
     <ClCompile Include="test.AIDroneController.cpp" />
     <ClCompile Include="Drone.cpp" />
     <ClCompile Include="DynamicObject.cpp" />

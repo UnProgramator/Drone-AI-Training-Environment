@@ -72,6 +72,12 @@
     <ClInclude Include="test.pyCommunication.h">
       <Filter>Header Files\testModules</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicsComponentInterface.h">
+      <Filter>Header Files\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultPysiscsManager.h">
+      <Filter>Header Files\simmulation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GraphicsManager.cpp">
@@ -106,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="test.pyCommunication.cpp">
       <Filter>Source Files\testModules</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultPysiscsManager.cpp">
+      <Filter>Source Files\simmulation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
