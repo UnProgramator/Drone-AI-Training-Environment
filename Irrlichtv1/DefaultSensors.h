@@ -7,25 +7,28 @@ private:
 	StaticObject* meshObj, * rangeObj;
 public:
 	using vector3df = irr::core::vector3df;
-	DistanceSensor(const std::string& sensorMeshPath, irr::scene::ISceneNode* parent, const vector3df& position, const vector3df& rotation, const vector3df& scale, float range, const char* name);
+	DistanceSensor(const std::string& sensorMeshPath, const vector3df& position, const vector3df& rotation, const vector3df& scale, float range, const char* name);
 
 	virtual void getDetectedValue(DataCoolectorInterface& ci) override;
+	virtual bool link_to(const StaticObject* objectToLinkTo) override;
 };
 
 class GPS : public SensorInterface {
 private:
-	StaticObject* parent;
+	const StaticObject* parent;
 public:
-	GPS(StaticObject* parent, const char* name);
+	GPS(const char* name);
 
 	virtual void getDetectedValue(DataCoolectorInterface& ci) override;
+	virtual bool link_to(const StaticObject* objectToLinkTo) override;
 };
 
 class Altimeter : public SensorInterface {
 private:
-	StaticObject* parent;
+	const StaticObject* parent;
 public:
-	Altimeter(StaticObject* parent, const char* name);
+	Altimeter(const char* name);
 
 	virtual void getDetectedValue(DataCoolectorInterface& ci) override;
+	virtual bool link_to(const StaticObject* objectToLinkTo) override;
 };

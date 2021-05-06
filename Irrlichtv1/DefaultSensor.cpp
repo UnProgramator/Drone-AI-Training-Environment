@@ -28,12 +28,11 @@ SensorInterface::SensorInterface(const char* name) :
 {
 }
 
-DistanceSensor::DistanceSensor(const std::string& sensorMeshPath, irr::scene::ISceneNode* parent, const vector3df& position, const vector3df& rotation, const vector3df& scale, float range, const char* name) :
+DistanceSensor::DistanceSensor(const std::string& sensorMeshPath, const vector3df& position, const vector3df& rotation, const vector3df& scale, float range, const char* name) :
 	SensorInterface(name)
 {
 	irr::scene::IMeshSceneNode* mesh = getStaticMesh(sensorMeshPath + "", sensorMeshPath + ".png", nullptr, -1, false);
 	meshObj = new StaticObject(mesh, position, rotation, false);
-	meshObj->setParent(parent);
 
 	rangeObj = new StaticObject(getSphere(), range * irr::core::vector3df(1.f, 0.f, 0.f), irr::core::vector3df(), false);
 	rangeObj->setParent(mesh);
@@ -61,8 +60,14 @@ void DistanceSensor::getDetectedValue(DataCoolectorInterface& ci)
 	ci.parse_double(name.c_str(), distance);
 }
 
-GPS::GPS(StaticObject* parent, const char* name) :
-	SensorInterface(name), parent(parent)
+bool DistanceSensor::link_to(const StaticObject* objectToLinkTo)
+{
+	meshObj->setParent(objectToLinkTo);
+	return false;
+}
+
+GPS::GPS(const char* name) :
+	SensorInterface(name), parent(nullptr)
 {
 }
 
@@ -78,11 +83,23 @@ void GPS::getDetectedValue(DataCoolectorInterface& ci)
 	ci.parse_double_array(name.c_str(), coordinates);
 }
 
-Altimeter::Altimeter(StaticObject* parent, const char* name):
-	SensorInterface(name), parent(parent) 
+bool GPS::link_to(const StaticObject* objectToLinkTo)
+{
+	parent = objectToLinkTo;
+	return objectToLinkTo != nullptr;
+}
+
+Altimeter::Altimeter(const char* name):
+	SensorInterface(name), parent(nullptr)
 {
 }
 
 void Altimeter::getDetectedValue(DataCoolectorInterface& ci) {
 	ci.parse_double(name.c_str(), parent->getAbsolutePosition().Y);
+}
+
+bool Altimeter::link_to(const StaticObject* objectToLinkTo)
+{
+	parent = objectToLinkTo;
+	return objectToLinkTo != nullptr;
 }

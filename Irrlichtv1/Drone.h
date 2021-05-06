@@ -32,7 +32,6 @@ public:
 	virtual void add_sensor(DistanceSensor* sensor);
 	virtual void getSensorReadValues(default_CommunicationInterface& transmiter);
 
-	virtual irr::scene::ISceneNode* getParent();
 
 	virtual void tick();
 };

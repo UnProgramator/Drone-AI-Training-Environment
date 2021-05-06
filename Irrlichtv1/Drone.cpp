@@ -86,6 +86,7 @@ void Drone::moveUp(float ratio)
 
 void Drone::add_sensor(DistanceSensor* sensor)
 {
+    sensor->link_to(this->mesh);
     this->sensor_list.push_back(sensor);
 }
 
@@ -95,11 +96,6 @@ void Drone::getSensorReadValues(default_CommunicationInterface& transmiter)
     for (auto* sensor : sensor_list) {
         sensor->getDetectedValue(transmiter);
     }
-}
-
-irr::scene::ISceneNode* Drone::getParent()
-{
-    return mesh->getParent();
 }
 
 void Drone::tick()
