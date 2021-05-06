@@ -21,7 +21,7 @@ bool StaticObject::colideWith(StaticObject* other)
 	return this->meshNode->getTransformedBoundingBox().intersectsWithBox(other->meshNode->getTransformedBoundingBox());
 }
 
-irr::scene::ISceneNode* StaticObject::getParent()
+const irr::scene::ISceneNode* StaticObject::getRootParent() const
 {
 	irr::scene::ISceneNode *tmp, *par =  meshNode->getParent();
 	if (par == 0)
@@ -34,6 +34,10 @@ irr::scene::ISceneNode* StaticObject::getParent()
 		}
 	}
 	return par;
+}
+
+const irr::scene::ISceneNode* StaticObject::getSceneNode() const{
+	return this->meshNode;
 }
 
 StaticObject::StaticObject(irr::scene::ISceneNode* meshNode, const irr::core::vector3df& position, const irr::core::vector3df& rotation, bool bHasCollision, std::string name): name(name)

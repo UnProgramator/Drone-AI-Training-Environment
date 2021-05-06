@@ -16,9 +16,10 @@ public:
 	static void setSensorsRangeVisibility(bool isVisible = true);
 	static void toggleSensorsRangeVisibility();
 	static void addEntityToRangeVisibilityList(StaticObject* obj);
-	inline static bool getVisibilityStatus() { return SensorInterface::bRangeVisibility; }
+	inline static const bool getVisibilityStatus() { return SensorInterface::bRangeVisibility; }
 
 	virtual void getDetectedValue(DataCoolectorInterface&) =0;
+	virtual bool link_to(const StaticObject* objectToLinkTo) = 0;
 	virtual const std::string& getName() const { return name; }
 
 	SensorInterface(const char* name);

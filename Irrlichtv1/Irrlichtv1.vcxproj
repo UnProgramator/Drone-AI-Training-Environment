@@ -19,8 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PhysicsComponentInterface.h" />
-    <ClInclude Include="DefaultPysiscsManager.h" />
+    <ClInclude Include="ObjectFactory.h" />
+    <ClInclude Include="DefaultPhysicsComponents.h" />
+    <ClInclude Include="JSONParser.h" />
+    <ClInclude Include="PysicsComponentInterface.h" />
+    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="test.AIDroneController.h" />
     <ClInclude Include="CommunicationInterface.h" />
     <ClInclude Include="Drone.h" />
@@ -35,7 +38,10 @@
     <ClInclude Include="test.pyCommunication.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DefaultPysiscsManager.cpp" />
+    <ClCompile Include="ObjectFactory.cpp" />
+    <ClCompile Include="DefaultPhysicsComponents.cpp" />
+    <ClCompile Include="JSONParser.cpp" />
+    <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="test.AIDroneController.cpp" />
     <ClCompile Include="Drone.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
@@ -126,7 +132,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(NLOH_JSON_HOME)\single_include;$(IRRLICHT_HOME)\include\;$(PYTHON39_HOME)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\Programming\C_Cpp_libs\nlohmann-json\json\single_include;$(NLOH_JSON_HOME)\single_include;$(IRRLICHT_HOME)\include\;$(PYTHON39_HOME)\include\;%(AdditionalIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,7 +149,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(IRRLICHT_HOME)\include\;$(PYTHON39_HOME)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\Programming\C_Cpp_libs\nlohmann-json\json\single_include;$(IRRLICHT_HOME)\include\;$(PYTHON39_HOME)\include\;%(AdditionalIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,7 +166,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(NLOH_JSON_HOME)\single_include;$(IRRLICHT_HOME)\include\;$(PYTHON39_HOME)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\Programming\C_Cpp_libs\nlohmann-json\json\single_include;$(NLOH_JSON_HOME)\single_include;$(IRRLICHT_HOME)\include\;$(PYTHON39_HOME)\include\;%(AdditionalIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -177,7 +183,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(IRRLICHT_HOME)\include\;$(PYTHON39_HOME)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\Programming\C_Cpp_libs\nlohmann-json\json\single_include;$(IRRLICHT_HOME)\include\;$(PYTHON39_HOME)\include\;%(AdditionalIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

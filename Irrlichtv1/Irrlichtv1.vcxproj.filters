@@ -34,6 +34,18 @@
     <Filter Include="Header Files\testModules">
       <UniqueIdentifier>{ac8a2b3a-a768-41f3-85ea-90a64025def9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\simmulation\DefaultComponents">
+      <UniqueIdentifier>{657fb15f-59f9-4c19-9099-b2e66261d817}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\simmulation\DefaultComponents">
+      <UniqueIdentifier>{bb5c6ba6-f4c5-43c2-b3b3-2b3146f0d599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\construction">
+      <UniqueIdentifier>{8c25a91c-4ba2-473b-98b0-413493c5c42c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\construction">
+      <UniqueIdentifier>{37065347-a7c3-4ecf-a03b-cbff0021f6ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DynamicObject.h">
@@ -48,9 +60,6 @@
     <ClInclude Include="GraphicsManager.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="KeyboardController.h">
-      <Filter>Header Files\simmulation</Filter>
-    </ClInclude>
     <ClInclude Include="SensorInterface.h">
       <Filter>Header Files\interfaces</Filter>
     </ClInclude>
@@ -63,20 +72,32 @@
     <ClInclude Include="IOcontroller.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="DefaultSensors.h">
-      <Filter>Header Files\simmulation</Filter>
-    </ClInclude>
     <ClInclude Include="test.AIDroneController.h">
       <Filter>Header Files\testModules</Filter>
     </ClInclude>
     <ClInclude Include="test.pyCommunication.h">
       <Filter>Header Files\testModules</Filter>
     </ClInclude>
-    <ClInclude Include="PhysicsComponentInterface.h">
+    <ClInclude Include="PysicsComponentInterface.h">
       <Filter>Header Files\interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="DefaultPysiscsManager.h">
+    <ClInclude Include="PhysicsManager.h">
       <Filter>Header Files\simmulation</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultPhysicsComponents.h">
+      <Filter>Header Files\simmulation\DefaultComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultSensors.h">
+      <Filter>Header Files\simmulation\DefaultComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardController.h">
+      <Filter>Header Files\simmulation\DefaultComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectFactory.h">
+      <Filter>Header Files\construction</Filter>
+    </ClInclude>
+    <ClInclude Include="JSONParser.h">
+      <Filter>Header Files\construction</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -92,9 +113,6 @@
     <ClCompile Include="Drone.cpp">
       <Filter>Source Files\simmulation</Filter>
     </ClCompile>
-    <ClCompile Include="KeyboardController.cpp">
-      <Filter>Source Files\simmulation</Filter>
-    </ClCompile>
     <ClCompile Include="test.fstExample.cpp">
       <Filter>Source Files\testModules</Filter>
     </ClCompile>
@@ -104,17 +122,29 @@
     <ClCompile Include="IOController.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="DefaultSensor.cpp">
-      <Filter>Source Files\simmulation</Filter>
-    </ClCompile>
     <ClCompile Include="test.AIDroneController.cpp">
       <Filter>Source Files\testModules</Filter>
     </ClCompile>
     <ClCompile Include="test.pyCommunication.cpp">
       <Filter>Source Files\testModules</Filter>
     </ClCompile>
-    <ClCompile Include="DefaultPysiscsManager.cpp">
+    <ClCompile Include="DefaultPhysicsComponents.cpp">
+      <Filter>Source Files\simmulation\DefaultComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultSensor.cpp">
+      <Filter>Source Files\simmulation\DefaultComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsManager.cpp">
       <Filter>Source Files\simmulation</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardController.cpp">
+      <Filter>Source Files\simmulation\DefaultComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectFactory.cpp">
+      <Filter>Source Files\construction</Filter>
+    </ClCompile>
+    <ClCompile Include="JSONParser.cpp">
+      <Filter>Source Files\construction</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

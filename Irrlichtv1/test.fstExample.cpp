@@ -211,7 +211,7 @@ namespace alex_example {
 
 			Drone* drone = new Drone(irr::core::vector3df(-10.f, 10.f, 5.f), irr::core::vector3df(0.f, 0.f, 0.f), irr::core::vector3df(1.f, 0.f, 0.f));
 			keyCon = new KeyboardController(drone);
-			setCamera(irr::core::vector3df(), drone->getParent());
+			setCamera(irr::core::vector3df());
 
 			while (device->run()) {
 				vidMgr->beginScene(true, true, irr::video::SColor(255, 100, 101, 140));
