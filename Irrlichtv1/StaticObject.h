@@ -15,6 +15,9 @@ protected:
 
 public:
 	const std::string name;
+	//the defaults values are intialized in contructor, to the values given throw position, rotation, bHasCollision
+	const irr::core::vector3df defaultPosition, defaultRotation;
+	const bool defaultHasCollision;
 
 public:
 	StaticObject() = delete;
@@ -38,5 +41,7 @@ public:
 
 	virtual void setVisibility(bool isVisible = true) { meshNode->setVisible(isVisible); }
 	inline static void setVisibilityForAll(bool isVisible = true) { for (auto* obj : createdObjects)obj->setVisibility(isVisible); }
+
+	virtual void reset(bool toDefaults =true);
 };
 

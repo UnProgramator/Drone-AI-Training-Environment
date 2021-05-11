@@ -14,6 +14,7 @@ using namespace std;
 #endif
 
 #define drone_debug_on true
+
 #if drone_debug_on == true
 #define debug_call(x) {std::cerr << x; throw std::exception(x);}
 #define debug_call_cond(cond, x) if((cond)) std::cerr << x
@@ -114,6 +115,14 @@ void Drone::tick(float deltaTime)
         mesh->rotate(irr::core::vector3df(0.f, 1.f, 0.f) * rotation_ratio * maxRightRotationSpeed * deltaTime);
         rotation_ratio = 0;
     }
+}
+
+void Drone::reset(bool toDefault)
+{
+    this->mesh->reset(toDefault);
+    forward_ratio = 0;
+    rotation_ratio = 0;
+    up_ratio = 0;
 }
 
 

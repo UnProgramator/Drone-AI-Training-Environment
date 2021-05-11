@@ -33,5 +33,6 @@ public:
 	virtual void getSensorReadValues(default_CommunicationInterface& transmiter);
 
 	virtual void tick(float deltaTime) override;
+	virtual void reset(bool toDefault = true);
 };
 
