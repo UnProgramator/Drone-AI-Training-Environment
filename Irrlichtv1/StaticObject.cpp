@@ -21,6 +21,14 @@ bool StaticObject::colideWith(StaticObject* other)
 	return this->meshNode->getTransformedBoundingBox().intersectsWithBox(other->meshNode->getTransformedBoundingBox());
 }
 
+void StaticObject::setPosition(const irr::core::vector3df& newPosition) {
+	this->meshNode->setPosition(newPosition);
+}
+
+void StaticObject::setRotation(const irr::core::vector3df& newRotation) {
+	this->meshNode->setRotation(newRotation);
+}
+
 const irr::scene::ISceneNode* StaticObject::getRootParent() const
 {
 	irr::scene::ISceneNode *tmp, *par =  meshNode->getParent();
