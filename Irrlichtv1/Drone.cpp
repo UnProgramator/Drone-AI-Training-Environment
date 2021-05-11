@@ -84,7 +84,7 @@ void Drone::moveUp(float ratio)
     up_ratio = ratio;
 }
 
-void Drone::add_sensor(DistanceSensor* sensor)
+void Drone::add_sensor(SensorInterface* sensor)
 {
     sensor->link_to(this->mesh);
     this->sensor_list.push_back(sensor);
@@ -98,20 +98,20 @@ void Drone::getSensorReadValues(default_CommunicationInterface& transmiter)
     }
 }
 
-void Drone::tick()
+void Drone::tick(float deltaTime)
 {
     if (forward_ratio != 0 || up_ratio != 0) {
 
-        irr::core::vector3df vec = mesh->getForwardVector();
+        irr::core::vector3df speed = mesh->getForwardVector();
         if (forward_ratio != 0)
-            vec *= forward_ratio * maxFrowardSpeed;
+            speed *= forward_ratio * maxFrowardSpeed;
         if (up_ratio != 0)
-            vec.Z = up_ratio * maxUpSpeed;
-        mesh->addInputVector(vec);
+            speed.Z = up_ratio * maxUpSpeed;
+        mesh->addInputVector(speed * deltaTime);
         forward_ratio = up_ratio = 0;
     }
     if (rotation_ratio != 0) {
-        mesh->rotate(irr::core::vector3df(0.f, 1.f, 0.f) * rotation_ratio * maxRightRotationSpeed);
+        mesh->rotate(irr::core::vector3df(0.f, 1.f, 0.f) * rotation_ratio * maxRightRotationSpeed * deltaTime);
         rotation_ratio = 0;
     }
 }

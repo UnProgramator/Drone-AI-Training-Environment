@@ -5,15 +5,15 @@
 #include <list>
 #include "DynamicObject.h"
 #include "SensorInterface.h"
-#include "DefaultSensors.h"
+#include "ObjectControllerInterface.h"
 
-class Drone
+class Drone : ObjectControllerInterface
 {
 private:
 	DynamicObject* mesh = nullptr;
 	float forward_ratio =0, rotation_ratio = 0, up_ratio = 0;
 	
-	std::list<DistanceSensor*> sensor_list;
+	std::list<SensorInterface*> sensor_list;
 
 public:
 	const float maxFrowardSpeed = 0.01f;
@@ -29,10 +29,9 @@ public:
 	virtual void rotateRight(float ratio = 0.f);
 	virtual void moveUp(float ratio = 0.f);
 
-	virtual void add_sensor(DistanceSensor* sensor);
+	virtual void add_sensor(SensorInterface* sensor);
 	virtual void getSensorReadValues(default_CommunicationInterface& transmiter);
 
-
-	virtual void tick();
+	virtual void tick(float deltaTime) override;
 };
 

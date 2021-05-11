@@ -222,7 +222,7 @@ namespace alex_example {
 
 				std::cout << vidMgr->getFPS() << std::endl;
 
-				drone->tick();
+				drone->tick(0);
 
 				tick_io();
 			}
