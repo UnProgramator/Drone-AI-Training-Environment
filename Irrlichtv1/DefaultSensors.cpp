@@ -67,7 +67,8 @@ bool DistanceSensor::link_to(const StaticObject* objectToLinkTo)
 }
 
 GPS::GPS(const char* name) :
-	SensorInterface(name), parent(nullptr)
+	SensorInterface(name), 
+	parent{nullptr}
 {
 }
 
@@ -90,7 +91,8 @@ bool GPS::link_to(const StaticObject* objectToLinkTo)
 }
 
 Altimeter::Altimeter(const char* name):
-	SensorInterface(name), parent(nullptr)
+	SensorInterface(name), 
+	parent{nullptr}
 {
 }
 
@@ -102,4 +104,73 @@ bool Altimeter::link_to(const StaticObject* objectToLinkTo)
 {
 	parent = objectToLinkTo;
 	return objectToLinkTo != nullptr;
+}
+
+Velocimometer::Velocimometer(const char* name): 
+	SensorInterface(name), 
+	parentDrone{ nullptr }, parent{ nullptr }
+{
+}
+
+void Velocimometer::getDetectedValue(DataCoolectorInterface& ci) {
+	ci.parse_double(name.c_str(), parentDrone->getForwardVelocity());
+}
+
+bool Velocimometer::link_to(const StaticObject* objectToLinkTo) {
+	parent = objectToLinkTo;
+	return objectToLinkTo != nullptr;
+}
+
+void Velocimometer::link_to(const Drone* parentDrone)
+{
+	this->parentDrone = parentDrone;
+}
+
+Accelerometer3D::Accelerometer3D(const char* name):
+	SensorInterface(name),
+	parentDrone{ nullptr }, parent{ nullptr }
+{
+}
+
+void Accelerometer3D::getDetectedValue(DataCoolectorInterface& ci)
+{
+	std::vector<double> accelerations(3);
+	irr::core::vector3df acc = parentDrone->getAccelerations();
+	accelerations.push_back(acc.Z); //forward
+	accelerations.push_back(acc.X); //sideways
+	accelerations.push_back(acc.Y); //upwards
+	ci.parse_double_array(name.c_str(), accelerations);
+}
+
+bool Accelerometer3D::link_to(const StaticObject* objectToLinkTo)
+{
+	parent = objectToLinkTo;
+	return objectToLinkTo != nullptr;
+}
+
+void Accelerometer3D::link_to(const Drone* parentDrone)
+{
+	this->parentDrone = parentDrone;
+}
+
+Accelerometer::Accelerometer(const char* name):
+	SensorInterface(name),
+	parentDrone{nullptr}, parent{ nullptr }
+{
+}
+
+void Accelerometer::getDetectedValue(DataCoolectorInterface& ci)
+{
+	ci.parse_double(name.c_str(), parentDrone->getForwardAcceleration());
+}
+
+bool Accelerometer::link_to(const StaticObject* objectToLinkTo)
+{
+	parent = objectToLinkTo;
+	return objectToLinkTo != nullptr;
+}
+
+void Accelerometer::link_to(const Drone* parentDrone)
+{
+	this->parentDrone = parentDrone;
 }

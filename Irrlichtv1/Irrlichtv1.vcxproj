@@ -50,7 +50,7 @@
     <ClCompile Include="IOController.cpp" />
     <ClCompile Include="KeyboardController.cpp" />
     <ClCompile Include="test.main.cpp" />
-    <ClCompile Include="DefaultSensor.cpp" />
+    <ClCompile Include="DefaultSensors.cpp" />
     <ClCompile Include="StaticObject.cpp" />
     <ClCompile Include="test.pyCommunication.cpp" />
   </ItemGroup>

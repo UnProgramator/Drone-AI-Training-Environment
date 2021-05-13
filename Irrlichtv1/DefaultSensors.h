@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SensorInterface.h"
+#include "Drone.h"
 
 class DistanceSensor : public SensorInterface {
 private:
@@ -31,4 +32,40 @@ public:
 
 	virtual void getDetectedValue(DataCoolectorInterface& ci) override;
 	virtual bool link_to(const StaticObject* objectToLinkTo) override;
+};
+
+class Velocimometer : public SensorInterface {
+private:
+	const StaticObject* parent;
+	const Drone* parentDrone;
+public:
+	Velocimometer(const char* name);
+
+	virtual void getDetectedValue(DataCoolectorInterface& ci) override;
+	virtual bool link_to(const StaticObject* objectToLinkTo) override;
+	void link_to(const Drone* parentDrone);
+};
+
+class Accelerometer : public SensorInterface {
+private:
+	const StaticObject* parent;
+	const Drone* parentDrone;
+public:
+	Accelerometer(const char* name);
+
+	virtual void getDetectedValue(DataCoolectorInterface& ci) override;
+	virtual bool link_to(const StaticObject* objectToLinkTo) override;
+	void link_to(const Drone* parentDrone);
+};
+
+class Accelerometer3D : public SensorInterface {
+private:
+	const StaticObject* parent;
+	const Drone* parentDrone;
+public:
+	Accelerometer3D(const char* name);
+
+	virtual void getDetectedValue(DataCoolectorInterface& ci) override;
+	virtual bool link_to(const StaticObject* objectToLinkTo) override;
+	void link_to(const Drone* parentDrone);
 };

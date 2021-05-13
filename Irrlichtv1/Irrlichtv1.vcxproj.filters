@@ -131,7 +131,7 @@
     <ClCompile Include="DefaultPhysicsComponents.cpp">
       <Filter>Source Files\simmulation\DefaultComponents</Filter>
     </ClCompile>
-    <ClCompile Include="DefaultSensor.cpp">
+    <ClCompile Include="DefaultSensors.cpp">
       <Filter>Source Files\simmulation\DefaultComponents</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsManager.cpp">

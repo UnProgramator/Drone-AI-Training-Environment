@@ -23,14 +23,14 @@ using namespace std;
 #define debug_call_cond(...)
 #endif
 
-Drone::Drone(const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation)
+Drone::Drone(const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation, PhysicsManager * physiscsMgr):phyMgr{physiscsMgr}
 {
-    std::cout << "drone created";
+    std::cout << "default drone cube should not be used in final apps";
     irr::scene::IMeshSceneNode* node = getCube();
     mesh= new DynamicObject(node, initalPosition, initalRotation, initalOrientation, true);
 }
 
-Drone::Drone(const std::string& path, const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation)
+Drone::Drone(const std::string& path, const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation, PhysicsManager* physiscsMgr) :phyMgr{ physiscsMgr }
 {
     irr::scene::IMeshSceneNode* node = getStaticMesh(path + "", path + ".png", 0);
     mesh = new DynamicObject(node, initalPosition, initalRotation, initalOrientation, true);
@@ -123,6 +123,26 @@ void Drone::reset(bool toDefault)
     forward_ratio = 0;
     rotation_ratio = 0;
     up_ratio = 0;
+}
+
+irr::core::vector3df Drone::getVelocity() const
+{
+    return phyMgr->getVelocity();
+}
+
+float Drone::getForwardVelocity() const
+{
+    return phyMgr->getVelocity().Z;
+}
+
+irr::core::vector3df Drone::getAccelerations() const
+{
+    return phyMgr->getAcceleration();
+}
+
+float Drone::getForwardAcceleration() const
+{
+    return  phyMgr->getAcceleration().Z;
 }
 
 
