@@ -24,7 +24,8 @@ public:
 	const float maxRightRotationSpeed = 0.02f;
 
 	Drone(const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation,  const irr::core::vector3df & initalOrientation, PhysicsManager* physiscsMgr);
-	Drone(const std::string& path, const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation,  const irr::core::vector3df & initalOrientation, PhysicsManager* physiscsMgr);
+	Drone(const std::string& meshPath, const std::string& textPath, const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df & initalOrientation, PhysicsManager* physiscsMgr);
+	Drone(const std::string& meshPath, const std::string& textPath, const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& scale,  const irr::core::vector3df & initalOrientation, PhysicsManager* physiscsMgr);
 
 	bool verifyCollision(class StaticObject* otherObject);
 

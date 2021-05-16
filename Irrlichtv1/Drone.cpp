@@ -30,10 +30,18 @@ Drone::Drone(const irr::core::vector3df& initalPosition, const irr::core::vector
     mesh= new DynamicObject(node, initalPosition, initalRotation, initalOrientation, true);
 }
 
-Drone::Drone(const std::string& path, const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation, PhysicsManager* physiscsMgr) :phyMgr{ physiscsMgr }
+Drone::Drone(const std::string& meshPath, const std::string& textPath, const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation, PhysicsManager* physiscsMgr):
+    Drone(meshPath, textPath, initalPosition, initalRotation, irr::core::vector3df(1.f, 1.f, 1.f), initalOrientation, physiscsMgr)
 {
-    irr::scene::IMeshSceneNode* node = getStaticMesh(path + "", path + ".png", 0);
-    mesh = new DynamicObject(node, initalPosition, initalRotation, initalOrientation, true);
+}
+
+Drone::Drone(const std::string& meshPath, const std::string& textPath, const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& scale, const irr::core::vector3df& initalOrientation, PhysicsManager* physiscsMgr) :
+    phyMgr{ physiscsMgr }
+{
+    /*irr::scene::IMeshSceneNode* node = getStaticMesh(path + "", path + ".png", 0);
+    node->setScale()
+    mesh = new DynamicObject(node, initalPosition, initalRotation, initalOrientation, true);*/
+    mesh = new DynamicObject(meshPath, textPath, initalPosition, initalRotation, initalOrientation, scale, true, "Drone");
 } 
 
 bool Drone::verifyCollision(class StaticObject* otherObject)
