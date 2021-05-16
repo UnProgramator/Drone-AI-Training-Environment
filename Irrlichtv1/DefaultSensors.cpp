@@ -28,14 +28,16 @@ SensorInterface::SensorInterface(const char* name) :
 {
 }
 
-DistanceSensor::DistanceSensor(const std::string& sensorMeshPath, const vector3df& position, const vector3df& rotation, const vector3df& scale, float range, const char* name) :
+DistanceSensor::DistanceSensor(const std::string& sensorMeshPath, const std::string& sensorTexturePath, const vector3df& position, const vector3df& rotation, const vector3df& scale, float range, const char* name) :
 	SensorInterface(name)
 {
-	irr::scene::IMeshSceneNode* mesh = getStaticMesh(sensorMeshPath + "", sensorMeshPath + ".png", nullptr, -1, false);
-	meshObj = new StaticObject(mesh, position, rotation, false);
+	/*irr::scene::IMeshSceneNode* mesh = getStaticMesh(sensorMeshPath, sensorTexturePath, nullptr, -1, false);
+	meshObj = new StaticObject(mesh, position, rotation, false);*/
+	meshObj = new StaticObject(sensorMeshPath, sensorTexturePath, position, rotation, scale, false, false, name);
 
 	rangeObj = new StaticObject(getSphere(), range * irr::core::vector3df(1.f, 0.f, 0.f), irr::core::vector3df(), false);
-	rangeObj->setParent(mesh);
+	rangeObj->setParent(meshObj);
+	SensorInterface::addEntityToRangeVisibilityList(rangeObj);
 	if (SensorInterface::getVisibilityStatus())
 		rangeObj->setVisibility(true);
 }
