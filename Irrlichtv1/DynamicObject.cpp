@@ -6,8 +6,8 @@ DynamicObject::DynamicObject(irr::scene::ISceneNode* meshNode, const irr::core::
 {
 }
 
-DynamicObject::DynamicObject(const std::string& meshPath, const std::string& texturePath, const irr::core::vector3df& position, const irr::core::vector3df& rotation, const irr::core::vector3df& forwardVector, const irr::core::vector3df& scale, bool bHasCollision, const std::string name):
-	StaticObject(meshPath, texturePath, position, rotation, scale, bHasCollision, name), forwardVector{ forwardVector / forwardVector.getLength() }, defaultForwardVector(forwardVector)
+DynamicObject::DynamicObject(const std::string& meshPath, const std::string& texturePath, const irr::core::vector3df& position, const irr::core::vector3df& rotation, const irr::core::vector3df& forwardVector, const irr::core::vector3df& scale, bool bHasCollision, bool bAddToRaycastDetection, const std::string name):
+	StaticObject(meshPath, texturePath, position, rotation, scale, bHasCollision, bAddToRaycastDetection, name), forwardVector{ forwardVector / forwardVector.getLength() }, defaultForwardVector(forwardVector)
 {
 }
 

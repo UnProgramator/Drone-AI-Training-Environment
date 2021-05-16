@@ -63,7 +63,7 @@ const irr::scene::ISceneNode* StaticObject::getSceneNode() const{
 	return this->meshNode;
 }
 
-StaticObject::StaticObject(irr::scene::ISceneNode* meshNode, const irr::core::vector3df& position, const irr::core::vector3df& rotation, bool bHasCollision, std::string name): 
+StaticObject::StaticObject(irr::scene::ISceneNode* meshNode, const irr::core::vector3df& position, const irr::core::vector3df& rotation, bool bHasCollision, std::string name):
 	name(name), defaultPosition(position), defaultRotation(rotation), defaultHasCollision(bHasCollision)
 {
 	this->meshNode = meshNode;
@@ -72,10 +72,10 @@ StaticObject::StaticObject(irr::scene::ISceneNode* meshNode, const irr::core::ve
 	StaticObject::createdObjects.push_back(this);
 }
 
-StaticObject::StaticObject(const std::string & meshPath, const std::string& texturePath, const irr::core::vector3df& position, const irr::core::vector3df& rotation, const irr::core::vector3df& scale, bool bHasCollision, std::string name) :
+StaticObject::StaticObject(const std::string & meshPath, const std::string& texturePath, const irr::core::vector3df& position, const irr::core::vector3df& rotation, const irr::core::vector3df& scale, bool bHasCollision, bool bAddToRaycastDetection, std::string name) :
 	name(name), defaultPosition(position), defaultRotation(rotation), defaultHasCollision(bHasCollision)
 {
-	this->meshNode = getStaticMesh(meshPath, texturePath, nullptr, -1, bHasCollision);
+	this->meshNode = getStaticMesh(meshPath, texturePath, nullptr, -1, bAddToRaycastDetection);
 	this->meshNode->setPosition(position);
 	this->meshNode->setRotation(rotation);
 	this->meshNode->setScale(scale);

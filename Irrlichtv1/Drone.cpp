@@ -26,7 +26,7 @@ using namespace std;
 Drone::Drone(const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation, PhysicsManager * physiscsMgr):phyMgr{physiscsMgr}
 {
     std::cout << "default drone cube should not be used in final apps";
-    irr::scene::IMeshSceneNode* node = getCube();
+    irr::scene::IMeshSceneNode* node = getCube(10.f, -1, false);
     mesh= new DynamicObject(node, initalPosition, initalRotation, initalOrientation, true);
 }
 
@@ -41,7 +41,7 @@ Drone::Drone(const std::string& meshPath, const std::string& textPath, const irr
     /*irr::scene::IMeshSceneNode* node = getStaticMesh(path + "", path + ".png", 0);
     node->setScale()
     mesh = new DynamicObject(node, initalPosition, initalRotation, initalOrientation, true);*/
-    mesh = new DynamicObject(meshPath, textPath, initalPosition, initalRotation, initalOrientation, scale, true, "Drone");
+    mesh = new DynamicObject(meshPath, textPath, initalPosition, initalRotation, initalOrientation, scale, true, false, "Drone");
 } 
 
 bool Drone::verifyCollision(class StaticObject* otherObject)
