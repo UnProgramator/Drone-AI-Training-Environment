@@ -34,7 +34,7 @@ void setCamera(const irr::core::vector3df& initialPosition, irr::scene::ISceneNo
 	camera->setPosition(initialPosition);
 }
 
-irr::scene::IMeshSceneNode* getStaticMesh(const std::string& meshPath, const std::string& texturePath, irr::scene::IMeshSceneNode* parentNode/*0*/, irr::s32 id/*0*/, bool hasCollision/*true*/){
+irr::scene::IMeshSceneNode* getStaticMesh(const std::string& meshPath, const std::string& texturePath, irr::scene::IMeshSceneNode* parentNode/*0*/, irr::s32 id/*0*/, bool addToRaycast/*true*/){
 	if (scrMgr == nullptr) {
 		throw std::exception(unitializedMsg);
 	}
@@ -52,19 +52,21 @@ irr::scene::IMeshSceneNode* getStaticMesh(const std::string& meshPath, const std
 	retVal->setMaterialTexture(0, vidMgr->getTexture(texturePath.c_str()));
 	retVal->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 
-	irr::scene::ITriangleSelector* selector = scrMgr->createTriangleSelector(retVal->getMesh(), retVal);
-	if (selector == nullptr)
-		throw std::exception(triangleNotCreatedMsg);
-	retVal->setTriangleSelector(selector);
-	if (!selector->drop()) {
-		//throw std::exception(triangleNotDroppedMsg);
+	if (addToRaycast) {
+		irr::scene::ITriangleSelector* selector = scrMgr->createTriangleSelector(retVal->getMesh(), retVal);
+		if (selector == nullptr)
+			throw std::exception(triangleNotCreatedMsg);
+		retVal->setTriangleSelector(selector);
+		if (!selector->drop()) {
+			//throw std::exception(triangleNotDroppedMsg);
 #pragma warning()
+		}
 	}
 
 	return retVal;
 }
 
-irr::scene::IMeshSceneNode* getCube(float scale, irr::s32 id, bool hasCollision) {
+irr::scene::IMeshSceneNode* getCube(float scale, irr::s32 id, bool addToRaycast) {
 	if (scrMgr == nullptr) {
 		throw std::exception(unitializedMsg);
 	}
@@ -72,10 +74,21 @@ irr::scene::IMeshSceneNode* getCube(float scale, irr::s32 id, bool hasCollision)
 	if (!retVal)
 		throw std::exception(meshNotGeneratedMsg);
 	retVal->setMaterialTexture(0, vidMgr->getTexture("media/default.png"));
+
+	if (addToRaycast) {
+		irr::scene::ITriangleSelector* selector = scrMgr->createTriangleSelector(retVal->getMesh(), retVal);
+		if (selector == nullptr)
+			throw std::exception(triangleNotCreatedMsg);
+		retVal->setTriangleSelector(selector);
+		if (!selector->drop()) {
+			//throw std::exception(triangleNotDroppedMsg);
+#pragma warning()
+		}
+	}
 	return retVal;
 }
 
-irr::scene::IMeshSceneNode* getSphere(float radius, irr::s32 id, bool hasCollision)
+irr::scene::IMeshSceneNode* getSphere(float radius, irr::s32 id, bool addToRaycast)
 {
 	if (scrMgr == nullptr) {
 		throw std::exception(unitializedMsg);
@@ -84,6 +97,18 @@ irr::scene::IMeshSceneNode* getSphere(float radius, irr::s32 id, bool hasCollisi
 	if (!retVal)
 		throw std::exception(meshNotGeneratedMsg);
 	retVal->setMaterialTexture(0, vidMgr->getTexture("media/default.png"));
+
+	if (addToRaycast) {
+		irr::scene::ITriangleSelector* selector = scrMgr->createTriangleSelector(retVal->getMesh(), retVal);
+		if (selector == nullptr)
+			throw std::exception(triangleNotCreatedMsg);
+		retVal->setTriangleSelector(selector);
+		if (!selector->drop()) {
+			//throw std::exception(triangleNotDroppedMsg);
+#pragma warning()
+		}
+	}
+
 	return retVal;
 }
 
