@@ -8,16 +8,17 @@
 #include "ObjectControllerInterface.h"
 #include "PhysicsManager.h"
 
-struct DroneAttributes {
-	float	maxForwardVelocity,
+class Drone : ObjectControllerInterface
+{
+public:
+	struct DroneAttributes {
+		float	maxForwardVelocity,
 			maxForwardAcceleration,
 			maxUpwardVelocity,
 			maxUpwardAcceleratio,
 			maxAltitude;
-};
-
-class Drone : ObjectControllerInterface
-{
+	};
+	using DroneAttributes = Drone::DroneAttributes;
 private:
 	DynamicObject* mesh = nullptr;
 	float forward_ratio =0, rotation_ratio = 0, up_ratio = 0;
@@ -40,6 +41,7 @@ public:
 	Drone(const std::string& meshPath, const std::string& textPath, 
 			const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& scale,  const irr::core::vector3df & initalOrientation, 
 			PhysicsManager* physiscsMgr, const DroneAttributes* atributes);
+	virtual ~Drone();
 
 	bool verifyCollision(class StaticObject* otherObject);
 

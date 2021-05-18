@@ -8,7 +8,7 @@
 #include "GraphicsManager.h"
 
 using namespace std;
-
+using DroneAttributes = Drone::DroneAttributes;
 #ifdef drone_debug_on
 #error
 #endif
@@ -45,7 +45,15 @@ Drone::Drone(const std::string& meshPath, const std::string& textPath, const irr
     node->setScale()
     mesh = new DynamicObject(node, initalPosition, initalRotation, initalOrientation, true);*/
     mesh = new DynamicObject(meshPath, textPath, initalPosition, initalRotation, initalOrientation, scale, true, false, "Drone");
-} 
+}
+Drone::~Drone()
+{
+    delete atributes;
+    delete mesh;
+    for (auto* x : sensor_list)
+        delete x;
+}
+
 
 bool Drone::verifyCollision(class StaticObject* otherObject)
 {
