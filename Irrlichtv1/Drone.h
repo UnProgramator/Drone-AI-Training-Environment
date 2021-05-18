@@ -8,6 +8,14 @@
 #include "ObjectControllerInterface.h"
 #include "PhysicsManager.h"
 
+struct DroneAttributes {
+	float	maxForwardVelocity,
+			maxForwardAcceleration,
+			maxUpwardVelocity,
+			maxUpwardAcceleratio,
+			maxAltitude;
+};
+
 class Drone : ObjectControllerInterface
 {
 private:
@@ -19,13 +27,19 @@ private:
 	std::list<SensorInterface*> sensor_list;
 
 public:
+	const DroneAttributes* const atributes;
+
 	const float maxFrowardSpeed = 0.01f;
 	const float maxUpSpeed = 0.05f;
 	const float maxRightRotationSpeed = 0.02f;
 
-	Drone(const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation,  const irr::core::vector3df & initalOrientation, PhysicsManager* physiscsMgr);
-	Drone(const std::string& meshPath, const std::string& textPath, const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df & initalOrientation, PhysicsManager* physiscsMgr);
-	Drone(const std::string& meshPath, const std::string& textPath, const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& scale,  const irr::core::vector3df & initalOrientation, PhysicsManager* physiscsMgr);
+	Drone(const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation,  const irr::core::vector3df & initalOrientation, PhysicsManager* physiscsMgr, const DroneAttributes* atributes);
+	Drone(const std::string& meshPath, const std::string& textPath, 
+			const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df & initalOrientation, 
+			PhysicsManager* physiscsMgr, const DroneAttributes* atributes);
+	Drone(const std::string& meshPath, const std::string& textPath, 
+			const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& scale,  const irr::core::vector3df & initalOrientation, 
+			PhysicsManager* physiscsMgr, const DroneAttributes* atributes);
 
 	bool verifyCollision(class StaticObject* otherObject);
 

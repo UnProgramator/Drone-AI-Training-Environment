@@ -23,20 +23,23 @@ using namespace std;
 #define debug_call_cond(...)
 #endif
 
-Drone::Drone(const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation, PhysicsManager * physiscsMgr):phyMgr{physiscsMgr}
+Drone::Drone(const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation, PhysicsManager * physiscsMgr, const DroneAttributes* atributes)
+    :phyMgr{physiscsMgr}, atributes{atributes}
 {
     std::cout << "default drone cube should not be used in final apps";
     irr::scene::IMeshSceneNode* node = getCube(10.f, -1, false);
     mesh= new DynamicObject(node, initalPosition, initalRotation, initalOrientation, true);
 }
 
-Drone::Drone(const std::string& meshPath, const std::string& textPath, const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation, PhysicsManager* physiscsMgr):
-    Drone(meshPath, textPath, initalPosition, initalRotation, irr::core::vector3df(1.f, 1.f, 1.f), initalOrientation, physiscsMgr)
+Drone::Drone(const std::string& meshPath, const std::string& textPath, const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation, 
+            PhysicsManager* physiscsMgr, const DroneAttributes* atributes):
+    Drone(meshPath, textPath, initalPosition, initalRotation, irr::core::vector3df(1.f, 1.f, 1.f), initalOrientation, physiscsMgr, atributes)
 {
 }
 
-Drone::Drone(const std::string& meshPath, const std::string& textPath, const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& scale, const irr::core::vector3df& initalOrientation, PhysicsManager* physiscsMgr) :
-    phyMgr{ physiscsMgr }
+Drone::Drone(const std::string& meshPath, const std::string& textPath, const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& scale, const irr::core::vector3df& initalOrientation, 
+            PhysicsManager* physiscsMgr, const DroneAttributes* atributes) :
+    phyMgr{ physiscsMgr }, atributes{ atributes }
 {
     /*irr::scene::IMeshSceneNode* node = getStaticMesh(path + "", path + ".png", 0);
     node->setScale()
