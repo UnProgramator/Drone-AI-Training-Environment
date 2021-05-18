@@ -24,6 +24,7 @@
     <ClInclude Include="JSONParser.h" />
     <ClInclude Include="PysicsComponentInterface.h" />
     <ClInclude Include="PhysicsManager.h" />
+    <ClInclude Include="SceneObjectManager.h" />
     <ClInclude Include="test.AIDroneController.h" />
     <ClInclude Include="CommunicationInterface.h" />
     <ClInclude Include="Drone.h" />
@@ -42,6 +43,7 @@
     <ClCompile Include="DefaultPhysicsComponents.cpp" />
     <ClCompile Include="JSONParser.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
+    <ClCompile Include="SceneObjectManager.cpp" />
     <ClCompile Include="test.AIDroneController.cpp" />
     <ClCompile Include="Drone.cpp" />
     <ClCompile Include="DynamicObject.cpp" />

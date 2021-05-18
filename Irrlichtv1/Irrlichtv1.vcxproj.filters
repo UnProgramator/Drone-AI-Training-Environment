@@ -99,6 +99,9 @@
     <ClInclude Include="JSONParser.h">
       <Filter>Header Files\construction</Filter>
     </ClInclude>
+    <ClInclude Include="SceneObjectManager.h">
+      <Filter>Header Files\construction</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GraphicsManager.cpp">
@@ -144,6 +147,9 @@
       <Filter>Source Files\construction</Filter>
     </ClCompile>
     <ClCompile Include="JSONParser.cpp">
+      <Filter>Source Files\construction</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneObjectManager.cpp">
       <Filter>Source Files\construction</Filter>
     </ClCompile>
   </ItemGroup>
