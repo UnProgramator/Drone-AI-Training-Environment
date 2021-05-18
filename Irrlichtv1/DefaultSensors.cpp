@@ -27,8 +27,12 @@ SensorInterface::SensorInterface(const char* name) :
 	name{ name}
 {
 }
+SensorInterface::SensorInterface(const std::string& name) :
+	name{ name }
+{
+}
 
-DistanceSensor::DistanceSensor(const std::string& sensorMeshPath, const std::string& sensorTexturePath, const vector3df& position, const vector3df& rotation, const vector3df& scale, float range, const char* name) :
+DistanceSensor::DistanceSensor(const std::string& sensorMeshPath, const std::string& sensorTexturePath, const vector3df& position, const vector3df& rotation, const vector3df& scale, float range, const std::string& name) :
 	SensorInterface(name)
 {
 	/*irr::scene::IMeshSceneNode* mesh = getStaticMesh(sensorMeshPath, sensorTexturePath, nullptr, -1, false);
@@ -68,7 +72,7 @@ bool DistanceSensor::link_to(const StaticObject* objectToLinkTo)
 	return false;
 }
 
-GPS::GPS(const char* name) :
+GPS::GPS(const std::string& name) :
 	SensorInterface(name), 
 	parent{nullptr}
 {
@@ -92,7 +96,7 @@ bool GPS::link_to(const StaticObject* objectToLinkTo)
 	return objectToLinkTo != nullptr;
 }
 
-Altimeter::Altimeter(const char* name):
+Altimeter::Altimeter(const std::string& name):
 	SensorInterface(name), 
 	parent{nullptr}
 {
@@ -108,7 +112,7 @@ bool Altimeter::link_to(const StaticObject* objectToLinkTo)
 	return objectToLinkTo != nullptr;
 }
 
-Velocimometer::Velocimometer(const char* name): 
+Velocimometer::Velocimometer(const std::string& name):
 	SensorInterface(name), 
 	parentDrone{ nullptr }, parent{ nullptr }
 {
@@ -128,7 +132,7 @@ void Velocimometer::link_to(const Drone* parentDrone)
 	this->parentDrone = parentDrone;
 }
 
-Accelerometer3D::Accelerometer3D(const char* name):
+Accelerometer3D::Accelerometer3D(const std::string&  name):
 	SensorInterface(name),
 	parentDrone{ nullptr }, parent{ nullptr }
 {
@@ -155,7 +159,7 @@ void Accelerometer3D::link_to(const Drone* parentDrone)
 	this->parentDrone = parentDrone;
 }
 
-Accelerometer::Accelerometer(const char* name):
+Accelerometer::Accelerometer(const std::string& name):
 	SensorInterface(name),
 	parentDrone{nullptr}, parent{ nullptr }
 {

@@ -23,6 +23,7 @@ public:
 	virtual const std::string& getName() const { return name; }
 
 	SensorInterface(const char* name);
+	SensorInterface(const std::string& name);
 
 	virtual ~SensorInterface() =default;
 };
