@@ -33,7 +33,7 @@ SensorInterface::SensorInterface(const std::string& name) :
 }
 
 DistanceSensor::DistanceSensor(const std::string& sensorMeshPath, const std::string& sensorTexturePath, const vector3df& position, const vector3df& rotation, const vector3df& scale, float range, const std::string& name) :
-	SensorInterface(name)
+	SensorInterface(name), maxRange(range)
 {
 	/*irr::scene::IMeshSceneNode* mesh = getStaticMesh(sensorMeshPath, sensorTexturePath, nullptr, -1, false);
 	meshObj = new StaticObject(mesh, position, rotation, false);*/
@@ -61,7 +61,7 @@ void DistanceSensor::getDetectedValue(DataCoolectorInterface& ci)
 	if (colMan->getSceneNodeAndCollisionPointFromRay(ray, pointOfColision, colisionTriangle))
 		distance = (pointOfColision - pos1).getLength();
 	else
-		distance = INFINITY;
+		distance = maxRange;
 
 	ci.parse_double(name.c_str(), distance);
 }

@@ -6,6 +6,7 @@
 class DistanceSensor : public SensorInterface {
 private:
 	StaticObject* meshObj, * rangeObj;
+	const float maxRange;
 public:
 	using vector3df = irr::core::vector3df;
 	DistanceSensor(const std::string& sensorMeshPath, const std::string& sensorTexturePath, const vector3df& position, const vector3df& rotation, const vector3df& scale, float range, const std::string& name);
