@@ -13,6 +13,7 @@ public:
 
 	virtual void getDetectedValue(DataCoolectorInterface& ci) override;
 	virtual bool link_to(const StaticObject* objectToLinkTo) override;
+	virtual int getNumberOfOutputValues() override { return 1; }
 };
 
 class GPS : public SensorInterface {
@@ -23,6 +24,7 @@ public:
 
 	virtual void getDetectedValue(DataCoolectorInterface& ci) override;
 	virtual bool link_to(const StaticObject* objectToLinkTo) override;
+	virtual int getNumberOfOutputValues() override { return 2; }
 };
 
 class Altimeter : public SensorInterface {
@@ -33,6 +35,7 @@ public:
 
 	virtual void getDetectedValue(DataCoolectorInterface& ci) override;
 	virtual bool link_to(const StaticObject* objectToLinkTo) override;
+	virtual int getNumberOfOutputValues() override { return 1; }
 };
 
 class Velocimometer : public SensorInterface {
@@ -45,6 +48,7 @@ public:
 	virtual void getDetectedValue(DataCoolectorInterface& ci) override;
 	virtual bool link_to(const StaticObject* objectToLinkTo) override;
 	void link_to(const Drone* parentDrone);
+	virtual int getNumberOfOutputValues() override { return 1; }
 };
 
 class Accelerometer : public SensorInterface {
@@ -57,6 +61,7 @@ public:
 	virtual void getDetectedValue(DataCoolectorInterface& ci) override;
 	virtual bool link_to(const StaticObject* objectToLinkTo) override;
 	void link_to(const Drone* parentDrone);
+	virtual int getNumberOfOutputValues() override { return 1; }
 };
 
 class Accelerometer3D : public SensorInterface {
@@ -69,4 +74,5 @@ public:
 	virtual void getDetectedValue(DataCoolectorInterface& ci) override;
 	virtual bool link_to(const StaticObject* objectToLinkTo) override;
 	void link_to(const Drone* parentDrone);
+	virtual int getNumberOfOutputValues() override { return 3; }
 };

@@ -60,6 +60,14 @@ bool Drone::verifyCollision(class StaticObject* otherObject)
     return this->mesh->colideWith(otherObject);
 }
 
+int Drone::getSensorsNumberOfOutputValues()
+{
+    int values = 0;
+    for (auto x : sensor_list)
+        values += x->getNumberOfOutputValues();
+    return 0;
+}
+
 void Drone::moveForwards(float ratio)
 {
     if (ratio > 1.f) {

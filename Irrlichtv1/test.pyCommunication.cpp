@@ -5,7 +5,7 @@
 using std::operator""s;
 #define CHECK_CREATED(var) if(!var) throw std::exception(("python variable "s+ #var +" at line  " + std::to_string(__LINE__) + " in file " + __FILE__ +" could not be created").c_str())
 
-pyCommunication::pyCommunication(const char* path):
+pyCommunication::pyCommunication(const char* path, uint16_t input_size, uint16_t output_size, float learning_rate):
 	func_arg(nullptr), is_running(true), crt_element(0)
 {
 	if (!path)
@@ -51,10 +51,15 @@ pyCommunication::pyCommunication(const char* path):
 		throw;
 	}
 
-	returnedValue = PyObject_Call(init_func, PyTuple_New(0), nullptr);
+	PyObject* args = PyTuple_New(3);
+	PyTuple_SetItem(args, 0, PyLong_FromLong(input_size));
+	PyTuple_SetItem(args, 1, PyLong_FromLong(output_size));
+	PyTuple_SetItem(args, 2, PyFloat_FromDouble(learning_rate));
+
+	returnedValue = PyObject_Call(init_func, args, nullptr);
 	if (!returnedValue) {
 		finishCommunication();
-		throw std::exception("Error: Error occured. PyObject* was null");
+		throw std::exception("Error: Error occured. PyObject* returned by init was null");
 	}
 	if (!PyBool_Check(returnedValue)) {
 		finishCommunication();
@@ -72,7 +77,7 @@ pyCommunication::pyCommunication(const char* path):
 
 pyCommunication::~pyCommunication()
 {
-	if(is_running) Py_Finalize();
+	if(is_running) finishCommunication();
 }
 
 void pyCommunication::finishCommunication()

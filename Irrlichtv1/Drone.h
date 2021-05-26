@@ -45,6 +45,8 @@ public:
 
 	bool verifyCollision(class StaticObject* otherObject);
 
+	int getSensorsNumberOfOutputValues();
+
 	virtual void moveForwards(float ratio = 0.f);
 	virtual void rotateRight(float ratio = 0.f);
 	virtual void moveUp(float ratio = 0.f);
