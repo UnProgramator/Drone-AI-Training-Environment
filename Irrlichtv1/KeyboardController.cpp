@@ -1,4 +1,5 @@
 #include "KeyboardController.h"
+#include "Drone.h"
 
 KeyboardController::KeyboardController(Drone* drone):
 	drone{ drone }
