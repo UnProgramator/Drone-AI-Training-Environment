@@ -17,16 +17,16 @@ protected:
 
 	double linearVelocity, linearAcceleration;
 public:
-	static std::list<PysicsComponentInterface*> external_forces;
+	static std::list<PhysicsComponentInterface*> external_forces;
 
 public:
-	virtual void addExternalForceReference(PysicsComponentInterface* force) { external_forces.push_back(force); }
+	virtual void addExternalForceReference(PhysicsComponentInterface* force) { external_forces.push_back(force); }
 	virtual void delete_external_forces();
 	virtual void computeExternalForce();
 	virtual vector3 getExternalForces() const { return externForcesComposition; }
 
 
-	virtual vector3 calculateForceComposition(PysicsComponentInterface* internalForces);
+	virtual vector3 calculateForceComposition(PhysicsComponentInterface* internalForces);
 };
 
 

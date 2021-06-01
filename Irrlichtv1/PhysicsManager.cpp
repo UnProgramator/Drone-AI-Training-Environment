@@ -13,7 +13,7 @@ void PhysicsManager::computeExternalForce()
     }
 }
 
-vector3 PhysicsManager::calculateForceComposition(PysicsComponentInterface* internalForces)
+vector3 PhysicsManager::calculateForceComposition(PhysicsComponentInterface* internalForces)
 {
     computeExternalForce();
     vector3 rezultante = internalForces->getForce() + this->externForcesComposition;

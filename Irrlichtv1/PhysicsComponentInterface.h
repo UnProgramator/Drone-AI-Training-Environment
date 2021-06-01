@@ -2,7 +2,7 @@
 
 #include <irrlicht.h>
 
-class PysicsComponentInterface
+class PhysicsComponentInterface
 {
 public:
 	using vector3 = irr::core::vector3df;
