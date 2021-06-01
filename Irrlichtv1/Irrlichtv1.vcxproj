@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BasicBirdSimController.h" />
+    <ClInclude Include="DefaultObjectStorage.h" />
+    <ClInclude Include="Main.h" />
     <ClInclude Include="ObjectFactory.h" />
     <ClInclude Include="DefaultPhysicsComponents.h" />
     <ClInclude Include="JSONParser.h" />
-    <ClInclude Include="PysicsComponentInterface.h" />
+    <ClInclude Include="PhysicsComponentInterface.h" />
     <ClInclude Include="PhysicsManager.h" />
-    <ClInclude Include="SceneObjectManager.h" />
     <ClInclude Include="test.AIDroneController.h" />
     <ClInclude Include="CommunicationInterface.h" />
     <ClInclude Include="Drone.h" />
@@ -39,11 +41,13 @@
     <ClInclude Include="test.pyCommunication.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BasicBirdSimController.cpp" />
+    <ClCompile Include="DefaultObjectStorage.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="DefaultPhysicsComponents.cpp" />
     <ClCompile Include="JSONParser.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
-    <ClCompile Include="SceneObjectManager.cpp" />
     <ClCompile Include="test.AIDroneController.cpp" />
     <ClCompile Include="Drone.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
@@ -55,6 +59,10 @@
     <ClCompile Include="DefaultSensors.cpp" />
     <ClCompile Include="StaticObject.cpp" />
     <ClCompile Include="test.pyCommunication.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="comunicator.py" />
+    <None Include="DQN_RL.py" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

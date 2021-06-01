@@ -24,7 +24,7 @@ using DroneAttributes = Drone::DroneAttributes;
 #endif
 
 Drone::Drone(const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation, PhysicsManager * physiscsMgr, const DroneAttributes* atributes)
-    :phyMgr{physiscsMgr}, atributes{atributes}
+    :dronePhyMgr{physiscsMgr}, atributes{atributes}
 {
     std::cout << "default drone cube should not be used in final apps";
     irr::scene::IMeshSceneNode* node = getCube(10.f, -1, false);
@@ -39,7 +39,7 @@ Drone::Drone(const std::string& meshPath, const std::string& textPath, const irr
 
 Drone::Drone(const std::string& meshPath, const std::string& textPath, const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& scale, const irr::core::vector3df& initalOrientation, 
             PhysicsManager* physiscsMgr, const DroneAttributes* atributes) :
-    phyMgr{ physiscsMgr }, atributes{ atributes }
+    dronePhyMgr{ physiscsMgr }, atributes{ atributes }
 {
     /*irr::scene::IMeshSceneNode* node = getStaticMesh(path + "", path + ".png", 0);
     node->setScale()
@@ -118,9 +118,8 @@ void Drone::add_sensor(SensorInterface* sensor)
     this->sensor_list.push_back(sensor);
 }
 
-void Drone::getSensorReadValues(default_CommunicationInterface& transmiter)
+void Drone::getSensorReadValues(DataCoolectorInterface& transmiter)
 {
-    transmiter.init_parser(sensor_list.size());
     for (auto* sensor : sensor_list) {
         sensor->getDetectedValue(transmiter);
     }
@@ -154,22 +153,22 @@ void Drone::reset(bool toDefault)
 
 irr::core::vector3df Drone::getVelocity() const
 {
-    return phyMgr->getVelocity();
+    return dronePhyMgr->getVelocity();
 }
 
 float Drone::getForwardVelocity() const
 {
-    return phyMgr->getVelocity().Z;
+    return dronePhyMgr->getVelocity().Z;
 }
 
 irr::core::vector3df Drone::getAccelerations() const
 {
-    return phyMgr->getAcceleration();
+    return dronePhyMgr->getAcceleration();
 }
 
 float Drone::getForwardAcceleration() const
 {
-    return  phyMgr->getAcceleration().Z;
+    return  dronePhyMgr->getAcceleration().Z;
 }
 
 

@@ -8,6 +8,8 @@
 #include "DynamicObject.h"
 #include "IOcontroller.h"
 #include "KeyboardController.h"
+#include "JSONParser.h"
+#include "ObjectFactory.h"
 
 
 namespace alex_example {
@@ -199,34 +201,42 @@ namespace alex_example {
 			keyCon->turnLeft();
 		}
 
+		//int main() {
+
+		//	initGraphicsLibrary(irr::video::EDT_OPENGL);
+
+		//	addNewKeyFunction(irr::KEY_ESCAPE, []() {exit(0); });
+		//	addNewKeyFunction(irr::KEY_KEY_W, moveFront);
+		//	addNewKeyFunction(irr::KEY_KEY_S, moveBack);
+		//	addNewKeyFunction(irr::KEY_KEY_A, turnLeft);
+		//	addNewKeyFunction(irr::KEY_KEY_D, turnRight);
+
+		//	//Drone* drone = new Drone(irr::core::vector3df(-10.f, 10.f, 5.f), irr::core::vector3df(0.f, 0.f, 0.f), irr::core::vector3df(1.f, 0.f, 0.f), nullptr);
+		//	keyCon = new KeyboardController(drone);
+		//	setCamera(irr::core::vector3df());
+
+		//	while (device->run()) {
+		//		vidMgr->beginScene(true, true, irr::video::SColor(255, 100, 101, 140));
+
+		//		scrMgr->drawAll();
+
+		//		vidMgr->endScene();
+
+		//		std::cout << vidMgr->getFPS() << std::endl;
+
+		//		drone->tick(0);
+
+		//		tick_io();
+		//	}
+
+		//	return 0;
+		//}
+	}
+	namespace json {
 		int main() {
-
-			initGraphicsLibrary(irr::video::EDT_OPENGL);
-
-			addNewKeyFunction(irr::KEY_ESCAPE, []() {exit(0); });
-			addNewKeyFunction(irr::KEY_KEY_W, moveFront);
-			addNewKeyFunction(irr::KEY_KEY_S, moveBack);
-			addNewKeyFunction(irr::KEY_KEY_A, turnLeft);
-			addNewKeyFunction(irr::KEY_KEY_D, turnRight);
-
-			Drone* drone = new Drone(irr::core::vector3df(-10.f, 10.f, 5.f), irr::core::vector3df(0.f, 0.f, 0.f), irr::core::vector3df(1.f, 0.f, 0.f));
-			keyCon = new KeyboardController(drone);
-			setCamera(irr::core::vector3df());
-
-			while (device->run()) {
-				vidMgr->beginScene(true, true, irr::video::SColor(255, 100, 101, 140));
-
-				scrMgr->drawAll();
-
-				vidMgr->endScene();
-
-				std::cout << vidMgr->getFPS() << std::endl;
-
-				drone->tick(0);
-
-				tick_io();
-			}
-
+			DefaultObjectFactory *d = new DefaultObjectFactory();
+			Base_JSONParser *parser = new Base_JSONParser(d);
+			parser->parseDrone("D:/Scoala/Licenta/Proiect/Irrlichtv1/models/drone.json");
 			return 0;
 		}
 	}

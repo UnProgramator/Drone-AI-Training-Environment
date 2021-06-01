@@ -34,6 +34,16 @@ void setCamera(const irr::core::vector3df& initialPosition, irr::scene::ISceneNo
 	camera->setPosition(initialPosition);
 }
 
+void renderScene()
+{
+	vidMgr->beginScene(true, true, irr::video::SColor(255, 100, 101, 140));
+
+	scrMgr->drawAll();
+	guiMgr->drawAll();
+
+	vidMgr->endScene();
+}
+
 irr::scene::IMeshSceneNode* getStaticMesh(const std::string& meshPath, const std::string& texturePath, irr::scene::IMeshSceneNode* parentNode/*0*/, irr::s32 id/*0*/, bool addToRaycast/*true*/){
 	if (scrMgr == nullptr) {
 		throw std::exception(unitializedMsg);

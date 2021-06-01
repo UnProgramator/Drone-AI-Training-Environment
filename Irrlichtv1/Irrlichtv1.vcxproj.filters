@@ -46,6 +46,15 @@
     <Filter Include="Source Files\construction">
       <UniqueIdentifier>{37065347-a7c3-4ecf-a03b-cbff0021f6ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\simmulation\BasicProceduralAIControllers">
+      <UniqueIdentifier>{45c580f4-cbec-4f4d-82a6-a1955eb24881}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\simmulation\BasicProceduralAiController">
+      <UniqueIdentifier>{aff2f8b3-b463-48fd-8ac0-8eff9104badf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Python Source">
+      <UniqueIdentifier>{2db0f8bc-1f77-4958-8cb3-602fd2d3acc0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DynamicObject.h">
@@ -78,7 +87,7 @@
     <ClInclude Include="test.pyCommunication.h">
       <Filter>Header Files\testModules</Filter>
     </ClInclude>
-    <ClInclude Include="PysicsComponentInterface.h">
+    <ClInclude Include="PhysicsComponentInterface.h">
       <Filter>Header Files\interfaces</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsManager.h">
@@ -99,7 +108,13 @@
     <ClInclude Include="JSONParser.h">
       <Filter>Header Files\construction</Filter>
     </ClInclude>
-    <ClInclude Include="SceneObjectManager.h">
+    <ClInclude Include="BasicBirdSimController.h">
+      <Filter>Header Files\simmulation\BasicProceduralAIControllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultObjectStorage.h">
       <Filter>Header Files\construction</Filter>
     </ClInclude>
   </ItemGroup>
@@ -149,8 +164,22 @@
     <ClCompile Include="JSONParser.cpp">
       <Filter>Source Files\construction</Filter>
     </ClCompile>
-    <ClCompile Include="SceneObjectManager.cpp">
+    <ClCompile Include="BasicBirdSimController.cpp">
+      <Filter>Source Files\simmulation\BasicProceduralAiController</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultObjectStorage.cpp">
       <Filter>Source Files\construction</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DQN_RL.py">
+      <Filter>Resource Files\Python Source</Filter>
+    </None>
+    <None Include="comunicator.py">
+      <Filter>Resource Files\Python Source</Filter>
+    </None>
   </ItemGroup>
 </Project>

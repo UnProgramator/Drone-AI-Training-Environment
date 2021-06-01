@@ -5,11 +5,6 @@ using vector3 = PhysicsManager::vector3;
 const vector3 PhysicsManager::nullForce = vector3(NAN, NAN, NAN);
 const vector3 PhysicsManager::zeroForce = vector3(0, 0, 0);
 
-PhysicsManager* getDefaultPsysicsManagerInstanciation()
-{
-    return nullptr;
-}
-
 void PhysicsManager::computeExternalForce()
 {
     externForcesComposition = zeroForce;
@@ -18,21 +13,11 @@ void PhysicsManager::computeExternalForce()
     }
 }
 
-void PhysicsManager::computeInternalForces(double rotationAngle, double forwardCommand, double UpCommand, double deltaTime)
+vector3 PhysicsManager::calculateForceComposition(PysicsComponentInterface* internalForces)
 {
-
-}
-
-void PhysicsManager::computeDroneVelocity(double deltaTime)
-{
-    if (externForcesComposition == nullForce)
-        throw std::exception("external forces not calculated priority");
-    if (internalForce == nullForce)
-        throw std::exception("internal forces not calculated priority");
-}
-
-void PhysicsManager::computeNextPosition(vector3 position)
-{
+    computeExternalForce();
+    vector3 rezultante = internalForces->getForce() + this->externForcesComposition;
+    return rezultante;
 }
 
 void PhysicsManager::delete_external_forces()

@@ -23,7 +23,7 @@ private:
 	DynamicObject* mesh = nullptr;
 	float forward_ratio =0, rotation_ratio = 0, up_ratio = 0;
 
-	PhysicsManager* phyMgr =nullptr;
+	PhysicsManager* dronePhyMgr =nullptr;
 
 	std::list<SensorInterface*> sensor_list;
 
@@ -52,7 +52,7 @@ public:
 	virtual void moveUp(float ratio = 0.f);
 
 	virtual void add_sensor(SensorInterface* sensor);
-	virtual void getSensorReadValues(default_CommunicationInterface& transmiter);
+	virtual void getSensorReadValues(DataCoolectorInterface& transmiter);
 
 	virtual void tick(float deltaTime) override;
 	virtual void reset(bool toDefault = true);

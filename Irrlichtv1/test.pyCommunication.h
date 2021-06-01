@@ -3,7 +3,8 @@
 #include <Python.h>
 
 class pyCommunication :
-    public default_CommunicationInterface
+    public default_CommunicationInterface,
+	public DataCoolectorInterface
 {
 private:
 	bool is_running;

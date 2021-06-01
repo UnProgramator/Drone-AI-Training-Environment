@@ -14,11 +14,14 @@ namespace alex_example {
 	namespace trd_example {
 		extern int main();
 	}
+	namespace json {
+		extern int main();
+	}
 }
 
 
 int main() {
-	return alex_example::trd_example::main();
+	return alex_example::json::main();
 }
 
 
