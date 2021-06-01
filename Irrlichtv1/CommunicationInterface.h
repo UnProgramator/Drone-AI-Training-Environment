@@ -6,21 +6,17 @@
 
 class DataCoolectorInterface {
 public:
+	virtual void init_parser(int elementCount) = 0;
 	virtual void parse_double(const char* name, const double value) = 0;
 	virtual void parse_double_array(const char* name, const std::vector<double>& value) = 0;
 };
 
 //interface to be implemented and given back to the library in order to comunicate with the ai script
 template<typename ReturnedValueFromStript, typename FeedbackType>
-class CommunicationInterface:public DataCoolectorInterface {
+class CommunicationInterface {
 public:
-	virtual void init_parser(int elementCount) = 0;
 	virtual ReturnedValueFromStript call() =0;
 	virtual void give_feedback(const FeedbackType & newParams) = 0;
-
-	//from DataCoolectorInterface
-	virtual void parse_double(const char* name, const double value) = 0;
-	virtual void parse_double_array(const char* name, const std::vector<double>& value) = 0;
 };
 
 struct default_FeedbackType {
