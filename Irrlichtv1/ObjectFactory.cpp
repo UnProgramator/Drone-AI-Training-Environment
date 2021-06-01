@@ -5,7 +5,7 @@
 #include <irrlicht.h>
 
 #include "DefaultSensors.h"
-#include "SceneObjectManager.h"
+#include "DefaultObjectStorage.h"
 
 using std::operator""s;
 using Json = DefaultObjectFactory::Json;
@@ -45,17 +45,39 @@ Drone* DefaultObjectFactory::getDrone(Json& atributes)
     atribs->maxUpwardAcceleratio = atributes["max-upward-acceleration"].get<float>();
     atribs->maxUpwardVelocity = atributes["max-upward-velocity"].get<float>();
     
-    return new Drone(mesh, text, pos, rot, sca, forward, sceneObjMgr->getPhysicsManager(), atribs);
+    return new Drone(mesh, text, pos, rot, sca, forward, defObjStorage->get_PhysicsManager(), atribs);
 }
 
-StaticObject* DefaultObjectFactory::getStaticObject(Json& atributes)
+StaticObject* DefaultObjectFactory::getStaticObject(Json& atributes, const std::string& name, const bool bHasCollision, const bool bAddToRaycast)
 {
-    return nullptr;
+    Json tmp;
+    std::string meshPath = atributes["mesh-path"].get<std::string>();
+    std::string texturePath = atributes["texture-path"].get<std::string>();
+    tmp = atributes["position"];
+    vector3 position = vector3(tmp[0].get<float>(), tmp[1].get<float>(), tmp[2].get<float>());
+    tmp = atributes["rotation"];
+    vector3 rotation = vector3(tmp[0].get<float>(), tmp[1].get<float>(), tmp[2].get<float>());
+    tmp = atributes["scale"];
+    vector3 scale = vector3(tmp[0].get<float>(), tmp[1].get<float>(), tmp[2].get<float>());
+
+    return new StaticObject(meshPath, texturePath, position, rotation, scale, bHasCollision, bAddToRaycast, name);
 }
 
-DynamicObject* DefaultObjectFactory::getDynamicObject(Json& atributes)
+DynamicObject* DefaultObjectFactory::getDynamicObject(Json& atributes, const std::string& name, const bool bHasCollision, const bool bAddToRaycast)
 {
-    return nullptr;
+    Json tmp;
+    std::string meshPath = atributes["mesh-path"].get<std::string>();
+    std::string texturePath = atributes["texture-path"].get<std::string>();
+    tmp = atributes["position"];
+    vector3 position = vector3(tmp[0].get<float>(), tmp[1].get<float>(), tmp[2].get<float>());
+    tmp = atributes["rotation"];
+    vector3 rotation = vector3(tmp[0].get<float>(), tmp[1].get<float>(), tmp[2].get<float>());
+    tmp = atributes["scale"];
+    vector3 scale = vector3(tmp[0].get<float>(), tmp[1].get<float>(), tmp[2].get<float>());
+    tmp = atributes["forward-vector"];
+    vector3 forwardVector = vector3(tmp[0].get<float>(), tmp[1].get<float>(), tmp[2].get<float>());
+
+    return new DynamicObject(meshPath, texturePath, position, rotation, forwardVector, scale, bHasCollision, bAddToRaycast, name);
 }
 
 ObjectControllerInterface* DefaultObjectFactory::getAI(const std::string& name, Json& atributes)
