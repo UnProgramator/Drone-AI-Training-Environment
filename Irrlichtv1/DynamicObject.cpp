@@ -1,12 +1,12 @@
 #include "DynamicObject.h"
 #include <iostream>
 
-DynamicObject::DynamicObject(irr::scene::ISceneNode* meshNode, const irr::core::vector3df & position, const irr::core::vector3df& rotation, const irr::core::vector3df& forwardVector, bool bHasCollision, const std::string name):
+DynamicObject::DynamicObject(irr::scene::ISceneNode* meshNode, const irr::core::vector3df & position, const irr::core::vector3df& rotation, const irr::core::vector3df& forwardVector, bool bHasCollision, const std::string& name):
 	StaticObject(meshNode, position, rotation, bHasCollision, name), forwardVector{ forwardVector/forwardVector.getLength() }, defaultForwardVector(forwardVector)
 {
 }
 
-DynamicObject::DynamicObject(const std::string& meshPath, const std::string& texturePath, const irr::core::vector3df& position, const irr::core::vector3df& rotation, const irr::core::vector3df& forwardVector, const irr::core::vector3df& scale, bool bHasCollision, bool bAddToRaycastDetection, const std::string name):
+DynamicObject::DynamicObject(const std::string& meshPath, const std::string& texturePath, const irr::core::vector3df& position, const irr::core::vector3df& rotation, const irr::core::vector3df& forwardVector, const irr::core::vector3df& scale, bool bHasCollision, bool bAddToRaycastDetection, const std::string& name):
 	StaticObject(meshPath, texturePath, position, rotation, scale, bHasCollision, bAddToRaycastDetection, name), forwardVector{ forwardVector / forwardVector.getLength() }, defaultForwardVector(forwardVector)
 {
 }
