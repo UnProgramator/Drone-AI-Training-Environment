@@ -32,3 +32,26 @@ Drone* Base_JSONParser::parseDrone(const std::string& filePath)
 	}
 	return drone;
 }
+
+std::list<StaticObject*> Base_JSONParser::parseStaticObjects(const std::string& filePath)
+{
+	std::list<StaticObject*> objList;
+	Json json;
+	{
+		std::ifstream fin(filePath);
+		fin >> json;
+		fin.close();
+	}
+
+	for (auto& staticObj : json) {
+		//objList.push_back(object_factory->getStaticObject(staticObj, ? , ? , ? )); ///can copy objects?
+	}
+
+	return objList;
+}
+
+void Base_JSONParser::parseMovableEntities(const std::string& filePath, std::list<ObjectControllerInterface*>& outController, std::list<DynamicObject*>& outobject)
+{
+}
+
+

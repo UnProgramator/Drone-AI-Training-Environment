@@ -2,7 +2,7 @@
 
 #include "Drone.h"
 #include "ObjectFactory.h"
-#include <memory>
+#include "CommunicationInterface.h"
 
 class Base_JSONParser
 {
@@ -22,5 +22,7 @@ public:
 	//files parsers
 
 	virtual Drone* parseDrone(const std::string& filePath);
+	virtual std::list<StaticObject*> parseStaticObjects(const std::string& filePath);
+	virtual void parseMovableEntities(const std::string& filePath, std::list<ObjectControllerInterface*>& outController, std::list<DynamicObject*>& outobject);
 };
 
