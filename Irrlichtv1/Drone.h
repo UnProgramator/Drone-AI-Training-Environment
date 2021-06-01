@@ -7,6 +7,7 @@
 #include "SensorInterface.h"
 #include "ObjectControllerInterface.h"
 #include "PhysicsManager.h"
+#include "DefaultPhysicsComponents.h"
 
 class Drone : ObjectControllerInterface
 {
@@ -23,7 +24,7 @@ private:
 	DynamicObject* mesh = nullptr;
 	float forward_ratio =0, rotation_ratio = 0, up_ratio = 0;
 
-	PhysicsManager* dronePhyMgr =nullptr;
+	DronePhysicsManager* dronePhyMgr =nullptr;
 
 	std::list<SensorInterface*> sensor_list;
 
@@ -34,13 +35,13 @@ public:
 	const float maxUpSpeed = 0.05f;
 	const float maxRightRotationSpeed = 0.02f;
 
-	Drone(const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation,  const irr::core::vector3df & initalOrientation, PhysicsManager* physiscsMgr, const DroneAttributes* atributes);
+	Drone(const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation,  const irr::core::vector3df & initalOrientation, DronePhysicsManager* physiscsMgr, const DroneAttributes* atributes);
 	Drone(const std::string& meshPath, const std::string& textPath, 
 			const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df & initalOrientation, 
-			PhysicsManager* physiscsMgr, const DroneAttributes* atributes);
+		DronePhysicsManager* physiscsMgr, const DroneAttributes* atributes);
 	Drone(const std::string& meshPath, const std::string& textPath, 
 			const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& scale,  const irr::core::vector3df & initalOrientation, 
-			PhysicsManager* physiscsMgr, const DroneAttributes* atributes);
+		DronePhysicsManager* physiscsMgr, const DroneAttributes* atributes);
 	virtual ~Drone();
 
 	bool verifyCollision(class StaticObject* otherObject);

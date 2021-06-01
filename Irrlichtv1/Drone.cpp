@@ -23,7 +23,7 @@ using DroneAttributes = Drone::DroneAttributes;
 #define debug_call_cond(...)
 #endif
 
-Drone::Drone(const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation, PhysicsManager * physiscsMgr, const DroneAttributes* atributes)
+Drone::Drone(const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation, DronePhysicsManager * physiscsMgr, const DroneAttributes* atributes)
     :dronePhyMgr{physiscsMgr}, atributes{atributes}
 {
     std::cout << "default drone cube should not be used in final apps";
@@ -32,13 +32,13 @@ Drone::Drone(const irr::core::vector3df& initalPosition, const irr::core::vector
 }
 
 Drone::Drone(const std::string& meshPath, const std::string& textPath, const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation, 
-            PhysicsManager* physiscsMgr, const DroneAttributes* atributes):
+        DronePhysicsManager * physiscsMgr, const DroneAttributes* atributes):
     Drone(meshPath, textPath, initalPosition, initalRotation, irr::core::vector3df(1.f, 1.f, 1.f), initalOrientation, physiscsMgr, atributes)
 {
 }
 
 Drone::Drone(const std::string& meshPath, const std::string& textPath, const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& scale, const irr::core::vector3df& initalOrientation, 
-            PhysicsManager* physiscsMgr, const DroneAttributes* atributes) :
+        DronePhysicsManager* physiscsMgr, const DroneAttributes* atributes) :
     dronePhyMgr{ physiscsMgr }, atributes{ atributes }
 {
     /*irr::scene::IMeshSceneNode* node = getStaticMesh(path + "", path + ".png", 0);
