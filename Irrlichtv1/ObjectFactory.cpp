@@ -45,7 +45,8 @@ Drone* DefaultObjectFactory::getDrone(Json& atributes)
     atribs->maxUpwardAcceleratio = atributes["max-upward-acceleration"].get<float>();
     atribs->maxUpwardVelocity = atributes["max-upward-velocity"].get<float>();
     
-    return new Drone(mesh, text, pos, rot, sca, forward, defObjStorage->get_PhysicsManager(), atribs);
+    ///return new Drone(mesh, text, pos, rot, sca, forward, defObjStorage->get_PhysicsManager(), atribs); //to be remedied 
+#pragma warning
 }
 
 StaticObject* DefaultObjectFactory::getStaticObject(Json& atributes, const std::string& name, const bool bHasCollision, const bool bAddToRaycast)

@@ -13,10 +13,13 @@ public:
 };
 
 class DronePhysicsManager : public PhysicsComponentInterface {
-public:
 	using vector3 = PhysicsComponentInterface::vector3;
-	virtual const vector3& getForce() const override;
+	vector3 desiredForce;
+public:
+	virtual bool computeForcesResultante(bool bExistExternalForces);
 
+
+	virtual const vector3& getForce() const override;
 	virtual const vector3&  getVelocity() const;
 	virtual const vector3&  getAcceleration() const;
 };

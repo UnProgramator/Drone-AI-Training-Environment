@@ -8,9 +8,9 @@ class PhysicsManager
 {
 public:
 	using vector3 = irr::core::vector3df;
-protected:
 	static const vector3 nullForce;
 	static const vector3 zeroForce;
+protected:
 
 	vector3 externForcesComposition = nullForce;
 	vector3 forwardVector;

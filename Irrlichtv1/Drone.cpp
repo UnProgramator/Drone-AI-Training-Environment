@@ -68,6 +68,13 @@ int Drone::getSensorsNumberOfOutputValues()
     return 0;
 }
 
+bool Drone::setChieldMesh(StaticObject* child) const
+{
+    if (child) 
+        child->setParent(this->mesh);
+    return child != nullptr;
+}
+
 void Drone::moveForwards(float ratio)
 {
     if (ratio > 1.f) {
@@ -114,7 +121,7 @@ void Drone::moveUp(float ratio)
 
 void Drone::add_sensor(SensorInterface* sensor)
 {
-    sensor->link_to(this->mesh);
+    sensor->link_to(this);
     this->sensor_list.push_back(sensor);
 }
 

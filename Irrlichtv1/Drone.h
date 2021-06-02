@@ -47,6 +47,8 @@ public:
 	bool verifyCollision(class StaticObject* otherObject);
 
 	int getSensorsNumberOfOutputValues();
+	virtual bool setChieldMesh(StaticObject*) const;
+	virtual const irr::core::vector3df& getPosition() const { return mesh->getAbsolutePosition(); }
 
 	virtual void moveForwards(float ratio = 0.f);
 	virtual void rotateRight(float ratio = 0.f);
@@ -58,7 +60,6 @@ public:
 	virtual void tick(float deltaTime) override;
 	virtual void reset(bool toDefault = true);
 
-#pragma warning(need to be implemented)
 	virtual irr::core::vector3df getVelocity() const;
 	virtual float getForwardVelocity() const; 
 	virtual irr::core::vector3df getAccelerations() const;
