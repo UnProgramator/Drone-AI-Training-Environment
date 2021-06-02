@@ -66,10 +66,10 @@ void DistanceSensor::getDetectedValue(DataCoolectorInterface& ci)
 	ci.parse_double(name.c_str(), distance);
 }
 
-bool DistanceSensor::link_to(const StaticObject* objectToLinkTo)
+bool DistanceSensor::link_to(const Drone* parentDrone)
 {
-	meshObj->setParent(objectToLinkTo);
-	return false;
+	if(parentDrone != nullptr) parentDrone->setChieldMesh(this->meshObj);
+	return parentDrone != nullptr;
 }
 
 GPS::GPS(const std::string& name) :
@@ -82,7 +82,7 @@ void GPS::getDetectedValue(DataCoolectorInterface& ci)
 {
 	std::vector<double> coordinates(2);  
 	
-	irr::core::vector3df coord = parent->getAbsolutePosition();
+	irr::core::vector3df coord = parent->getPosition();
 
 	coordinates[0] = -coord.Z; //consider N as -Z
 	coordinates[1] = coord.X; //consider E as X
@@ -90,10 +90,10 @@ void GPS::getDetectedValue(DataCoolectorInterface& ci)
 	ci.parse_double_array(name.c_str(), coordinates);
 }
 
-bool GPS::link_to(const StaticObject* objectToLinkTo)
+bool GPS::link_to(const Drone* parentDrone)
 {
-	parent = objectToLinkTo;
-	return objectToLinkTo != nullptr;
+	this->parent = parentDrone;
+	return parentDrone != nullptr;
 }
 
 Altimeter::Altimeter(const std::string& name):
@@ -103,18 +103,18 @@ Altimeter::Altimeter(const std::string& name):
 }
 
 void Altimeter::getDetectedValue(DataCoolectorInterface& ci) {
-	ci.parse_double(name.c_str(), parent->getAbsolutePosition().Y);
+	ci.parse_double(name.c_str(), parent->getPosition().Y);
 }
 
-bool Altimeter::link_to(const StaticObject* objectToLinkTo)
+bool Altimeter::link_to(const Drone* parentDrone)
 {
-	parent = objectToLinkTo;
-	return objectToLinkTo != nullptr;
+	this->parent = parentDrone;
+	return parentDrone != nullptr;
 }
 
 Velocimometer::Velocimometer(const std::string& name):
 	SensorInterface(name), 
-	parentDrone{ nullptr }, parent{ nullptr }
+	parentDrone{ nullptr }
 {
 }
 
@@ -122,19 +122,15 @@ void Velocimometer::getDetectedValue(DataCoolectorInterface& ci) {
 	ci.parse_double(name.c_str(), parentDrone->getForwardVelocity());
 }
 
-bool Velocimometer::link_to(const StaticObject* objectToLinkTo) {
-	parent = objectToLinkTo;
-	return objectToLinkTo != nullptr;
-}
-
-void Velocimometer::link_to(const Drone* parentDrone)
+bool Velocimometer::link_to(const Drone* parentDrone)
 {
 	this->parentDrone = parentDrone;
+	return parentDrone != nullptr;
 }
 
 Accelerometer3D::Accelerometer3D(const std::string&  name):
 	SensorInterface(name),
-	parentDrone{ nullptr }, parent{ nullptr }
+	parentDrone{ nullptr }
 {
 }
 
@@ -148,20 +144,16 @@ void Accelerometer3D::getDetectedValue(DataCoolectorInterface& ci)
 	ci.parse_double_array(name.c_str(), accelerations);
 }
 
-bool Accelerometer3D::link_to(const StaticObject* objectToLinkTo)
-{
-	parent = objectToLinkTo;
-	return objectToLinkTo != nullptr;
-}
-
-void Accelerometer3D::link_to(const Drone* parentDrone)
+bool Accelerometer3D::link_to(const Drone* parentDrone)
 {
 	this->parentDrone = parentDrone;
+	return parentDrone != nullptr;
 }
+
 
 Accelerometer::Accelerometer(const std::string& name):
 	SensorInterface(name),
-	parentDrone{nullptr}, parent{ nullptr }
+	parentDrone{nullptr}
 {
 }
 
@@ -170,13 +162,8 @@ void Accelerometer::getDetectedValue(DataCoolectorInterface& ci)
 	ci.parse_double(name.c_str(), parentDrone->getForwardAcceleration());
 }
 
-bool Accelerometer::link_to(const StaticObject* objectToLinkTo)
-{
-	parent = objectToLinkTo;
-	return objectToLinkTo != nullptr;
-}
-
-void Accelerometer::link_to(const Drone* parentDrone)
+bool Accelerometer::link_to(const Drone* parentDrone)
 {
 	this->parentDrone = parentDrone;
+	return parentDrone != nullptr;
 }

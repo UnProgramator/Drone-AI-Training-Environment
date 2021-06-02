@@ -20,7 +20,7 @@ public:
 
 	virtual int getNumberOfOutputValues()=0;
 	virtual void getDetectedValue(DataCoolectorInterface&) =0;
-	virtual bool link_to(const StaticObject* objectToLinkTo) = 0;
+	virtual bool link_to(const class Drone* objectToLinkTo) = 0;
 	virtual const std::string& getName() const { return name; }
 
 	SensorInterface(const char* name);
