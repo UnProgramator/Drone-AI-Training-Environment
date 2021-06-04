@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasicBirdSimController.h" />
+    <ClInclude Include="DebugingStubComunicator.h" />
     <ClInclude Include="DefaultObjectStorage.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="ObjectFactory.h" />
@@ -42,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BasicBirdSimController.cpp" />
+    <ClCompile Include="DebugingStubComunicator.cpp" />
     <ClCompile Include="DefaultObjectStorage.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />

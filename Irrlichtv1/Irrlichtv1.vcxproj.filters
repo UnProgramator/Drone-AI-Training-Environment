@@ -111,11 +111,14 @@
     <ClInclude Include="BasicBirdSimController.h">
       <Filter>Header Files\simmulation\BasicProceduralAIControllers</Filter>
     </ClInclude>
-    <ClInclude Include="Main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DefaultObjectStorage.h">
       <Filter>Header Files\construction</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugingStubComunicator.h">
+      <Filter>Header Files\testModules</Filter>
+    </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>Header Files\simmulation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -167,11 +170,14 @@
     <ClCompile Include="BasicBirdSimController.cpp">
       <Filter>Source Files\simmulation\BasicProceduralAiController</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DefaultObjectStorage.cpp">
       <Filter>Source Files\construction</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugingStubComunicator.cpp">
+      <Filter>Source Files\testModules</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files\simmulation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
