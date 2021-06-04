@@ -4,8 +4,9 @@
 #include <iostream>
 #include <list>
 #include <memory>
-#include "DynamicObject.h"
 #include "GraphicsManager.h"
+#include "DynamicObject.h"
+#include "DefaultPhysicsComponents.h"
 
 using namespace std;
 using DroneAttributes = Drone::DroneAttributes;

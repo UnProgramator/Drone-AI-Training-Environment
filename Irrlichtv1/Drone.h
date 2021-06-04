@@ -12,14 +12,8 @@
 class Drone : ObjectControllerInterface
 {
 public:
-	struct DroneAttributes {
-		float	maxForwardVelocity,
-			maxForwardAcceleration,
-			maxUpwardVelocity,
-			maxUpwardAcceleratio,
-			maxAltitude;
-	};
-	using DroneAttributes = Drone::DroneAttributes;
+	
+	using DroneAttributes = DronePhysicsManager::DroneAttributes;
 private:
 	DynamicObject* mesh = nullptr;
 	float forward_ratio =0, rotation_ratio = 0, up_ratio = 0;
@@ -46,7 +40,8 @@ public:
 
 	bool verifyCollision(class StaticObject* otherObject);
 
-	int getSensorsNumberOfOutputValues();
+	virtual int getSensorsNumberOfOutputValues();
+	virtual int getNumberOfInputs(){ return 3; }
 	virtual bool setChieldMesh(StaticObject*) const;
 	virtual const irr::core::vector3df& getPosition() const { return mesh->getAbsolutePosition(); }
 
