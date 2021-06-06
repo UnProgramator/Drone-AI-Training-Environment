@@ -38,15 +38,16 @@ Drone* DefaultObjectFactory::getDrone(Json& atributes)
     vector3 rot(atributes["mesh-rotation"][0].get<float>(), atributes["mesh-rotation"][1].get<float>(),  atributes["mesh-rotation"][2].get<float>());
     vector3 sca(atributes["mesh-scale"][0].get<float>(),    atributes["mesh-scale"][1].get<float>(),     atributes["mesh-scale"][2].get<float>());
     vector3 forward(atributes["drone-forward"][0].get<float>(), atributes["drone-forward"][1].get<float>(), atributes["drone-forward"][2].get<float>());
-    Drone::DroneAttributes *atribs = new Drone::DroneAttributes();
-    atribs->maxAltitude = atributes["max-altitude"].get<float>();
-    atribs->maxForwardVelocity = atributes["max-forward-velocity"].get<float>();
-    atribs->maxUpwardVelocity = atributes["max-upward-velocity"].get<float>();
-#pragma warning(not all atrributes iet implemented)
+    Drone::DroneAttributes atribs;
+    atribs.maxAltitude = atributes["max-altitude"].get<float>();
+    atribs.maxForwardVelocity = atributes["max-forward-velocity"].get<float>();
+    atribs.maxUpwardVelocity = atributes["max-upward-velocity"].get<float>();
+    atribs.mass = atributes["mass"].get<float>();
+    atribs.maxAltitude = atributes["max-altitude"].get<float>();
+    atribs.maxAccelerationInKPH = atributes["max-acceleration-value"].get<float>();
+    atribs.maxAccelerationTimeInSeconds = atributes["max-acceleration-time"].get<float>();
     
-    ///return new Drone(mesh, text, pos, rot, sca, forward, defObjStorage->get_PhysicsManager(), atribs); //to be remedied 
-#pragma warning
-    return nullptr;
+    return new Drone(mesh, text, pos, rot, sca, forward, atribs);
 }
 
 StaticObject* DefaultObjectFactory::getStaticObject(Json& atributes, const std::string& name, const bool bHasCollision, const bool bAddToRaycast)

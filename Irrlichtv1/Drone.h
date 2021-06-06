@@ -16,26 +16,28 @@ public:
 	using DroneAttributes = DronePhysicsManager::DroneAttributes;
 private:
 	DynamicObject* mesh = nullptr;
-	float forward_ratio =0, rotation_ratio = 0, up_ratio = 0;
+	default_ReturnedValueFromStript las_given_comand = {};
 
-	DronePhysicsManager* dronePhyMgr =nullptr;
+	DronePhysicsManager* dronePhyMgr = nullptr;
 
 	std::list<SensorInterface*> sensor_list;
 
+	void no_physics_tick(float deltaTime); // old model that do not use physics
+
 public:
-	const DroneAttributes* const atributes;
+	const DroneAttributes atributes;
 
 	const float maxFrowardSpeed = 0.01f;
 	const float maxUpSpeed = 0.05f;
 	const float maxRightRotationSpeed = 0.02f;
 
-	Drone(const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation,  const irr::core::vector3df & initalOrientation, DronePhysicsManager* physiscsMgr, const DroneAttributes* atributes);
+	Drone(const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation,  const irr::core::vector3df & initalOrientation, const DroneAttributes& atributes);
 	Drone(const std::string& meshPath, const std::string& textPath, 
 			const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df & initalOrientation, 
-		DronePhysicsManager* physiscsMgr, const DroneAttributes* atributes);
+		const DroneAttributes& atributes);
 	Drone(const std::string& meshPath, const std::string& textPath, 
 			const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& scale,  const irr::core::vector3df & initalOrientation, 
-		DronePhysicsManager* physiscsMgr, const DroneAttributes* atributes);
+		const DroneAttributes& atributes);
 	virtual ~Drone();
 
 	bool verifyCollision(class StaticObject* otherObject);
@@ -45,14 +47,13 @@ public:
 	virtual bool setChieldMesh(StaticObject*) const;
 	virtual const irr::core::vector3df& getPosition() const { return mesh->getAbsolutePosition(); }
 
-	virtual void moveForwards(float ratio = 0.f);
-	virtual void rotateRight(float ratio = 0.f);
-	virtual void moveUp(float ratio = 0.f);
-
 	virtual void add_sensor(SensorInterface* sensor);
 	virtual void getSensorReadValues(DataCoolectorInterface& transmiter);
 
+	virtual bool giveCommands(default_ReturnedValueFromStript& values);
+
 	virtual void tick(float deltaTime) override;
+	
 	virtual void reset(bool toDefault = true);
 
 	virtual irr::core::vector3df getVelocity() const;

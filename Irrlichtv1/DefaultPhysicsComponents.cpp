@@ -3,6 +3,8 @@
 #include "DefaultObjectStorage.h"
 #include "Drone.h"
 #include <irrlicht.h> // pentru vector3df
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 using vector3=PhysicsComponentInterface::vector3;
 
@@ -12,7 +14,7 @@ const vector3& Wind::getForce() const
 }
 
 Wind::Wind(const vector3& direction, const float velocity) {
-    force = direction / direction.getLength() * velocity;
+    force = compute_force(direction / direction.getLength(), velocity); // fst arg is making shure that the vector modulus is 1
 }
 
 Wind::Wind()
@@ -22,12 +24,38 @@ Wind::Wind()
 
 void Wind::makeRandom()
 {
+    vector3 direction = vector3(rand() % 100, rand() % 100, rand() % 100); // make random vector
+    direction /= direction.getLength(); // make vector unit vector
+
+    float velocity = (rand() % 9750) / 150.0 + 5.0; // the velocity will have a value between 5km/h and ~70km/h
+
+    this->force = compute_force(direction, velocity);
 }
 
-void Wind::setForce(const vector3& newForce)
+void Wind::setForce(const vector3& direction, float velocity)
 {
-    force = newForce;
+    force = compute_force(direction / direction.getLength(), velocity);
 }
+
+vector3 Wind::compute_force(const vector3& direction, float velocity)
+{
+    /* formula from https://sciencing.com/convert-wind-speed-force-5985528.html
+    * the formula i use to calculate the wind force is
+    * F = m*a = area * air_density * wind-velocity
+    * are is area of impact
+    * for simplicity i will consider the area as
+    */
+    float forceModulus = 1.229 * velocity * velocity;
+    return vector3();
+}
+
+void Wind::verify_direction(vector3& vec) // verify and validate the wind direction; make corections if needed
+{
+    while (abs(acos(vec.dotProduct(vector3(0, 1, 0)) > M_PI_4))) { // if make a angle to big towards Y or -Y, than make angle smaller
+        vec.Y /= 4;
+    }
+}
+
 
 DronePhysicsManager::DronePhysicsManager(const vector3& forwardsDirection, const DroneAttributes& attrs):
     forwardsDirection{ forwardsDirection }, mass{ attrs.mass}, //forward vector ref, mass value
@@ -51,7 +79,7 @@ bool DronePhysicsManager::computeNewParameters(const default_ReturnedValueFromSt
     //here I compute internal acceleration on next frame
     vector3 new_acc = crt3DAcceleration + forwardsDirection * inputs.forward * linearAccelerationPerCalculation*deltaTime + vector3(0, 1, 0) * inputs.up * linearAccelerationPerCalculation * deltaTime;
 
-    acceleration_corection(new_acc, inputs);
+    acceleration_corection(new_acc, inputs, deltaTime);
 
     //velocity calculated base on internal foces, uncaped to the drone max velocity
     vector3 new_vel = crt3DVelocity + new_acc * deltaTime; // acceleration calculated for times from last call, given throw deltaTime., delta time is given in seconds
@@ -89,6 +117,8 @@ bool DronePhysicsManager::computeNewParameters(const default_ReturnedValueFromSt
 
     new_vel.Y = yVal; // restore the vertical velocity
 
+    acceleration_corection(new_acc, inputs, deltaTime);
+
     if (bExistExternalForces) { // if i don't want to consider external forces (by default i do), the value remains =desiredForce, else i compute the resultante
         //compute velocity etc
         vector3 ext_force = phyMgr->getExternalForces();
@@ -102,6 +132,7 @@ bool DronePhysicsManager::computeNewParameters(const default_ReturnedValueFromSt
     }
 
     crt3DAcceleration = new_acc;
+    crt3DVelocity = new_vel;
 
     return true;
 }
@@ -124,7 +155,18 @@ const vector3& DronePhysicsManager::getAcceleration() const
 // function apply inertia, friction and gravoty effects to acceleration for more acurate values
 // function will consider the new acceleration (based only on internal forces and prevoiuse acceleration,
 // the current velocity and the inputs
-void DronePhysicsManager::acceleration_corection(vector3& acceleration, const default_ReturnedValueFromStript& inputs)
+void DronePhysicsManager::acceleration_corection(vector3& acceleration, const default_ReturnedValueFromStript& inputs, float deltatime)
 {
+    if (inputs.forward == 0) {
+        acceleration.X = 0; // acceleration descend directly to 0
+        acceleration.Z = 0;
 
+        float yval = crt3DVelocity.Y; // velocity go down because of friction
+        crt3DVelocity *= (2 / 3)*deltatime;
+        crt3DVelocity.Y = yval;
+    }
+    if (inputs.up == 0) {
+        acceleration.Y = 0; // acceleration descend directly to 0
+        crt3DVelocity.Y *= 1 / 3; // velocity go down because of friction
+    }
 }

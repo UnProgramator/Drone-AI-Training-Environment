@@ -24,32 +24,31 @@ using DroneAttributes = Drone::DroneAttributes;
 #define debug_call_cond(...)
 #endif
 
-Drone::Drone(const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation, DronePhysicsManager * physiscsMgr, const DroneAttributes* atributes)
-    :dronePhyMgr{physiscsMgr}, atributes{atributes}
+Drone::Drone(const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation, const DroneAttributes& atributes):
+        atributes{atributes}, las_given_comand{{}}
 {
     std::cout << "default drone cube should not be used in final apps";
     irr::scene::IMeshSceneNode* node = getCube(10.f, -1, false);
     mesh= new DynamicObject(node, initalPosition, initalRotation, initalOrientation, true);
+
+    dronePhyMgr = new DronePhysicsManager(mesh->getForwardVector(), atributes);
 }
 
 Drone::Drone(const std::string& meshPath, const std::string& textPath, const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& initalOrientation, 
-        DronePhysicsManager * physiscsMgr, const DroneAttributes* atributes):
-    Drone(meshPath, textPath, initalPosition, initalRotation, irr::core::vector3df(1.f, 1.f, 1.f), initalOrientation, physiscsMgr, atributes)
+        const DroneAttributes& atributes):
+    Drone(meshPath, textPath, initalPosition, initalRotation, irr::core::vector3df(1.f, 1.f, 1.f), initalOrientation, atributes)
 {
 }
 
 Drone::Drone(const std::string& meshPath, const std::string& textPath, const irr::core::vector3df& initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df& scale, const irr::core::vector3df& initalOrientation, 
-        DronePhysicsManager* physiscsMgr, const DroneAttributes* atributes) :
-    dronePhyMgr{ physiscsMgr }, atributes{ atributes }
+        const DroneAttributes& atributes) :
+    atributes{ atributes }, las_given_comand{ {} }
 {
-    /*irr::scene::IMeshSceneNode* node = getStaticMesh(path + "", path + ".png", 0);
-    node->setScale()
-    mesh = new DynamicObject(node, initalPosition, initalRotation, initalOrientation, true);*/
     mesh = new DynamicObject(meshPath, textPath, initalPosition, initalRotation, initalOrientation, scale, true, false, "Drone");
+    dronePhyMgr = new DronePhysicsManager(mesh->getForwardVector(), atributes);
 }
 Drone::~Drone()
 {
-    delete atributes;
     delete mesh;
     for (auto* x : sensor_list)
         delete x;
@@ -76,50 +75,6 @@ bool Drone::setChieldMesh(StaticObject* child) const
     return child != nullptr;
 }
 
-void Drone::moveForwards(float ratio)
-{
-    if (ratio > 1.f) {
-        debug_call("supraunitary forward movement ration detected");
-        ratio = 1.f;
-    }
-    else if (ratio < -1.f) {
-        debug_call("supraunitary forward negative ration movement detected");
-        ratio = -1.f;
-    }
-
-    debug_call_cond(ratio<=0, "negative forward movement detected");
-
-    forward_ratio = ratio;
-}
-
-void Drone::rotateRight(float ratio)
-{
-    if (ratio > 1.f) {
-        debug_call("supraunitary right turm movement ratio detected");
-        ratio = 1.f;
-    }
-    else if (ratio < -1.f) {
-        debug_call("supraunitary right negative turm movement ratio detected");
-        ratio = -1.f;
-    }
-
-    rotation_ratio = ratio;
-}
-
-void Drone::moveUp(float ratio)
-{
-    if (ratio > 1.f) {
-        debug_call("supraunitary forward movement ration detected");
-        ratio = 1.f;
-    }
-    else if (ratio < -1.f) {
-        debug_call("supraunitary forward negative ration movement detected");
-        ratio = -1.f;
-    }
-
-    up_ratio = ratio;
-}
-
 void Drone::add_sensor(SensorInterface* sensor)
 {
     sensor->link_to(this);
@@ -133,30 +88,54 @@ void Drone::getSensorReadValues(DataCoolectorInterface& transmiter)
     }
 }
 
-void Drone::tick(float deltaTime)
+bool Drone::giveCommands(default_ReturnedValueFromStript& values)
 {
-    if (forward_ratio != 0 || up_ratio != 0) {
+    las_given_comand = values;
+    bool good_imput = true;
 
-        irr::core::vector3df speed = mesh->getForwardVector();
-        if (forward_ratio != 0)
-            speed *= forward_ratio * maxFrowardSpeed;
-        if (up_ratio != 0)
-            speed.Z = up_ratio * maxUpSpeed;
-        mesh->addInputVector(speed * deltaTime);
-        forward_ratio = up_ratio = 0;
+    if (las_given_comand.up > 1) {
+        las_given_comand.up = 1;
+        good_imput = false;
     }
-    if (rotation_ratio != 0) {
-        mesh->rotate(irr::core::vector3df(0.f, 1.f, 0.f) * rotation_ratio * maxRightRotationSpeed * deltaTime);
-        rotation_ratio = 0;
+    else if (las_given_comand.up < -1) {
+        las_given_comand.up = -1;
+        good_imput = false;
     }
+    
+    if (las_given_comand.up > 1) {
+        las_given_comand.up = 1;
+        good_imput = false;
+    }
+    else if (las_given_comand.up < -1) {
+        las_given_comand.up = -1;
+        good_imput = false;
+    }
+    
+    if (las_given_comand.up > 1) {
+        las_given_comand.up = 1;
+        good_imput = false;
+    }
+    else if (las_given_comand.up < -1) {
+        las_given_comand.up = -1;
+        good_imput = false;
+    }
+
+    return good_imput;
+}
+
+void Drone::tick(float deltaTime) {
+#pragma warning(force not in use)
+    dronePhyMgr->computeNewParameters(las_given_comand, deltaTime, false); 
+    const PhysicsManager::vector3& velocity = dronePhyMgr->getVelocity();
+
+    mesh->addInputVector(velocity * deltaTime);
+    mesh->rotate(irr::core::vector3df(0, 1, 0) * las_given_comand.rotation_angle * maxRightRotationSpeed * deltaTime);
 }
 
 void Drone::reset(bool toDefault)
 {
     this->mesh->reset(toDefault);
-    forward_ratio = 0;
-    rotation_ratio = 0;
-    up_ratio = 0;
+    las_given_comand = {};
 }
 
 irr::core::vector3df Drone::getVelocity() const
@@ -179,6 +158,25 @@ float Drone::getForwardAcceleration() const
     return  dronePhyMgr->getAcceleration().Z;
 }
 
+
+void Drone::no_physics_tick(float deltaTime)
+{
+    /* old implementation that do not use physics*/
+    if (forward_ratio != 0 || up_ratio != 0) {
+
+        irr::core::vector3df speed = mesh->getForwardVector();
+        if (forward_ratio != 0)
+            speed *= forward_ratio * maxFrowardSpeed;
+        if (up_ratio != 0)
+            speed.Z = up_ratio * maxUpSpeed;
+        mesh->addInputVector(speed * deltaTime);
+        forward_ratio = up_ratio = 0;
+    }
+    if (rotation_ratio != 0) {
+        mesh->rotate(irr::core::vector3df(0.f, 1.f, 0.f) * rotation_ratio * maxRightRotationSpeed * deltaTime);
+        rotation_ratio = 0;
+    }
+}
 
 #undef drone_debug_on
 #undef debug_call_cond
