@@ -14,7 +14,10 @@ const vector3& Wind::getForce() const
 }
 
 Wind::Wind(const vector3& direction, const float velocity) {
-    force = compute_force(direction / direction.getLength(), velocity); // fst arg is making shure that the vector modulus is 1
+    if (direction.getLength() != 0)
+        force = compute_force(direction / direction.getLength(), velocity); // fst arg is making shure that the vector modulus is 1
+    else
+        force = PhysicsManager::zeroForce;
 }
 
 Wind::Wind()
@@ -25,6 +28,8 @@ Wind::Wind()
 void Wind::makeRandom()
 {
     vector3 direction = vector3(rand() % 100, rand() % 100, rand() % 100); // make random vector
+    while(direction == PhysicsManager::zeroForce)
+        direction = vector3(rand() % 100, rand() % 100, rand() % 100); // if force is 0 then i repeat
     direction /= direction.getLength(); // make vector unit vector
 
     float velocity = (rand() % 9750) / 150.0 + 5.0; // the velocity will have a value between 5km/h and ~70km/h
@@ -46,12 +51,12 @@ vector3 Wind::compute_force(const vector3& direction, float velocity)
     * for simplicity i will consider the area as
     */
     float forceModulus = 1.229 * velocity * velocity;
-    return vector3();
+    return direction * forceModulus;
 }
 
 void Wind::verify_direction(vector3& vec) // verify and validate the wind direction; make corections if needed
 {
-    while (abs(acos(vec.dotProduct(vector3(0, 1, 0)) > M_PI_4))) { // if make a angle to big towards Y or -Y, than make angle smaller
+    if(abs(acos(vec.dotProduct(vector3(0, 1, 0)) > M_PI_4))) { // if make a angle to big towards Y or -Y, than make angle smaller
         vec.Y /= 4;
     }
 }

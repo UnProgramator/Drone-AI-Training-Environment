@@ -3,6 +3,8 @@
 #include "GraphicsManager.h"
 #include "test.pyCommunication.h"
 #include <vector>
+#include <chrono>
+#include <iostream>
 
 std::vector<double> Main::genDestination()
 {
@@ -29,10 +31,10 @@ bool Main::init()
     drone = json_p->parseDrone("./models/Drone.json");
     //scene = json_p->parseStaticObjects("./models/DefaultScene.json");
 
-    comunicator = new pyCommunication(L"./../../Irrlichtv1/", "comunicator",drone->getSensorsNumberOfOutputValues() + 3, drone->getNumberOfInputs(), 0.2f);
+    /*comunicator = new pyCommunication(L"./../../Irrlichtv1/", "comunicator",drone->getSensorsNumberOfOutputValues() + 3, drone->getNumberOfInputs(), 0.2f);
     colector = dynamic_cast<DataCoolectorInterface*>(comunicator);
     if (colector == nullptr)
-        throw std::exception("cast error occured i Main::init");
+        throw std::exception("cast error occured i Main::init");*/
 
     return true;
 }
@@ -50,24 +52,36 @@ int Main::main_loop(bool is_training)
     default_FeedbackType feedback = {};
     std::vector<double> destination = genDestination();
     float deltaTime = 0;
-
-    colector->init_parser(drone->getSensorsNumberOfOutputValues() + 3);
+    std::chrono::duration<double, std::milli> dur;
+    std::chrono::system_clock::time_point start, end;
+    
+    /*colector->init_parser(drone->getSensorsNumberOfOutputValues() + 3);
     drone->getSensorReadValues(*colector);
-    colector->parse_double_array("destinantion", destination);
+    colector->parse_double_array("destinantion", destination);*/
+
+    start = end = std::chrono::system_clock::now();
 
     while (renderIsRuning()) {
         renderScene();
-        comands = comunicator->call();
+        //comands = comunicator->call();
+        comands.forward = 0.001;
+        comands.up = 0;
+        comands.rotation_angle = 0;
         drone->giveCommands(comands);
+
+        dur = end - start;
+        deltaTime = dur.count()/1000; // dur is in milliseconds, i need seconds
+
+        std::cout << deltaTime;
 
         //then we tick all data, for now only drone
         drone->tick(deltaTime);
 
-        colector->init_parser(drone->getSensorsNumberOfOutputValues() + 3); // init new parse
-        drone->getSensorReadValues(*colector); // read sensors
-        colector->parse_double_array("destinantion", destination); // read destination
+        //colector->init_parser(drone->getSensorsNumberOfOutputValues() + 3); // init new parse
+        //drone->getSensorReadValues(*colector); // read sensors
+        //colector->parse_double_array("destinantion", destination); // read destination
 
-        feedback.hasCollide = false;
+        /*feedback.hasCollide = false;
         for (auto* sobj : scene) {
             if (drone->verifyCollision(sobj))
                 feedback.hasCollide = true;
@@ -81,7 +95,7 @@ int Main::main_loop(bool is_training)
             feedback.destination[1] = destination[1];
             feedback.destination[2] = destination[2];
             comunicator->give_feedback(feedback);
-        }
+        }*/
 
         if (feedback.hasCollide) {
             drone->reset();
@@ -92,6 +106,9 @@ int Main::main_loop(bool is_training)
             drone->getSensorReadValues(*colector); // read sensors
             colector->parse_double_array("destinantion", destination); // read destination
         }
+
+        start = end;
+        end = std::chrono::system_clock::now();
     }
 
     clearScene();
