@@ -65,7 +65,7 @@ int Drone::getSensorsNumberOfOutputValues()
     int values = 0;
     for (auto x : sensor_list)
         values += x->getNumberOfOutputValues();
-    return 0;
+    return values;
 }
 
 bool Drone::setChieldMesh(StaticObject* child) const
@@ -102,21 +102,21 @@ bool Drone::giveCommands(default_ReturnedValueFromStript& values)
         good_imput = false;
     }
     
-    if (las_given_comand.up > 1) {
-        las_given_comand.up = 1;
+    if (las_given_comand.forward > 1) {
+        las_given_comand.forward = 1;
         good_imput = false;
     }
-    else if (las_given_comand.up < -1) {
-        las_given_comand.up = -1;
+    else if (las_given_comand.forward < -1) {
+        las_given_comand.forward = -1;
         good_imput = false;
     }
     
-    if (las_given_comand.up > 1) {
-        las_given_comand.up = 1;
+    if (las_given_comand.rotation_angle > 1) {
+        las_given_comand.rotation_angle = 1;
         good_imput = false;
     }
-    else if (las_given_comand.up < -1) {
-        las_given_comand.up = -1;
+    else if (las_given_comand.rotation_angle < -1) {
+        las_given_comand.rotation_angle = -1;
         good_imput = false;
     }
 
@@ -162,19 +162,19 @@ float Drone::getForwardAcceleration() const
 void Drone::no_physics_tick(float deltaTime)
 {
     /* old implementation that do not use physics*/
-    if (forward_ratio != 0 || up_ratio != 0) {
+    if (las_given_comand.forward != 0 || las_given_comand.up != 0) {
 
         irr::core::vector3df speed = mesh->getForwardVector();
-        if (forward_ratio != 0)
-            speed *= forward_ratio * maxFrowardSpeed;
-        if (up_ratio != 0)
-            speed.Z = up_ratio * maxUpSpeed;
+        if (las_given_comand.forward != 0)
+            speed *= las_given_comand.forward * maxFrowardSpeed;
+        if (las_given_comand.up != 0)
+            speed.Z = las_given_comand.up * maxUpSpeed;
         mesh->addInputVector(speed * deltaTime);
-        forward_ratio = up_ratio = 0;
+        las_given_comand.forward = las_given_comand.up = 0;
     }
-    if (rotation_ratio != 0) {
-        mesh->rotate(irr::core::vector3df(0.f, 1.f, 0.f) * rotation_ratio * maxRightRotationSpeed * deltaTime);
-        rotation_ratio = 0;
+    if (las_given_comand.rotation_angle != 0) {
+        mesh->rotate(irr::core::vector3df(0.f, 1.f, 0.f) * las_given_comand.rotation_angle * maxRightRotationSpeed * deltaTime);
+        las_given_comand.rotation_angle = 0;
     }
 }
 

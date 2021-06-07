@@ -1,5 +1,5 @@
 import tensorflow as tf
-import keras as ks
+import tensorflow.keras as ks
 import numpy as np
 import time
 import sys

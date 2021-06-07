@@ -17,7 +17,7 @@ private:
 	void addElemToTuple(PyObject* & tuple_entry);
 
 public:
-	pyCommunication(const char* path, uint16_t input_size, uint16_t output_size, float learning_rate);
+	pyCommunication(const wchar_t* folder, const char* path, uint16_t input_size, uint16_t output_size, float learning_rate);
 	~pyCommunication();
 	void finishCommunication();
 

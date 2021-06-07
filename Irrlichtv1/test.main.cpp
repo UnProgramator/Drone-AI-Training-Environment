@@ -3,25 +3,15 @@
 #include <string>
 
 #include "GraphicsManager.h"
+#include "Main.h"
 
-namespace alex_example {
-	namespace fst_example{
-		extern int main();
-	}
-	namespace snd_example {
-		extern int main();
-	}
-	namespace trd_example {
-		extern int main();
-	}
-	namespace json {
-		extern int main();
-	}
-}
+
 
 
 int main() {
-	return alex_example::json::main();
+	Main main_f;
+	main_f.init_with_defaults();
+	main_f.main_loop();
 }
 
 

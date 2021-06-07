@@ -25,11 +25,11 @@ Drone* Base_JSONParser::parseDrone(const std::string& filePath)
 		fin.close();
 	}
 	drone = object_factory->getDrone(json);
-	for (auto& sensor : json["sensors"]) {
+	/*for (auto& sensor : json["sensors"]) {
 		std::string name = sensor["name"].get<std::string>();
 		auto& atribs = sensor["attributes"];
 		drone->add_sensor(object_factory->getSensor(name, atribs));
-	}
+	}*/
 	return drone;
 }
 

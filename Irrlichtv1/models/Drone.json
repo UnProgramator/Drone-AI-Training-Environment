@@ -1,0 +1,130 @@
+{
+  "mesh": "models/meshes/drona.obj",
+  "texture": "models/meshes/textures/drona.png",
+  "mesh-scale": [ 1.0, 1.0, 1.0 ],
+  "mesh-location": [ 0, 0, 0 ],
+  "mesh-rotation": [ 0, 0, 0 ],
+  "drone-forward": [ 1.0, 0.0, 0.0 ],
+  "max-forward-acceleration": 1.0,
+  "max-forward-velocity": 1.0,
+  "max-upward-acceleration": 1.0,
+  "max-upward-velocity": 1.0,
+  "max-altitude": 100.0,
+  "mass": 25.0,
+  "max-acceleration-value": 100.0,
+  "max-acceleration-time": 2.0,
+  "sensors": [
+    {
+      "name": "gps",
+      "attributes": { "type": "sensor-GPS-default" }
+    },
+    {
+      "name": "altimeter",
+      "attributes": { "type": "sensor-Altimeter-default" }
+    },
+    {
+      "name": "velocimometer",
+      "attributes": { "type": "sensor-Velocimometer-default" }
+    },
+    {
+      "name": "accelerometer3d",
+      "attributes": { "type": "sensor-Accelerometer3D-default" }
+    },
+    {
+      "name": "distance-f",
+      "attributes": {
+        "type": "sensor-DistanceSensor-default",
+        "mesh": "models/meshes/senzor_distanta.obj",
+        "texture": "models/meshes/textures/senzor_distanta.png",
+        "position": [ 0.0, 0.0, 1.0 ],
+        "rotation": [ 0.0, 0.0, 1.0 ],
+        "scale": [ 0.0, 0.0, 1.0 ],
+        "range": 0.0
+      }
+    },
+    {
+      "name": "distance-fl",
+      "attributes": {
+        "type": "sensor-DistanceSensor-default",
+        "mesh": "models/meshes/senzor_distanta.obj",
+        "texture": "models/meshes/textures/senzor_distanta.png",
+        "position": [ 0.0, 0.0, 1.0 ],
+        "rotation": [ 0.0, 0.0, 1.0 ],
+        "scale": [ 0.0, 0.0, 1.0 ],
+        "range": 0.0
+      }
+    },
+    {
+      "name": "distance-fr",
+      "attributes": {
+        "type": "sensor-DistanceSensor-default",
+        "mesh": "models/meshes/senzor_distanta.obj",
+        "texture": "models/meshes/textures/senzor_distanta.png",
+        "position": [ 0.0, 0.0, 1.0 ],
+        "rotation": [ 0.0, 0.0, 1.0 ],
+        "scale": [ 0.0, 0.0, 1.0 ],
+        "range": 0.0
+      }
+    },
+    {
+      "name": "distance-l",
+      "attributes": {
+        "type": "sensor-DistanceSensor-default",
+        "mesh": "models/meshes/senzor_distanta.obj",
+        "texture": "models/meshes/textures/senzor_distanta.png",
+        "position": [ 0.0, 0.0, 1.0 ],
+        "rotation": [ 0.0, 0.0, 1.0 ],
+        "scale": [ 0.0, 0.0, 1.0 ],
+        "range": 0.0
+      }
+    },
+    {
+      "name": "distance-r",
+      "attributes": {
+        "type": "sensor-DistanceSensor-default",
+        "mesh": "models/meshes/senzor_distanta.obj",
+        "texture": "models/meshes/textures/senzor_distanta.png",
+        "position": [ 0.0, 0.0, 1.0 ],
+        "rotation": [ 0.0, 0.0, 1.0 ],
+        "scale": [ 0.0, 0.0, 1.0 ],
+        "range": 0.0
+      }
+    },
+    {
+      "name": "distance-b",
+      "attributes": {
+        "type": "sensor-DistanceSensor-default",
+        "mesh": "models/meshes/senzor_distanta.obj",
+        "texture": "models/meshes/textures/senzor_distanta.png",
+        "position": [ 0.0, 0.0, 1.0 ],
+        "rotation": [ 0.0, 0.0, 1.0 ],
+        "scale": [ 0.0, 0.0, 1.0 ],
+        "range": 0.0
+      }
+    },
+    {
+      "name": "distance-u",
+      "attributes": {
+        "type": "sensor-DistanceSensor-default",
+        "mesh": "models/meshes/senzor_distanta.obj",
+        "texture": "models/meshes/textures/senzor_distanta.png",
+        "position": [ 0.0, 0.0, 1.0 ],
+        "rotation": [ 0.0, 0.0, 1.0 ],
+        "scale": [ 0.0, 0.0, 1.0 ],
+        "range": 0.0
+      }
+    },
+    {
+      "name": "distance-d",
+      "attributes": {
+        "type": "sensor-DistanceSensor-default",
+        "mesh": "models/meshes/senzor_distanta.obj",
+        "texture": "models/meshes/textures/senzor_distanta.png",
+        "position": [ 0.0, 0.0, 1.0 ],
+        "rotation": [ 0.0, 0.0, 1.0 ],
+        "scale": [ 0.0, 0.0, 1.0 ],
+        "range": 0.0
+      }
+    }
+  ]
+}

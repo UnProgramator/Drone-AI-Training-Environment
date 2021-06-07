@@ -21,14 +21,9 @@ public:
 
 struct default_FeedbackType {
 	double new_pos[3];
+	double destination[3];
 	bool hasCollide;
-	default_FeedbackType(double new_pos[3], bool hasCollide) : hasCollide{ hasCollide } { memcpy(this->new_pos, new_pos, 3 * sizeof(double)); }
-	default_FeedbackType(double new_pos_X, double new_pos_Y, double new_pos_Z, bool hasCollide) :
-		hasCollide{ hasCollide } {
-		new_pos[0] = new_pos_X;
-		new_pos[1] = new_pos_Y;
-		new_pos[2] = new_pos_Z;
-	}
+	default_FeedbackType() = default;
 };
 
 struct default_ReturnedValueFromStript {

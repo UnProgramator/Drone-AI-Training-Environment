@@ -33,7 +33,7 @@ SensorInterface* DefaultObjectFactory::getSensor(std::string& name, Json& atribu
 Drone* DefaultObjectFactory::getDrone(Json& atributes)
 {
     std::string mesh = atributes["mesh"].get<std::string>();
-    std::string text = atributes["mesh"].get<std::string>();
+    std::string text = atributes["texture"].get<std::string>();
     vector3 pos(atributes["mesh-location"][0].get<float>(), atributes["mesh-location"][1].get<float>(),  atributes["mesh-location"][2].get<float>());
     vector3 rot(atributes["mesh-rotation"][0].get<float>(), atributes["mesh-rotation"][1].get<float>(),  atributes["mesh-rotation"][2].get<float>());
     vector3 sca(atributes["mesh-scale"][0].get<float>(),    atributes["mesh-scale"][1].get<float>(),     atributes["mesh-scale"][2].get<float>());

@@ -368,3 +368,6 @@ new.txt
 
 #temporary StarUML file
 .mdj
+
+# 3d models i do not own
+./**/models/meshes/frees/

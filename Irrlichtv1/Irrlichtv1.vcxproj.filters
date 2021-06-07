@@ -187,5 +187,16 @@
     <None Include="comunicator.py">
       <Filter>Resource Files\Python Source</Filter>
     </None>
+    <None Include="models\DefaultScene.json">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="models\Drone.json">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="models\models_used.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

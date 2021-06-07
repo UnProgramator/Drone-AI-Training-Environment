@@ -2,11 +2,12 @@
 #include "CommunicationInterface.h"
 #include <Python.h>
 #include <string>
+#include <stdio.h>
 
 using std::operator""s;
 #define CHECK_CREATED(var) if(!var) throw std::exception(("python variable "s+ #var +" at line  " + std::to_string(__LINE__) + " in file " + __FILE__ +" could not be created").c_str())
 
-pyCommunication::pyCommunication(const char* path, uint16_t input_size, uint16_t output_size, float learning_rate):
+pyCommunication::pyCommunication(const wchar_t* folder, const char* path, uint16_t input_size, uint16_t output_size, float learning_rate):
 	func_arg(nullptr), is_running(true), crt_element(0)
 {
 	if (!path)
@@ -19,7 +20,7 @@ pyCommunication::pyCommunication(const char* path, uint16_t input_size, uint16_t
 		throw std::exception(("Error: module "s + path + " could not be imported").c_str());
 	}
 
-	call_func = PyObject_GetAttrString(module, "iterateNextGeneration");
+	call_func = PyObject_GetAttrString(module, "next_step");
 	if (!call_func) {
 		finishCommunication();
 		throw std::exception("Error: object/function iterateNextGeneration not Found");
@@ -29,7 +30,7 @@ pyCommunication::pyCommunication(const char* path, uint16_t input_size, uint16_t
 		throw std::exception("Error: object/function iterateNextGeneration not callable");
 	}
 
-	results_fuc = PyObject_GetAttrString(module, "getFeedback");
+	results_fuc = PyObject_GetAttrString(module, "get_feedback");
 	if (!results_fuc) {
 		finishCommunication();
 		throw std::exception("Error: object/function getFeedback not Found");
@@ -153,13 +154,16 @@ default_ReturnedValueFromStript pyCommunication::call()
 void pyCommunication::give_feedback(const default_FeedbackType & newParams)
 {
 	PyObject* tuple;
-	tuple = PyTuple_New(5);
+	tuple = PyTuple_New(8);
 	CHECK_CREATED(tuple);
 	PyTuple_SetItem(tuple, 0, func_arg);
 	PyTuple_SetItem(tuple, 1, PyFloat_FromDouble(newParams.new_pos[0]));
 	PyTuple_SetItem(tuple, 2, PyFloat_FromDouble(newParams.new_pos[1]));
 	PyTuple_SetItem(tuple, 3, PyFloat_FromDouble(newParams.new_pos[2]));
 	PyTuple_SetItem(tuple, 4, PyBool_FromLong(newParams.hasCollide));
+	PyTuple_SetItem(tuple, 5, PyBool_FromLong(newParams.destination[0]));
+	PyTuple_SetItem(tuple, 6, PyBool_FromLong(newParams.destination[1]));
+	PyTuple_SetItem(tuple, 7, PyBool_FromLong(newParams.destination[2]));
 
 	PyObject_Call(this->results_fuc, tuple, nullptr);
 }
