@@ -15,8 +15,13 @@ static const char* meshNotGeneratedMsg  = "Mesh unitialized. Something went rong
 static const char* triangleNotDroppedMsg  = "Triangle selector couldn't be dropped";
 static const char* triangleNotCreatedMsg  = "Triangle selector couldn't be created";
 
+using namespace irr;
+
 void initGraphicsLibrary(irr::video::E_DRIVER_TYPE driverType) {
-	device = irr::createDevice(driverType, irr::core::dimension2d<irr::u32>(720, 720), 16, false, false, false, getEventReceiver());
+
+	EventReceiver* envr = EventReceiver::getInstance();
+
+	device = irr::createDevice(driverType, irr::core::dimension2d<irr::u32>(1920, 1080), 16, false, false, false, envr);
 
 	vidMgr  = device->getVideoDriver();
 	scrMgr  = device->getSceneManager();
@@ -32,6 +37,7 @@ void setCamera(const irr::core::vector3df& initialPosition, irr::scene::ISceneNo
 	if(!camera)
 		throw std::exception(meshNotGeneratedMsg);
 	camera->setPosition(initialPosition);
+	camera->setFarValue(50000.f);
 }
 
 void renderScene()
@@ -130,4 +136,32 @@ void clearScene() {
 #pragma message("\t\t\t\tWARNING:   clearScene need to be finished")
 }
 
+EventReceiver* EventReceiver::instance=nullptr;
 
+EventReceiver* EventReceiver::getInstance() {
+	if (!instance)
+		instance = new EventReceiver();
+	return instance;
+}
+
+EventReceiver::EventReceiver()
+{
+	for (u32 i = 0; i < KEY_KEY_CODES_COUNT; ++i)
+		keyValue[i] = false;
+}
+
+bool EventReceiver::OnEvent(const irr::SEvent & event)
+{
+	if (event.EventType == irr::EET_KEY_INPUT_EVENT) {
+		keyValue[event.KeyInput.Key] = event.KeyInput.PressedDown;
+		if (event.KeyInput.Key == KEY_ESCAPE)
+			exit(0);
+	}
+
+	return false;
+}
+
+bool EventReceiver::keyDown(irr::EKEY_CODE keyCode) const
+{
+	return keyValue[keyCode];
+}

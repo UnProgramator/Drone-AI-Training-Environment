@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SensorInterface">
+    <Position X="5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABBAAAEAAQAAAEUAQAACCE=</HashCode>
+      <FileName>SensorInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DistanceSensor">
+    <Position X="0.5" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAkAIAAAAIAAAAAAAAAAAAAAAAQAAAAQAQAAAAA=</HashCode>
+      <FileName>DefaultSensors.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GPS">
+    <Position X="3" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAIAAAAAAQAAAAQAQAAAAA=</HashCode>
+      <FileName>DefaultSensors.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Altimeter">
+    <Position X="5.25" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAABAAAAAAAAAAAAAAAQAAAAQAQAAAAA=</HashCode>
+      <FileName>DefaultSensors.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Velocimometer">
+    <Position X="12.75" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAABAAAAAAAAAAAAAAAQAAAAQAQAAAAA=</HashCode>
+      <FileName>DefaultSensors.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Accelerometer">
+    <Position X="10.25" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAgAAgAAAAAAAAAAAAAAAAAAAAAAAAQAAAAQAQAAAAA=</HashCode>
+      <FileName>DefaultSensors.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Accelerometer3D">
+    <Position X="7.75" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAgAAABAAAAAAAAAAAAAAAAAAAAAAAQAAAAQAQAAAAA=</HashCode>
+      <FileName>DefaultSensors.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

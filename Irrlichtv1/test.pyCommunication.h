@@ -14,7 +14,7 @@ private:
 	PyObject* call_func;
 	PyObject* results_fuc;
 
-	void addElemToTuple(PyObject* & tuple_entry);
+	void addElemToTuple(PyObject* tuple_entry);
 
 public:
 	pyCommunication(const wchar_t* folder, const char* path, uint16_t input_size, uint16_t output_size, float learning_rate);

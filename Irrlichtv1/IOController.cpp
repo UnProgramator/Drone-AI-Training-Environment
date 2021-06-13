@@ -10,7 +10,7 @@ bool MyEventReceiver::OnEvent(const irr::SEvent& event)
 {
     // Remember whether each key is down or up
     if (event.EventType == irr::EET_KEY_INPUT_EVENT)
-        KeyIsDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
+        keyValue[event.KeyInput.Key] = event.KeyInput.PressedDown;
 
     return false;
 }
@@ -18,7 +18,7 @@ bool MyEventReceiver::OnEvent(const irr::SEvent& event)
 MyEventReceiver::MyEventReceiver()
 {
     for (uint32_t i = 0; i < irr::KEY_KEY_CODES_COUNT; ++i)
-        KeyIsDown[i] = false;
+        keyValue[i] = false;
 }
 
 static class MyEventReceiver evrec;

@@ -1,22 +1,24 @@
 #pragma once
-#include "ObjectControllerInterface.h"
-#include "Drone.h"
+#include "CommunicationInterface.h"
 
 class KeyboardController :
-    public ObjectControllerInterface
+    public DataCoolectorInterface,
+	public default_CommunicationInterface
 {
 private:
-	Drone* drone;
-public:
-	KeyboardController(Drone* drone);
-	virtual ~KeyboardController() {};
-	virtual void tick(float deltaTime);
-	virtual void moveForward(float value);
-	virtual void turnRight(float value);
+	std::ostream* outStrim;
 
-	inline void moveFront() { this->moveForward(1.f);  }
-	inline void moveBack()  { this->moveForward(-1.f); }
-	inline void turnRight() { this->turnRight(1.f);  }
-	inline void turnLeft()  { this->turnRight(-1.f); }
+public:
+	KeyboardController();
+	virtual ~KeyboardController() {};
+	
+	virtual void init_parser(int elementCount) override;
+	virtual void parse_double(const char* name, const double value) override;
+	virtual void parse_double_array(const char* name, const std::vector<double>& value) override;
+
+	virtual default_ReturnedValueFromStript call() override;
+	virtual void give_feedback(const default_FeedbackType& newParams) override;
+
+	
 };
 

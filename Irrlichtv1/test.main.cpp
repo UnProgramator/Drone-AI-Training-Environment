@@ -9,9 +9,14 @@
 
 
 int main() {
-	Main main_f;
-	main_f.init_with_defaults();
-	main_f.main_loop();
+	try {
+		Main main_f;
+		main_f.init_with_defaults();
+		return main_f.main_loop(false);
+	}
+	catch (std::exception e) {
+		e.what();
+	}
 }
 
 

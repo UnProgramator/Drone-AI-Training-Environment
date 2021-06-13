@@ -1,0 +1,112 @@
+[
+  {
+    "mesh-path": "models/meshes/perete_simplu.obj",
+    "texture-path": "models/meshes/textures/perete_galben.png",
+    "position": [ 0, -550, 5000 ],
+    "rotation": [ 0, 0, 0 ],
+    "scale": [ 400, 200, 200 ]
+  },
+  {
+    "mesh-path": "models/meshes/perete_simplu.obj",
+    "texture-path": "models/meshes/textures/perete_galben.png",
+    "position": [ 3000, -550, 4000 ],
+    "rotation": [ 0, 45, 0 ],
+    "scale": [ 400, 200, 200 ]
+  },
+  {
+    "mesh-path": "models/meshes/pom.obj",
+    "texture-path": "models/meshes/textures/pom.png",
+    "position": [ 0, -550, 4000 ],
+    "rotation": [ 0, 0, 0 ],
+    "scale": [ 200, 200, 200 ]
+  },
+  {
+    "mesh-path": "models/meshes/pom.obj",
+    "texture-path": "models/meshes/textures/pom.png",
+    "position": [ -500, -550, 3500 ],
+    "rotation": [ 0, 0, 0 ],
+    "scale": [ 200, 200, 200 ]
+  },
+  {
+    "mesh-path": "models/meshes/pom.obj",
+    "texture-path": "models/meshes/textures/pom.png",
+    "position": [ 400, -550, 4000 ],
+    "rotation": [ 0, 0, 0 ],
+    "scale": [ 200, 200, 200 ]
+  },
+
+  {
+    "mesh-path": "models/meshes/pom.obj",
+    "texture-path": "models/meshes/textures/pom.png",
+    "position": [ 900, -550, 4000 ],
+    "rotation": [ 0, 0, 0 ],
+    "scale": [ 200, 200, 200 ]
+  },
+  {
+    "mesh-path": "models/meshes/pom.obj",
+    "texture-path": "models/meshes/textures/pom.png",
+    "position": [ 900, -550, 4400 ],
+    "rotation": [ 0, 0, 0 ],
+    "scale": [ 200, 200, 200 ]
+  },
+  {
+    "mesh-path": "models/meshes/pom.obj",
+    "texture-path": "models/meshes/textures/pom.png",
+    "position": [ 100, -550, 3600 ],
+    "rotation": [ 0, 0, 0 ],
+    "scale": [ 200, 200, 200 ]
+  },
+
+  {
+    "mesh-path": "models/meshes/pom.obj",
+    "texture-path": "models/meshes/textures/pom.png",
+    "position": [ 400, -550, 4000 ],
+    "rotation": [ 0, 0, 0 ],
+    "scale": [ 200, 200, 200 ]
+  },
+  {
+    "mesh-path": "models/meshes/pom.obj",
+    "texture-path": "models/meshes/textures/pom.png",
+    "position": [ 400, -550, 4000 ],
+    "rotation": [ 0, 0, 0 ],
+    "scale": [ 200, 200, 200 ]
+  },
+  {
+    "mesh-path": "models/meshes/pom.obj",
+    "texture-path": "models/meshes/textures/pom.png",
+    "position": [ 400, -550, 4000 ],
+    "rotation": [ 0, 0, 0 ],
+    "scale": [ 200, 200, 200 ]
+  },
+
+  {
+    "mesh-path": "models/meshes/pom.obj",
+    "texture-path": "models/meshes/textures/pom.png",
+    "position": [ 400, -550, 4000 ],
+    "rotation": [ 0, 0, 0 ],
+    "scale": [ 200, 200, 200 ]
+  },
+  {
+    "mesh-path": "models/meshes/pom.obj",
+    "texture-path": "models/meshes/textures/pom.png",
+    "position": [ 400, -550, 4000 ],
+    "rotation": [ 0, 0, 0 ],
+    "scale": [ 200, 200, 200 ]
+  },
+  {
+    "mesh-path": "models/meshes/pom.obj",
+    "texture-path": "models/meshes/textures/pom.png",
+    "position": [ 400, -550, 4000 ],
+    "rotation": [ 0, 0, 0 ],
+    "scale": [ 200, 200, 200 ]
+  },
+
+  {
+    "mesh-path": "models/meshes/perete_simplu.obj",
+    "texture-path": "models/meshes/textures/perete_verde.png",
+    "position": [ 0, -560, -40000 ],
+    "rotation": [ 90, 0, 0 ],
+    "scale": [ 80000, 800000, 1 ]
+  }
+
+]

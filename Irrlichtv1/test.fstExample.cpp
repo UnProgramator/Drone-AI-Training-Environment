@@ -185,21 +185,7 @@ namespace alex_example {
 
 		KeyboardController* keyCon;
 
-		void moveFront() {
-			keyCon->moveFront();
-		}
 
-		void moveBack() {
-			keyCon->moveBack();
-		}
-
-		void turnRight() {
-			keyCon->turnRight();
-		}
-
-		void turnLeft() {
-			keyCon->turnLeft();
-		}
 
 		//int main() {
 

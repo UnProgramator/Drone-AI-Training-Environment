@@ -3,12 +3,14 @@
 #include <Python.h>
 #include <string>
 #include <stdio.h>
+#include <iostream>
 
 using std::operator""s;
 #define CHECK_CREATED(var) if(!var) throw std::exception(("python variable "s+ #var +" at line  " + std::to_string(__LINE__) + " in file " + __FILE__ +" could not be created").c_str())
 
 pyCommunication::pyCommunication(const wchar_t* folder, const char* path, uint16_t input_size, uint16_t output_size, float learning_rate):
-	func_arg(nullptr), is_running(true), crt_element(0)
+	func_arg(nullptr), is_running(false), crt_element(0),
+	call_func{ nullptr }, results_fuc{nullptr}
 {
 	if (!path)
 		throw std::exception("Error: path to python file not given");
@@ -19,6 +21,7 @@ pyCommunication::pyCommunication(const wchar_t* folder, const char* path, uint16
 		finishCommunication();
 		throw std::exception(("Error: module "s + path + " could not be imported").c_str());
 	}
+	is_running = true;
 
 	call_func = PyObject_GetAttrString(module, "next_step");
 	if (!call_func) {
@@ -63,6 +66,7 @@ pyCommunication::pyCommunication(const wchar_t* folder, const char* path, uint16
 		finishCommunication();
 		throw std::exception("Error: Error occured. PyObject* returned by init was null");
 	}
+	//std::cout << _PyUnicode_AsString(PyObject_Type(returnedValue));
 	if (!PyBool_Check(returnedValue)) {
 		finishCommunication();
 		throw std::exception("Exception: Invalid retunrd type. Returned type was no of type bool");
@@ -98,55 +102,83 @@ void pyCommunication::finishCommunication()
 
 void pyCommunication::init_parser(int elementCount)
 {
-	Py_XDECREF(func_arg);
+	Py_CLEAR(func_arg);
 	func_arg = PyTuple_New(elementCount);
 	CHECK_CREATED(func_arg);
 	crt_element = 0;
 }
 
-void pyCommunication::addElemToTuple(PyObject* & tuple_entry) {
+void pyCommunication::addElemToTuple(PyObject* tuple_entry) {
 	PyTuple_SetItem(func_arg, crt_element, tuple_entry);
 	crt_element++;
-	Py_XDECREF(tuple_entry);
 }
 
 void pyCommunication::parse_double(const char* name, const double value)
 {
-	PyObject* tuple_entry;
+	PyObject* tuple_entry, *tmp;
 	tuple_entry = PyTuple_New(2);
 	CHECK_CREATED(tuple_entry);
 
-	PyTuple_SetItem(tuple_entry, 0, PyUnicode_FromString(name));
-	PyTuple_SetItem(tuple_entry, 1, PyFloat_FromDouble(value));
+	tmp = PyUnicode_FromString(name);
+	CHECK_CREATED(tmp);
+	PyTuple_SetItem(tuple_entry, 0, tmp);
+	tmp = PyFloat_FromDouble(value);
+	CHECK_CREATED(tmp);
+	PyTuple_SetItem(tuple_entry, 1, tmp);
 
 	addElemToTuple(tuple_entry);
 }
 
 void pyCommunication::parse_double_array(const char* name, const std::vector<double>& value)
 {
-	PyObject *tuple_entry, *elements;
+	PyObject *tuple_entry, *elements, *tmp;
 	tuple_entry = PyTuple_New(2);
-	PyTuple_SetItem(tuple_entry, 0, PyUnicode_FromString(name));
+	CHECK_CREATED(tuple_entry);
+	tmp = PyUnicode_FromString(name);
+	CHECK_CREATED(tmp);
+	PyTuple_SetItem(tuple_entry, 0, tmp);
 	
 	elements = PyTuple_New(value.size());
 	CHECK_CREATED(elements);
-	for (int i = 0; i < value.size(); i++)
-		PyTuple_SetItem(elements, i, PyFloat_FromDouble(value[i]));
+	for (int i = 0; i < value.size(); i++) {
+		tmp = PyFloat_FromDouble(value[i]);
+		CHECK_CREATED(tmp);
+		PyTuple_SetItem(elements, i, tmp);
+	}
+		
 
-	PyTuple_SetItem(tuple_entry, 1, PyUnicode_FromString(name));
+	PyTuple_SetItem(tuple_entry, 1, elements);
 
 	addElemToTuple(tuple_entry);
 }
 
 default_ReturnedValueFromStript pyCommunication::call()
 {
-	default_ReturnedValueFromStript returned_value;
+	default_ReturnedValueFromStript returned_value = { 0,0,0 };
 
-	PyObject* returned_object = PyObject_Call(this->call_func, func_arg, nullptr);
+	PyObject* arg = PyTuple_New(1);
+	CHECK_CREATED(arg);
+	PyTuple_SetItem(arg, 0, func_arg);
+	Py_XINCREF(func_arg);
 
-	returned_value.forward = (float) PyFloat_AsDouble(PyDict_GetItemString(returned_object, "forward"));
-	returned_value.up = (float) PyFloat_AsDouble(PyDict_GetItemString(returned_object, "upwards"));
-	returned_value.rotation_angle = (float) PyFloat_AsDouble(PyDict_GetItemString(returned_object, "rotation angle"));
+	PyObject* returned_object = PyObject_Call(this->call_func, arg, NULL);
+
+
+	if (!returned_object) {
+		PyErr_Print();
+		std::cout << std::endl;
+		throw std::exception();
+	}
+	else if(PyDict_Check(returned_object)){
+		returned_value.forward = (float)PyFloat_AsDouble(PyDict_GetItemString(returned_object, "forward"));
+		returned_value.up = (float)PyFloat_AsDouble(PyDict_GetItemString(returned_object, "upwards"));
+		returned_value.rotation_angle = (float)PyFloat_AsDouble(PyDict_GetItemString(returned_object, "rotation angle"));
+	}
+	else {
+		throw std::exception("returned type not a dictionary");
+	}
+	Py_XDECREF(returned_object);
+	Py_XDECREF(arg);
 
 	return returned_value;
 }
@@ -161,11 +193,12 @@ void pyCommunication::give_feedback(const default_FeedbackType & newParams)
 	PyTuple_SetItem(tuple, 2, PyFloat_FromDouble(newParams.new_pos[1]));
 	PyTuple_SetItem(tuple, 3, PyFloat_FromDouble(newParams.new_pos[2]));
 	PyTuple_SetItem(tuple, 4, PyBool_FromLong(newParams.hasCollide));
-	PyTuple_SetItem(tuple, 5, PyBool_FromLong(newParams.destination[0]));
-	PyTuple_SetItem(tuple, 6, PyBool_FromLong(newParams.destination[1]));
-	PyTuple_SetItem(tuple, 7, PyBool_FromLong(newParams.destination[2]));
+	PyTuple_SetItem(tuple, 5, PyFloat_FromDouble(newParams.destination[0]));
+	PyTuple_SetItem(tuple, 6, PyFloat_FromDouble(newParams.destination[1]));
+	PyTuple_SetItem(tuple, 7, PyFloat_FromDouble(newParams.destination[2]));
 
-	PyObject_Call(this->results_fuc, tuple, nullptr);
+	Py_XDECREF(PyObject_Call(this->results_fuc, tuple, nullptr));
+	Py_XDECREF(tuple);
 }
 
 

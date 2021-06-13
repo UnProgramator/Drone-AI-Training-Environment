@@ -129,13 +129,14 @@ void Drone::tick(float deltaTime) {
     const PhysicsManager::vector3& velocity = dronePhyMgr->getVelocity();
 
     mesh->addInputVector(velocity * deltaTime);
-    mesh->rotate(irr::core::vector3df(0, 1, 0) * las_given_comand.rotation_angle * maxRightRotationSpeed * deltaTime);
+    mesh->rotate(irr::core::vector3df(0, 1, 0) * las_given_comand.rotation_angle * atributes.maxRightRotationSpeed * deltaTime);
 }
 
 void Drone::reset(bool toDefault)
 {
     this->mesh->reset(toDefault);
     las_given_comand = {};
+    dronePhyMgr->reset();
 }
 
 irr::core::vector3df Drone::getVelocity() const
@@ -166,14 +167,14 @@ void Drone::no_physics_tick(float deltaTime)
 
         irr::core::vector3df speed = mesh->getForwardVector();
         if (las_given_comand.forward != 0)
-            speed *= las_given_comand.forward * maxFrowardSpeed;
+            speed *= las_given_comand.forward * this->atributes.maxForwardVelocity;
         if (las_given_comand.up != 0)
-            speed.Z = las_given_comand.up * maxUpSpeed;
+            speed.Z = las_given_comand.up * this->atributes.maxUpwardVelocity;
         mesh->addInputVector(speed * deltaTime);
         las_given_comand.forward = las_given_comand.up = 0;
     }
     if (las_given_comand.rotation_angle != 0) {
-        mesh->rotate(irr::core::vector3df(0.f, 1.f, 0.f) * las_given_comand.rotation_angle * maxRightRotationSpeed * deltaTime);
+        mesh->rotate(irr::core::vector3df(0.f, 1.f, 0.f) * las_given_comand.rotation_angle * atributes.maxRightRotationSpeed * deltaTime);
         las_given_comand.rotation_angle = 0;
     }
 }

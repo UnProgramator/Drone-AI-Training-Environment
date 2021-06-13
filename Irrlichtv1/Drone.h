@@ -27,10 +27,6 @@ private:
 public:
 	const DroneAttributes atributes;
 
-	const float maxFrowardSpeed = 0.01f;
-	const float maxUpSpeed = 0.05f;
-	const float maxRightRotationSpeed = 0.02f;
-
 	Drone(const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation,  const irr::core::vector3df & initalOrientation, const DroneAttributes& atributes);
 	Drone(const std::string& meshPath, const std::string& textPath, 
 			const irr::core::vector3df & initalPosition, const irr::core::vector3df& initalRotation, const irr::core::vector3df & initalOrientation, 
@@ -43,9 +39,10 @@ public:
 	bool verifyCollision(class StaticObject* otherObject);
 
 	virtual int getSensorsNumberOfOutputValues();
+	virtual int getSensorsNumber() { return sensor_list.size(); }
 	virtual int getNumberOfInputs(){ return 3; }
 	virtual bool setChieldMesh(StaticObject*) const;
-	virtual const irr::core::vector3df& getPosition() const { return mesh->getAbsolutePosition(); }
+	virtual const irr::core::vector3df& getPosition() const { return mesh->getPosition(); }
 
 	virtual void add_sensor(SensorInterface* sensor);
 	virtual void getSensorReadValues(DataCoolectorInterface& transmiter);
@@ -54,7 +51,7 @@ public:
 
 	virtual void tick(float deltaTime) override;
 	
-	virtual void reset(bool toDefault = true);
+	virtual void reset(bool toDefault = false);
 
 	virtual irr::core::vector3df getVelocity() const;
 	virtual float getForwardVelocity() const; 

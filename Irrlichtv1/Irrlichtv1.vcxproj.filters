@@ -193,6 +193,13 @@
     <None Include="models\Drone.json">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Graphics.cd" />
+    <None Include="Fizici.cd" />
+    <None Include="Senzori.cd" />
+    <None Include="Comunicare.cd" />
+    <None Include="Controler.cd" />
+    <None Include="Constructie.cd" />
+    <None Include="Main.cd" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="models\models_used.txt">

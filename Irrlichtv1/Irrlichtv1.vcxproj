@@ -63,10 +63,17 @@
     <ClCompile Include="test.pyCommunication.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Comunicare.cd" />
+    <None Include="Constructie.cd" />
+    <None Include="Controler.cd" />
+    <None Include="Fizici.cd" />
+    <None Include="Graphics.cd" />
     <None Include="comunicator.py" />
     <None Include="DQN_RL.py" />
+    <None Include="Main.cd" />
     <None Include="models\DefaultScene.json" />
     <None Include="models\Drone.json" />
+    <None Include="Senzori.cd" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="models\models_used.txt" />

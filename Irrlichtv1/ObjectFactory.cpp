@@ -3,6 +3,7 @@
 #include <string>
 #include <nlohmann/json.hpp>
 #include <irrlicht.h>
+#include <iostream>
 
 #include "DefaultSensors.h"
 #include "DefaultObjectStorage.h"
@@ -26,6 +27,22 @@ SensorInterface* DefaultObjectFactory::getSensor(std::string& name, Json& atribu
         float range = atributes["range"].get<float>();
         sensor = new DistanceSensor(mesh, text, postion, rotation, scale, range, name);
     }
+    else if (type == "sensor-GPS-default") {
+        sensor = new GPS(name);
+    }
+    else if (type == "sensor-Altimeter-default") {
+        sensor = new Altimeter(name);
+    }
+    else if (type == "sensor-Velocimometer-default") {
+        sensor = new Velocimometer(name);
+    }
+    else if (type == "sensor-Accelerometer3D-default") {
+        sensor = new Accelerometer3D(name);
+    }
+    else if (type == "sensor-Accelerometer-default") {
+        sensor = new Accelerometer(name);
+    }
+    else throw std::exception("sensor type not found");
 
     return sensor;
 }
@@ -42,11 +59,12 @@ Drone* DefaultObjectFactory::getDrone(Json& atributes)
     atribs.maxAltitude = atributes["max-altitude"].get<float>();
     atribs.maxForwardVelocity = atributes["max-forward-velocity"].get<float>();
     atribs.maxUpwardVelocity = atributes["max-upward-velocity"].get<float>();
+    atribs.maxDownwordsVelocity = atributes["max-downword-velocity"].get<float>();
     atribs.mass = atributes["mass"].get<float>();
     atribs.maxAltitude = atributes["max-altitude"].get<float>();
     atribs.maxAccelerationInKPH = atributes["max-acceleration-value"].get<float>();
     atribs.maxAccelerationTimeInSeconds = atributes["max-acceleration-time"].get<float>();
-    
+
     return new Drone(mesh, text, pos, rot, sca, forward, atribs);
 }
 

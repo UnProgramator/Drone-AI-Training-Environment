@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DataCoolectorInterface">
+    <Position X="0.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQCAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>CommunicationInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommunicationInterface&lt;ReturnedValueFromStript, FeedbackType&gt;">
+    <Position X="2.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CommunicationInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="pyCommunication" Collapsed="true">
+    <Position X="1.5" Y="7.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAEAAAEBQKAhAACAAAAEQCAAAQAAAAAAAg=</HashCode>
+      <FileName>test.pyCommunication.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="default_FeedbackType">
+    <Position X="6.25" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAACBAAAgAA=</HashCode>
+      <FileName>CommunicationInterface.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="default_ReturnedValueFromStript">
+    <Position X="4.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>CommunicationInterface.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="default_CommunicationInterface" Collapsed="true">
+    <Position X="1.5" Y="4.75" Width="7.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CommunicationInterface.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

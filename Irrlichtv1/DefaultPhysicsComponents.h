@@ -32,7 +32,10 @@ public:
 
 			maxAltitude, /*in m*/
 			mass/*in kg*/;
+		float maxRightRotationSpeed = 10;
 	};
+
+	static const float coeficient; // stub til i fix the problem of velocity depending on the scale of the object.
 
 	DronePhysicsManager(const vector3& forwardsDirection, const DroneAttributes& attrs);
 
@@ -42,6 +45,8 @@ public:
 	const vector3& getVelocity() const;
 	const vector3& getAcceleration() const;
 
+	void reset();
+
 private:
 	void acceleration_corection(vector3& acceleration, const default_ReturnedValueFromStript& inputs, float deltatime); // function apply inertia, friction and gravoty effects to acceleration for more acurate values
 
@@ -49,7 +54,6 @@ private:
 	using vector3 = PhysicsComponentInterface::vector3;
 	const float mass; //in kilograms
 	const float maxLinearAcceleration;
-	const float linearAccelerationPerCalculation; // implementation frame dependent for 30 fps
 	vector3 crt3DAcceleration;
 	const float maxPlaneVelocity;
 	const float maxUpVelocity;

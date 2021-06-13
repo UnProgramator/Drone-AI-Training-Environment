@@ -3,6 +3,7 @@
 #include "Drone.h"
 #include "StaticObject.h"
 #include "CommunicationInterface.h"
+#include "StaticObject.h"
 
 
 // template<class comunicatyion_type> // need to be templat-ized in future update
@@ -19,6 +20,7 @@ protected:
 	comunicatyion_type* comunicator = nullptr;
 	DataCoolectorInterface* colector;
 	int value_size_list;
+	StaticObject* finishMarker;
 
 	std::vector<double> genDestination();
 	vector3 genDroneNewPosition();
@@ -29,6 +31,6 @@ public:
 
 	int main_loop(bool is_training=true); // the main loop
 
-	~Main() = default;
+	~Main();
 };
 

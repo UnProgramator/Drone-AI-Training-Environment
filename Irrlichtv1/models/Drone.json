@@ -1,14 +1,13 @@
 {
   "mesh": "models/meshes/drona.obj",
   "texture": "models/meshes/textures/drona.png",
-  "mesh-scale": [ 1.0, 1.0, 1.0 ],
+  "mesh-scale": [ 50.0, 50.0, 50.0 ],
   "mesh-location": [ 0, 0, 0 ],
-  "mesh-rotation": [ 0, 0, 0 ],
+  "mesh-rotation": [ 0, 90, 0 ],
   "drone-forward": [ 1.0, 0.0, 0.0 ],
-  "max-forward-acceleration": 1.0,
   "max-forward-velocity": 1.0,
-  "max-upward-acceleration": 1.0,
   "max-upward-velocity": 1.0,
+  "max-downword-velocity": 1.0,
   "max-altitude": 100.0,
   "mass": 25.0,
   "max-acceleration-value": 100.0,
@@ -36,10 +35,10 @@
         "type": "sensor-DistanceSensor-default",
         "mesh": "models/meshes/senzor_distanta.obj",
         "texture": "models/meshes/textures/senzor_distanta.png",
-        "position": [ 0.0, 0.0, 1.0 ],
-        "rotation": [ 0.0, 0.0, 1.0 ],
-        "scale": [ 0.0, 0.0, 1.0 ],
-        "range": 0.0
+        "position": [ 0.0, 0.0, 1.5 ],
+        "rotation": [ 0.0, 90.0, 0.0 ],
+        "scale": [ 2.0, 2.0, 2.0 ],
+        "range": 10
       }
     },
     {
@@ -48,10 +47,10 @@
         "type": "sensor-DistanceSensor-default",
         "mesh": "models/meshes/senzor_distanta.obj",
         "texture": "models/meshes/textures/senzor_distanta.png",
-        "position": [ 0.0, 0.0, 1.0 ],
-        "rotation": [ 0.0, 0.0, 1.0 ],
-        "scale": [ 0.0, 0.0, 1.0 ],
-        "range": 0.0
+        "position": [ -0.95, 0.0, 1.25 ],
+        "rotation": [ 0.0, 45.0, 0.0 ],
+        "scale": [ 2.0, 2.0, 2.0 ],
+        "range": 10.0
       }
     },
     {
@@ -60,10 +59,10 @@
         "type": "sensor-DistanceSensor-default",
         "mesh": "models/meshes/senzor_distanta.obj",
         "texture": "models/meshes/textures/senzor_distanta.png",
-        "position": [ 0.0, 0.0, 1.0 ],
-        "rotation": [ 0.0, 0.0, 1.0 ],
-        "scale": [ 0.0, 0.0, 1.0 ],
-        "range": 0.0
+        "position": [ 0.95, 0.0, 1.25 ],
+        "rotation": [ 0.0, 135.0, 0.0 ],
+        "scale": [ 2.0, 2.0, 2.0 ],
+        "range": 10.0
       }
     },
     {
@@ -72,10 +71,10 @@
         "type": "sensor-DistanceSensor-default",
         "mesh": "models/meshes/senzor_distanta.obj",
         "texture": "models/meshes/textures/senzor_distanta.png",
-        "position": [ 0.0, 0.0, 1.0 ],
+        "position": [ -1.15, 0.0, 0.0 ],
         "rotation": [ 0.0, 0.0, 1.0 ],
-        "scale": [ 0.0, 0.0, 1.0 ],
-        "range": 0.0
+        "scale": [ 2.0, 2.0, 2.0 ],
+        "range": 10.0
       }
     },
     {
@@ -84,10 +83,10 @@
         "type": "sensor-DistanceSensor-default",
         "mesh": "models/meshes/senzor_distanta.obj",
         "texture": "models/meshes/textures/senzor_distanta.png",
-        "position": [ 0.0, 0.0, 1.0 ],
-        "rotation": [ 0.0, 0.0, 1.0 ],
-        "scale": [ 0.0, 0.0, 1.0 ],
-        "range": 0.0
+        "position": [ 1.15, 0.0, 0.0 ],
+        "rotation": [ 0.0, 180.0, 1.0 ],
+        "scale": [ 2.0, 2.0, 2.0 ],
+        "range": 10.0
       }
     },
     {
@@ -96,10 +95,10 @@
         "type": "sensor-DistanceSensor-default",
         "mesh": "models/meshes/senzor_distanta.obj",
         "texture": "models/meshes/textures/senzor_distanta.png",
-        "position": [ 0.0, 0.0, 1.0 ],
-        "rotation": [ 0.0, 0.0, 1.0 ],
-        "scale": [ 0.0, 0.0, 1.0 ],
-        "range": 0.0
+        "position": [ 0.0, 0.0, -1.45 ],
+        "rotation": [ 0.0, -90.0, 0.0 ],
+        "scale": [ 2.0, 2.0, 2.0 ],
+        "range": 10.0
       }
     },
     {
@@ -108,10 +107,10 @@
         "type": "sensor-DistanceSensor-default",
         "mesh": "models/meshes/senzor_distanta.obj",
         "texture": "models/meshes/textures/senzor_distanta.png",
-        "position": [ 0.0, 0.0, 1.0 ],
-        "rotation": [ 0.0, 0.0, 1.0 ],
-        "scale": [ 0.0, 0.0, 1.0 ],
-        "range": 0.0
+        "position": [ 0.0, -0.45, 0.0 ],
+        "rotation": [ 0.0, 0.0, 90.0 ],
+        "scale": [ 2.0, 2.0, 2.0 ],
+        "range": 10.0
       }
     },
     {
@@ -120,10 +119,10 @@
         "type": "sensor-DistanceSensor-default",
         "mesh": "models/meshes/senzor_distanta.obj",
         "texture": "models/meshes/textures/senzor_distanta.png",
-        "position": [ 0.0, 0.0, 1.0 ],
-        "rotation": [ 0.0, 0.0, 1.0 ],
-        "scale": [ 0.0, 0.0, 1.0 ],
-        "range": 0.0
+        "position": [ 0.0, 0.45, 0.0 ],
+        "rotation": [ 0.0, 0.0, -90.0 ],
+        "scale": [ 2.0, 2.0, 2.0 ],
+        "range": 10.0
       }
     }
   ]
