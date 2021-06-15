@@ -21,7 +21,7 @@ void initGraphicsLibrary(irr::video::E_DRIVER_TYPE driverType) {
 
 	EventReceiver* envr = EventReceiver::getInstance();
 
-	device = irr::createDevice(driverType, irr::core::dimension2d<irr::u32>(1920, 1080), 16, false, false, false, envr);
+	device = irr::createDevice(driverType, irr::core::dimension2d<irr::u32>(2500, 1400), 16, false, false, false, envr);
 
 	vidMgr  = device->getVideoDriver();
 	scrMgr  = device->getSceneManager();
@@ -38,6 +38,7 @@ void setCamera(const irr::core::vector3df& initialPosition, irr::scene::ISceneNo
 		throw std::exception(meshNotGeneratedMsg);
 	camera->setPosition(initialPosition);
 	camera->setFarValue(50000.f);
+	device->getCursorControl()->setVisible(false);
 }
 
 void renderScene()
@@ -136,6 +137,12 @@ void clearScene() {
 #pragma message("\t\t\t\tWARNING:   clearScene need to be finished")
 }
 
+static bool bpause = true;
+
+bool pause() {
+	return bpause;
+}
+
 EventReceiver* EventReceiver::instance=nullptr;
 
 EventReceiver* EventReceiver::getInstance() {
@@ -156,6 +163,8 @@ bool EventReceiver::OnEvent(const irr::SEvent & event)
 		keyValue[event.KeyInput.Key] = event.KeyInput.PressedDown;
 		if (event.KeyInput.Key == KEY_ESCAPE)
 			exit(0);
+		else if (event.KeyInput.Key == KEY_KEY_P && event.KeyInput.PressedDown)
+			bpause = !bpause;
 	}
 
 	return false;

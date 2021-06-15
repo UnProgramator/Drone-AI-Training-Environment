@@ -76,7 +76,7 @@ DronePhysicsManager::DronePhysicsManager(const vector3& forwardsDirection, const
     *   from formula acceleration = delta(velocity)/time-of-acceleration
     *   for simplification i use the simplified linear acceleration formula
     * */
-    maxLinearAcceleration{ coeficient * attrs.maxAccelerationInKPH / attrs.maxAccelerationTimeInSeconds * (10.f / 36) },
+    maxLinearAcceleration{ coeficient/2 * attrs.maxAccelerationInKPH / attrs.maxAccelerationTimeInSeconds * (10.f / 36) },
     phyMgr{ defObjStorage->get_PhysicsManager() }
 {
 }
@@ -84,7 +84,7 @@ DronePhysicsManager::DronePhysicsManager(const vector3& forwardsDirection, const
 bool DronePhysicsManager::computeNewParameters(const default_ReturnedValueFromStript& inputs, float deltaTime, bool bExistExternalForces)
 {
     //here I compute internal acceleration on next frame
-    vector3 new_acc = crt3DAcceleration + forwardsDirection * inputs.forward * maxLinearAcceleration *deltaTime + vector3(0, 1, 0) * inputs.up * maxLinearAcceleration * deltaTime;
+    vector3 new_acc = crt3DAcceleration + forwardsDirection * inputs.forward * maxLinearAcceleration *deltaTime + vector3(0, 0.25f, 0) * inputs.up * maxLinearAcceleration * deltaTime;
 
     acceleration_corection(new_acc, inputs, deltaTime);
 
@@ -175,16 +175,12 @@ void DronePhysicsManager::reset()
 void DronePhysicsManager::acceleration_corection(vector3& acceleration, const default_ReturnedValueFromStript& inputs, float deltatime)
 {
     if (inputs.forward == 0) {
-        acceleration.X = 0; // acceleration descend directly to 0
-        acceleration.Z = 0;
-
-        
+        float up = acceleration.Y;
+        acceleration -= acceleration * 10 * deltatime; // acceleration descend directly to 0
+        acceleration.Y = up;
     }
     if (inputs.up == 0) {
         acceleration.Y = 0; // acceleration descend directly to 0
-        crt3DVelocity.Y *= 1 / 3; // velocity go down because of friction 
     }
-    float yval = crt3DVelocity.Y; // velocity go down because of friction
-    crt3DVelocity *= (1 / 6) * deltatime;// velocity direction corection for now
-    crt3DVelocity.Y = yval;
+    crt3DVelocity -= crt3DVelocity * 15 * deltatime;// velocity direction corection for now
 }

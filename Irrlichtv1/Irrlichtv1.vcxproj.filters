@@ -200,6 +200,7 @@
     <None Include="Controler.cd" />
     <None Include="Constructie.cd" />
     <None Include="Main.cd" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="models\models_used.txt">

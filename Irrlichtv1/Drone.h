@@ -57,5 +57,7 @@ public:
 	virtual float getForwardVelocity() const; 
 	virtual irr::core::vector3df getAccelerations() const;
 	virtual float getForwardAcceleration() const;
+
+	irr::core::vector3df getForwardVector() const { return mesh->getForwardVector(); }
 };
 

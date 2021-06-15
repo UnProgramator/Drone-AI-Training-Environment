@@ -32,7 +32,7 @@ public:
 
 			maxAltitude, /*in m*/
 			mass/*in kg*/;
-		float maxRightRotationSpeed = 10;
+		float maxRightRotationSpeed = 20;
 	};
 
 	static const float coeficient; // stub til i fix the problem of velocity depending on the scale of the object.

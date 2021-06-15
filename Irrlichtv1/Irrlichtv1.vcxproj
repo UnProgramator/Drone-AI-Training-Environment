@@ -63,6 +63,7 @@
     <ClCompile Include="test.pyCommunication.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="Comunicare.cd" />
     <None Include="Constructie.cd" />
     <None Include="Controler.cd" />

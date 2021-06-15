@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DynamicObject" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAgAAAAUAQAACAAAAAAAAAAgEAAABFA=</HashCode>
+      <FileName>DynamicObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaticObject" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACMIAEAAAAgAAIAAQAIAACCGQcAAAIAAAgAEBACMA=</HashCode>
+      <FileName>StaticObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Main" Collapsed="true">
+    <Position X="11.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAECABAQAAAAAAAAIAAgACAAAoAAAABAAAgAAA=</HashCode>
+      <FileName>Main.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PhysicsManager" Collapsed="true">
+    <Position X="12.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABACAABEAAAAAAAAAAAAAAAAAAEAEAIAAAAACgAAA=</HashCode>
+      <FileName>PhysicsManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Drone" Collapsed="true">
+    <Position X="2.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EABQsAAEAAAAIAAAQABAQAgAAAABIJAAgABAgIAAAEg=</HashCode>
+      <FileName>Drone.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wind" Collapsed="true">
+    <Position X="8.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ICgAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAEAQAAAAI=</HashCode>
+      <FileName>DefaultPhysicsComponents.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DronePhysicsManager" Collapsed="true">
+    <Position X="10.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BIACgAAEAAAAAAAZAAAAgAAAQAAAAIAIAABAACAAABI=</HashCode>
+      <FileName>DefaultPhysicsComponents.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DistanceSensor" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAkAIAAAAIAAAAAAAAAAAAAAAAQAAAAQAQAAAAA=</HashCode>
+      <FileName>DefaultSensors.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GPS" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAIAAAAAAQAAAAQAQAAAAA=</HashCode>
+      <FileName>DefaultSensors.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Altimeter" Collapsed="true">
+    <Position X="4.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAABAAAAAAAAAAAAAAAQAAAAQAQAAAAA=</HashCode>
+      <FileName>DefaultSensors.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Velocimometer" Collapsed="true">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAABAAAAAAAAAAAAAAAQAAAAQAQAAAAA=</HashCode>
+      <FileName>DefaultSensors.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Accelerometer" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAgAAAAAAAAAAAAAAAAAAAAAAAAQAAAAQAQAAAAA=</HashCode>
+      <FileName>DefaultSensors.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Accelerometer3D" Collapsed="true">
+    <Position X="9.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAABAAAAAAAAAAAAAAAAAAAAAAAQAAAAQAQAAAAA=</HashCode>
+      <FileName>DefaultSensors.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyboardController" Collapsed="true">
+    <Position X="7.5" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAEBAAAAABQCAAAAAAAAAAAAAAAQAIAAAAAA=</HashCode>
+      <FileName>KeyboardController.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasicBirdSimController" Collapsed="true">
+    <Position X="0.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAABBIAAASkAAAAAAABAUAAEAAAAAAgAAAAAAA=</HashCode>
+      <FileName>BasicBirdSimController.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PhysicsComponentInterface" Collapsed="true">
+    <Position X="9.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>PhysicsComponentInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataCoolectorInterface" Collapsed="true">
+    <Position X="5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQCAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>CommunicationInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommunicationInterface&lt;ReturnedValueFromStript, FeedbackType&gt;" Collapsed="true">
+    <Position X="10.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CommunicationInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectControllerInterface" Collapsed="true">
+    <Position X="2.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAgAAAAgAA=</HashCode>
+      <FileName>ObjectControllerInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SensorInterface" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABBAAAEAAQAAAEUAQAACCE=</HashCode>
+      <FileName>SensorInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DebugingStubComunicator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>FgAAgAAAAEABAAAABQCAAAAQAAAAAAAAAETgAQCAAAA=</HashCode>
+      <FileName>DebugingStubComunicator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AIDroneController" Collapsed="true">
+    <Position X="4" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>test.AIDroneController.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="pyCommunication" Collapsed="true">
+    <Position X="6.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAEAAAEBQKAhAACAAAAEQCAAAQAAAAAAAg=</HashCode>
+      <FileName>test.pyCommunication.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DefaultObjectStorage" Collapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEEAAAAAIAAAAMAAAAQAAAgAAhAAAABAAAAAAACAAAA=</HashCode>
+      <FileName>DefaultObjectStorage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DefaultObjectFactory" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAABAAAAAAAAAgAAAAAAAAAAAAAQg=</HashCode>
+      <FileName>ObjectFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Base_JSONParser" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAEAACAAAAAAAAAEAAAAAggEAAAAAA=</HashCode>
+      <FileName>JSONParser.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="default_FeedbackType" Collapsed="true">
+    <Position X="10.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAACBAAAgAA=</HashCode>
+      <FileName>CommunicationInterface.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="default_ReturnedValueFromStript" Collapsed="true">
+    <Position X="10.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>CommunicationInterface.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="default_CommunicationInterface" Collapsed="true">
+    <Position X="8" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CommunicationInterface.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
