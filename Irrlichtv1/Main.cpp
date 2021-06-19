@@ -40,14 +40,14 @@ bool Main::init()
     std::cout << "drone init " << pos.X << " " << pos.Y << " " << pos.Z << "\n";
     scene = json_p->parseStaticObjects("./models/DefaultScene.json");
 
-    SensorInterface::setSensorsRangeVisibility(true);
+    SensorInterface::setSensorsRangeVisibility(false);
 
     finishMarker = new StaticObject("models/meshes/finish.obj", "models/meshes/textures/finish.png", {}, {}, { 100,100,100 }, true, false, "finish");
 
     //comunicator = new pyCommunication(L"", "comunicator",drone->getSensorsNumberOfOutputValues() + 4, drone->getNumberOfInputs(), 0.2f);
     //comunicator = new pyCommunication(L"", "com_test", drone->getSensorsNumberOfOutputValues() + 4, drone->getNumberOfInputs(), 0.2f);
-    //comunicator = new KeyboardController();
-    comunicator = new DebugingStubComunicator(drone);
+    comunicator = new KeyboardController();
+    //comunicator = new DebugingStubComunicator(drone);
     colector = dynamic_cast<DataCoolectorInterface*>(comunicator);
     if (colector == nullptr)
         throw std::exception("cast error occured i Main::init");
