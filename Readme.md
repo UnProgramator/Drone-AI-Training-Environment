@@ -14,7 +14,7 @@ This is an environment writen in C++ and Irrlicht game engine for training a dro
 A fully version is not available yet, the development is stil in development  
 
 ## License
-To be added, probably GPL v2  
+[License](https://github.com/UnProgramator/Drone-AI-Training-Framework/blob/master/LICENSE) 
 
 ## Other product Licenses
 This product use Irrlicht engine for 3D Rendering.  
